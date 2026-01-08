@@ -1,48 +1,26 @@
 {
   "items": [
     {
-      "name": "DW Starter",
-      "price": "from €490",
-      "duration": "3–5 days",
-      "featured": false,
-      "features": [
-        "Single-page landing page",
-        "Mobile responsive",
-        "Contact form integration",
-        "Basic SEO",
-        "Fast hosting setup",
-        "1 revision round"
-      ]
+      "name": "Landing",
+      "price": "€399",
+      "hint": "Perfect for one offer / one goal",
+      "bullets": ["1 page", "Responsive design", "CTA + contact form", "Basic SEO", "Deploy to Vercel"],
+      "cta": "Start Landing"
     },
     {
-      "name": "DW Business",
-      "price": "from €1,290",
-      "duration": "7–10 days",
+      "name": "Business",
+      "price": "€799",
+      "hint": "Most popular for small companies",
       "featured": true,
-      "features": [
-        "Up to 5 pages",
-        "Custom layout for your brand",
-        "Clear CTAs + lead capture",
-        "Advanced SEO basics",
-        "Analytics setup",
-        "Admin-ready content structure",
-        "2 revision rounds"
-      ]
+      "bullets": ["Up to 5 pages", "Services + Portfolio", "Copy improvements", "Speed optimization", "Analytics setup"],
+      "cta": "Start Business"
     },
     {
-      "name": "DW Growth",
-      "price": "from €2,490",
-      "duration": "10–14 days",
-      "featured": false,
-      "features": [
-        "Up to 10 pages",
-        "Optional blog structure",
-        "E-commerce (up to 50 products)",
-        "Payments setup",
-        "Advanced tracking",
-        "Priority support",
-        "3 revision rounds"
-      ]
+      "name": "Custom",
+      "price": "From €1200",
+      "hint": "When you need something specific",
+      "bullets": ["Custom pages", "Advanced sections", "Integrations", "Multilingual", "Priority support"],
+      "cta": "Get a quote"
     }
   ]
 }
