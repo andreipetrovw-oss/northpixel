@@ -4,46 +4,95 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>NorthPixel Admin</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="admin.css" />
+  <style>
+    body{margin:0;font-family:system-ui;background:#0b1020;color:#fff}
+    .wrap{max-width:980px;margin:0 auto;padding:24px}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    textarea{
+      width:100%;min-height:520px;
+      background:#070b14;color:#d7e7ff;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      padding:14px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size:13px;line-height:1.45;
+    }
+    button,a{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:#fff;text-decoration:none;cursor:pointer;
+      font-weight:700;
+    }
+    button:hover,a:hover{background:rgba(255,255,255,.10)}
+    .hint{color:rgba(255,255,255,.7);font-size:13px;margin:10px 0 0}
+    .ok{color:#34d399}
+    .bad{color:#ff6b6b}
+    code{background:rgba(255,255,255,.08);padding:2px 6px;border-radius:8px}
+  </style>
 </head>
 <body>
   <div class="wrap">
-    <header class="top">
-      <div>
-        <div class="title">NorthPixel Admin</div>
-        <div class="muted">Edit JSON → Save → site updates (localStorage). Download if you want to commit to GitHub.</div>
-      </div>
-      <div class="actions">
-        <a class="btn" href="../">← Back to site</a>
-        <button class="btn danger" id="btn_clear">Clear local changes</button>
-      </div>
-    </header>
-
-    <div class="tabs">
-      <button class="tab active" data-tab="site">site.json</button>
-      <button class="tab" data-tab="packages">packages.json</button>
-      <button class="tab" data-tab="cases">cases.json</button>
+    <h1>Admin — content.json</h1>
+    <div class="row">
+      <button id="load">Load from site</button>
+      <button id="validate">Validate JSON</button>
+      <button id="download">Download content.json</button>
+      <a href="index.html" target="_blank">Open site</a>
     </div>
+    <p class="hint">
+      Тут всё просто как ManuFarm: редактируешь JSON → <b>Download</b> → заменяешь файл <code>content.json</code> в GitHub → Vercel обновится.
+    </p>
 
-    <section class="panel">
-      <div class="row">
-        <div class="muted">Tip: edit carefully — invalid JSON won’t save.</div>
-        <div class="row__actions">
-          <button class="btn" id="btn_load">Load from /content</button>
-          <button class="btn" id="btn_load_local">Load from local</button>
-          <button class="btn primary" id="btn_save">Save to local</button>
-          <button class="btn" id="btn_download">Download JSON</button>
-        </div>
-      </div>
-
-      <textarea id="editor" spellcheck="false"></textarea>
-
-      <div class="status" id="status"></div>
-    </section>
+    <p id="status" class="hint"></p>
+    <textarea id="txt"></textarea>
   </div>
 
-  <script src="admin.js" defer></script>
+  <script>
+    const txt = document.getElementById('txt');
+    const status = document.getElementById('status');
+
+    function setStatus(msg, ok=true){
+      status.className = "hint " + (ok ? "ok" : "bad");
+      status.textContent = msg;
+    }
+
+    async function load(){
+      const res = await fetch('./content.json', { cache: 'no-store' });
+      if(!res.ok) throw new Error('content.json not found');
+      const t = await res.text();
+      txt.value = t;
+      setStatus('Loaded content.json ✅', true);
+    }
+
+    function validate(){
+      try{
+        JSON.parse(txt.value);
+        setStatus('JSON is valid ✅', true);
+      }catch(e){
+        setStatus('JSON error: ' + e.message, false);
+      }
+    }
+
+    function download(){
+      validate();
+      try{ JSON.parse(txt.value); } catch { return; }
+      const blob = new Blob([txt.value], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'content.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      setStatus('Downloaded ✅ Replace content.json in GitHub', true);
+    }
+
+    document.getElementById('load').onclick = () => load().catch(e => setStatus(e.message,false));
+    document.getElementById('validate').onclick = validate;
+    document.getElementById('download').onclick = download;
+
+    // авто-подгрузка
+    load().catch(()=>{ txt.value = '{\n  "brand": { "name": "NORTHPIXEL" }\n}\n'; });
+  </script>
 </body>
 </html>
