@@ -1,406 +1,376 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NorthPixel - Fast, professional websites for small businesses. Landing pages and business sites delivered in days, not months.">
-    <title>NorthPixel | Fast Websites for Small Business</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NorthPixel - Fast, professional websites for small businesses." />
+  <title>NorthPixel | Fast Websites for Small Business</title>
+
+  <!-- Prevent “blank page” if JS fails: animations only when .js is set -->
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 </head>
+
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <div class="logo">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                        <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
-                        <path d="M10 22V10L22 16L10 22Z" fill="white"/>
-                        <defs>
-                            <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
-                                <stop offset="0%" stop-color="#39d9c8"/>
-                                <stop offset="100%" stop-color="#7a74ff"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                    <span>NorthPixel</span>
-                </div>
-                <div class="nav-actions">
-                    <a href="tel:+3725541895" class="phone">+372 5541895</a>
-                    <a href="#contact" class="btn btn-primary">Get a Quote</a>
-                </div>
-            </nav>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect width="32" height="32" rx="8" fill="url(#gradient)"></rect>
+            <path d="M10 22V10L22 16L10 22Z" fill="white"></path>
+            <defs>
+              <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
+                <stop offset="0%" stop-color="#48c9b0"></stop>
+                <stop offset="100%" stop-color="#5b7cfa"></stop>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span>NorthPixel</span>
         </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content fade-in">
-                <h1 class="hero-title" id="hero-title">Fast Websites for Small Business</h1>
-                <p class="hero-subtitle" id="hero-subtitle">
-                    Professional landing pages and business websites delivered in days, not months.
-                    Simple pricing, clear timelines, guaranteed results.
-                </p>
-
-                <div class="hero-cta">
-                    <a href="#packages" class="btn btn-primary btn-lg">View Packages</a>
-                    <a href="#cases" class="btn btn-secondary btn-lg">See Our Work</a>
-                </div>
-
-                <!-- NEW: clearer, more “pro” -->
-                <div class="hero-points fade-in">
-                    <div class="hero-point">✅ Design + Development in one flow (no contractors)</div>
-                    <div class="hero-point">✅ Clear scope, fixed price, deadline you can trust</div>
-                    <div class="hero-point">✅ Fast, SEO-ready, and easy to update</div>
-                </div>
-
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-number">3-14</div>
-                        <div class="stat-label">Days Delivery</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">On-Time Rate</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Happy Clients</div>
-                    </div>
-                </div>
-            </div>
+        <div class="nav-actions">
+          <a href="tel:+3725541895" class="phone">+372 5541895</a>
+          <a href="#contact" class="btn btn-primary">Get a Quote</a>
         </div>
-    </section>
+      </nav>
+    </div>
+  </header>
 
-    <!-- NEW: Trust Strip -->
-    <section class="trust">
-        <div class="container">
-            <div class="trust-grid fade-in">
-                <div class="trust-item">
-                    <div class="trust-title">Fast delivery</div>
-                    <div class="trust-sub">3–14 days with clear milestones</div>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-title">Fixed price</div>
-                    <div class="trust-sub">No surprise invoices, ever</div>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-title">Built for results</div>
-                    <div class="trust-sub">Speed, SEO basics, conversion-focused</div>
-                </div>
-            </div>
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <h1 class="hero-title" id="hero-title">Fast Websites for Small Business</h1>
+        <p class="hero-subtitle" id="hero-subtitle">
+          Professional landing pages and business websites delivered in days, not months. Simple pricing, clear timelines, guaranteed results.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#packages" class="btn btn-primary btn-lg">View Packages</a>
+          <a href="#cases" class="btn btn-secondary btn-lg">See Our Work</a>
         </div>
-    </section>
 
-    <!-- Problems Section -->
-    <section class="problems" id="problems">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 id="problems-title">The Problem with Most Web Agencies</h2>
-                <p id="problems-subtitle">Traditional web development is slow, expensive, and unpredictable.</p>
-            </div>
-            <div class="problems-grid">
-                <div class="problem-card fade-in">
-                    <div class="problem-icon">⏳</div>
-                    <h3>Months of Waiting</h3>
-                    <p>Most agencies take 2-6 months to deliver a simple website.</p>
-                </div>
-                <div class="problem-card fade-in">
-                    <div class="problem-icon">💸</div>
-                    <h3>Hidden Costs</h3>
-                    <p>Prices balloon with endless revisions and "additional features".</p>
-                </div>
-                <div class="problem-card fade-in">
-                    <div class="problem-icon">🤷</div>
-                    <h3>No Clear Timeline</h3>
-                    <p>Launch dates keep getting pushed back with vague excuses.</p>
-                </div>
-            </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-number">3–14</div>
+            <div class="stat-label">Days Delivery</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">On-time rate</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Happy clients</div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Solutions Section -->
-    <section class="solutions">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 id="solutions-title">Our Solution: Fast, Fixed-Price Websites</h2>
-                <p id="solutions-subtitle">We deliver professional websites in days with transparent pricing and guaranteed deadlines.</p>
-            </div>
-            <div class="solutions-grid">
-                <div class="solution-card fade-in">
-                    <div class="solution-icon">⚡</div>
-                    <h3>Lightning Fast</h3>
-                    <p>Get your website live in 3-14 days. Not months. Not weeks. Days.</p>
-                </div>
-                <div class="solution-card fade-in">
-                    <div class="solution-icon">💎</div>
-                    <h3>Fixed Pricing</h3>
-                    <p>Know exactly what you'll pay upfront. No surprises, no hidden fees.</p>
-                </div>
-                <div class="solution-card fade-in">
-                    <div class="solution-icon">🎯</div>
-                    <h3>Guaranteed Deadline</h3>
-                    <p>We commit to a delivery date and stick to it. Every single time.</p>
-                </div>
-            </div>
+  <!-- Problems -->
+  <section class="problems" id="problems">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 id="problems-title">The Problem with Most Web Agencies</h2>
+        <p id="problems-subtitle">Traditional web development is slow, expensive, and unpredictable.</p>
+      </div>
+
+      <div class="problems-grid">
+        <div class="problem-card fade-in">
+          <div class="problem-icon">⏳</div>
+          <h3>Months of Waiting</h3>
+          <p>Most agencies take 2–6 months to deliver a simple website.</p>
         </div>
-    </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2>What We Build</h2>
-                <p>Focused solutions for small businesses who need results fast.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <h3>Landing Pages</h3>
-                    <p>High-converting single-page sites perfect for campaigns, products, or services. Delivered in 3-5 days.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <h3>Business Websites</h3>
-                    <p>Professional multi-page websites with contact forms, portfolios, and service pages. Ready in 7-10 days.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <h3>Small E-Commerce</h3>
-                    <p>Simple online stores with product catalogs and payment integration. Launched in 10-14 days.</p>
-                </div>
-            </div>
+        <div class="problem-card fade-in">
+          <div class="problem-icon">💸</div>
+          <h3>Hidden Costs</h3>
+          <p>Prices balloon with endless revisions and “additional features”.</p>
         </div>
-    </section>
 
-    <!-- Process Section -->
-    <section class="process">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 id="process-title">Simple 4-Step Process</h2>
-                <p id="process-subtitle">From first contact to live website in record time.</p>
-            </div>
-            <div class="process-steps">
-                <div class="step fade-in">
-                    <div class="step-number">1</div>
-                    <h3>Brief Call</h3>
-                    <p>30-minute call to understand your needs, goals, and timeline.</p>
-                </div>
-                <div class="step fade-in">
-                    <div class="step-number">2</div>
-                    <h3>Design & Build</h3>
-                    <p>We create your website based on proven templates and best practices.</p>
-                </div>
-                <div class="step fade-in">
-                    <div class="step-number">3</div>
-                    <h3>Review & Refine</h3>
-                    <p>One round of revisions to ensure everything is perfect.</p>
-                </div>
-                <div class="step fade-in">
-                    <div class="step-number">4</div>
-                    <h3>Launch</h3>
-                    <p>Your website goes live on schedule with full documentation.</p>
-                </div>
-            </div>
+        <div class="problem-card fade-in">
+          <div class="problem-icon">🤷</div>
+          <h3>No Clear Timeline</h3>
+          <p>Launch dates keep getting pushed back with vague excuses.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Cases Section -->
-    <section class="cases" id="cases">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2>Recent Projects</h2>
-                <p>Real websites delivered on time, on budget, for real businesses.</p>
-            </div>
-            <div class="cases-grid" id="cases-grid">
-                <!-- Cases will be loaded dynamically from cases.json -->
-            </div>
+  <!-- Solutions -->
+  <section class="solutions" id="solutions">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 id="solutions-title">Our Solution: Fast, Fixed-Price Websites</h2>
+        <p id="solutions-subtitle">We deliver professional websites in days with transparent pricing and guaranteed deadlines.</p>
+      </div>
+
+      <div class="solutions-grid">
+        <div class="solution-card fade-in">
+          <div class="solution-icon">⚡</div>
+          <h3>Lightning Fast</h3>
+          <p>Get your website live in 3–14 days. Not months. Not weeks. Days.</p>
         </div>
-    </section>
 
-    <!-- Packages Section -->
-    <section class="packages" id="packages">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2>Simple, Transparent Pricing</h2>
-                <p>Choose the package that fits your needs. No hidden fees, no surprises.</p>
-            </div>
-            <div class="packages-grid" id="packages-grid">
-                <!-- Packages will be loaded dynamically from packages.json -->
-            </div>
+        <div class="solution-card fade-in">
+          <div class="solution-icon">💎</div>
+          <h3>Fixed Pricing</h3>
+          <p>Know exactly what you’ll pay upfront. No surprises, no hidden fees.</p>
         </div>
-    </section>
 
-    <!-- FAQ Section -->
-    <section class="faq" id="faq">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2>Frequently Asked Questions</h2>
-            </div>
-            <div class="faq-list">
-                <div class="faq-item fade-in">
-                    <h3 class="faq-question">How can you deliver so fast?</h3>
-                    <div class="faq-answer">
-                        <p>We use proven frameworks, pre-built components, and streamlined processes. Instead of reinventing the wheel for each project, we focus on customizing battle-tested solutions to your specific needs.</p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <h3 class="faq-question">Do I own the website?</h3>
-                    <div class="faq-answer">
-                        <p>Yes, 100%. You own all the code, content, and design. We'll provide full access to everything and documentation on how to make updates.</p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <h3 class="faq-question">What if I need changes after launch?</h3>
-                    <div class="faq-answer">
-                        <p>Each package includes one round of revisions before launch. After launch, we offer support packages starting at €99/month for minor updates and maintenance.</p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <h3 class="faq-question">Can you build custom features?</h3>
-                    <div class="faq-answer">
-                        <p>For standard business needs - absolutely. For highly custom applications or complex systems, we can provide a custom quote with adjusted timeline.</p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <h3 class="faq-question">What about hosting and domain?</h3>
-                    <div class="faq-answer">
-                        <p>We can handle everything or work with your existing hosting. All packages include 1 year of hosting. Domains are additional (typically €10-15/year).</p>
-                    </div>
-                </div>
-            </div>
+        <div class="solution-card fade-in">
+          <div class="solution-icon">🎯</div>
+          <h3>Guaranteed Deadline</h3>
+          <p>We commit to a delivery date and stick to it. Every single time.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-wrapper">
-                <div class="contact-info fade-in">
-                    <h2>Ready to Get Started?</h2>
-                    <p>Get a detailed quote within 24 hours. Most projects start within a week.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <strong>Email:</strong>
-                            <a href="mailto:info.northpixel@gmail.com">info.northpixel@gmail.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <strong>Phone:</strong>
-                            <a href="tel:+3725541895">+372 5541895</a>
-                        </div>
-                        <div class="contact-item">
-                            <strong>Location:</strong>
-                            <span>Tallinn, Estonia</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form-wrapper fade-in">
-                    <form class="contact-form" id="contact-form">
-                        <input type="hidden" name="_subject" value="New NorthPixel Quote Request">
-                        <input type="hidden" name="_cc" value="info.northpixel@gmail.com">
+  <!-- Services -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>What We Build</h2>
+        <p>Focused solutions for small businesses who need results fast.</p>
+      </div>
 
-                        <div class="form-group">
-                            <label for="name">Your Name *</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="company">Company Name</label>
-                            <input type="text" id="company" name="company">
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="budget">Budget</label>
-                                <select id="budget" name="budget">
-                                    <option value="">Select budget</option>
-                                    <option value="€490-€1,000">€490-€1,000</option>
-                                    <option value="€1,000-€2,500">€1,000-€2,500</option>
-                                    <option value="€2,500-€5,000">€2,500-€5,000</option>
-                                    <option value="€5,000+">€5,000+</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="timeline">Timeline</label>
-                                <select id="timeline" name="timeline">
-                                    <option value="">Select timeline</option>
-                                    <option value="Urgent (1-2 weeks)">Urgent (1-2 weeks)</option>
-                                    <option value="Soon (2-4 weeks)">Soon (2-4 weeks)</option>
-                                    <option value="Flexible (1-2 months)">Flexible (1-2 months)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Project Details *</label>
-                            <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project, goals, and any specific requirements..."></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-lg btn-full">Send Quote Request</button>
-                        <div class="form-message" id="form-message"></div>
-                    </form>
-                </div>
-            </div>
+      <div class="services-grid">
+        <div class="service-card fade-in">
+          <h3>Landing Pages</h3>
+          <p>High-converting single-page sites perfect for campaigns, products, or services. Delivered in 3–5 days.</p>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                            <rect width="32" height="32" rx="8" fill="url(#gradient-footer)"/>
-                            <path d="M10 22V10L22 16L10 22Z" fill="white"/>
-                            <defs>
-                                <linearGradient id="gradient-footer" x1="0" y1="0" x2="32" y2="32">
-                                    <stop offset="0%" stop-color="#39d9c8"/>
-                                    <stop offset="100%" stop-color="#7a74ff"/>
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                        <span>NorthPixel</span>
-                    </div>
-                    <p>Fast, professional websites for small businesses.</p>
-                </div>
-
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Company</h4>
-                        <a href="#home">Home</a>
-                        <a href="#services">Services</a>
-                        <a href="#packages">Pricing</a>
-                        <a href="#cases">Portfolio</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Support</h4>
-                        <a href="#faq">FAQ</a>
-                        <a href="#contact">Contact</a>
-                        <a href="/admin">Admin Login</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Contact</h4>
-                        <a href="mailto:info.northpixel@gmail.com">info.northpixel@gmail.com</a>
-                        <a href="tel:+3725541895">+372 5541895</a>
-                        <span>Tallinn, Estonia</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2025 NorthPixel. All rights reserved.</p>
-            </div>
+        <div class="service-card fade-in">
+          <h3>Business Websites</h3>
+          <p>Professional multi-page websites with contact forms, portfolios, and service pages. Ready in 7–10 days.</p>
         </div>
-    </footer>
+        <div class="service-card fade-in">
+          <h3>Small E-Commerce</h3>
+          <p>Simple online stores with product catalogs and payment integration. Launched in 10–14 days.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="assets/js/app.js"></script>
+  <!-- Process -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 id="process-title">Simple 4-Step Process</h2>
+        <p id="process-subtitle">From first contact to live website in record time.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="step fade-in">
+          <div class="step-number">1</div>
+          <h3>Brief Call</h3>
+          <p>30-minute call to understand your needs, goals, and timeline.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-number">2</div>
+          <h3>Design & Build</h3>
+          <p>We create your website based on proven templates and best practices.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-number">3</div>
+          <h3>Review & Refine</h3>
+          <p>One round of revisions to ensure everything is perfect.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-number">4</div>
+          <h3>Launch</h3>
+          <p>Your website goes live on schedule with full documentation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cases -->
+  <section class="cases" id="cases">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Recent Projects</h2>
+        <p>Real websites delivered on time, on budget, for real businesses.</p>
+      </div>
+
+      <div class="cases-grid" id="cases-grid"></div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="packages" id="packages">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Simple, Transparent Pricing</h2>
+        <p>Choose the package that fits your needs. No hidden fees, no surprises.</p>
+      </div>
+
+      <div class="packages-grid" id="packages-grid"></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item fade-in">
+          <button class="faq-question" type="button">How can you deliver so fast?</button>
+          <div class="faq-answer">
+            <p>We use proven components and a streamlined process. We customize battle-tested solutions to your needs.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" type="button">Do I own the website?</button>
+          <div class="faq-answer">
+            <p>Yes — 100%. You own all the code, content, and design. We provide access and documentation.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" type="button">What if I need changes after launch?</button>
+          <div class="faq-answer">
+            <p>Each package includes a revision round before launch. After launch we can support updates and maintenance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-info fade-in">
+          <h2>Ready to Get Started?</h2>
+          <p>Get a detailed quote within 24 hours. Most projects start within a week.</p>
+
+          <div class="contact-details">
+            <div class="contact-item">
+              <strong>Email:</strong>
+              <a href="mailto:info.northpixel@gmail.com">info.northpixel@gmail.com</a>
+            </div>
+            <div class="contact-item">
+              <strong>Phone:</strong>
+              <a href="tel:+3725541895">+372 5541895</a>
+            </div>
+            <div class="contact-item">
+              <strong>Location:</strong>
+              <span>Tallinn, Estonia</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper fade-in">
+          <form class="contact-form" id="contact-form">
+            <input type="hidden" name="_subject" value="New NorthPixel Quote Request" />
+
+            <div class="form-group">
+              <label for="name">Your Name *</label>
+              <input id="name" name="name" type="text" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input id="email" name="email" type="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="company">Company Name</label>
+              <input id="company" name="company" type="text" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="budget">Budget</label>
+                <select id="budget" name="budget">
+                  <option value="">Select budget</option>
+                  <option value="€490-€1,000">€490–€1,000</option>
+                  <option value="€1,000-€2,500">€1,000–€2,500</option>
+                  <option value="€2,500-€5,000">€2,500–€5,000</option>
+                  <option value="€5,000+">€5,000+</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="timeline">Timeline</label>
+                <select id="timeline" name="timeline">
+                  <option value="">Select timeline</option>
+                  <option value="Urgent (1-2 weeks)">Urgent (1–2 weeks)</option>
+                  <option value="Soon (2-4 weeks)">Soon (2–4 weeks)</option>
+                  <option value="Flexible (1-2 months)">Flexible (1–2 months)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Project Details *</label>
+              <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-full">Send Quote Request</button>
+            <div class="form-message" id="form-message"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo">
+            <span>NorthPixel</span>
+          </div>
+          <p>Fast, professional websites for small businesses.</p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>Company</h4>
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#packages">Pricing</a>
+            <a href="#cases">Portfolio</a>
+          </div>
+
+          <div class="footer-column">
+            <h4>Support</h4>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
+            <a href="/admin/">Admin Login</a>
+          </div>
+
+          <div class="footer-column">
+            <h4>Contact</h4>
+            <a href="mailto:info.northpixel@gmail.com">info.northpixel@gmail.com</a>
+            <a href="tel:+3725541895">+372 5541895</a>
+            <span>Tallinn, Estonia</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 NorthPixel. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
