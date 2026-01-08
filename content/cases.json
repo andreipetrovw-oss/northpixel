@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "title": "ManuFarm",
+      "description": "Modern landing page for an agricultural business with product catalog integration and contact forms. Delivered in 5 days.",
+      "testimonial": "NorthPixel transformed our online presence in less than a week. The site is beautiful, fast, and our inquiries have doubled.",
+      "image": "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&q=80",
+      "tags": ["Landing Page", "Agriculture", "5 Days"]
+    },
+    {
+      "title": "TechConsult Pro",
+      "description": "Professional consulting website with service pages, team profiles, and a blog system for thought leadership content.",
+      "testimonial": "We needed a professional website fast. NorthPixel delivered exactly what we needed on time and on budget.",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
+      "tags": ["Business Site", "Consulting", "8 Days"]
+    },
+    {
+      "title": "Nordic Craft Shop",
+      "description": "Small e-commerce store featuring handmade Nordic crafts with payment integration and inventory management.",
+      "testimonial": "From concept to live store in under two weeks. The site is easy to manage and sales have been fantastic.",
+      "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80",
+      "tags": ["E-commerce", "Retail", "12 Days"]
+    }
+  ]
+}
