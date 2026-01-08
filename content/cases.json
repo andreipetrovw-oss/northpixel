@@ -1,22 +1,20 @@
 {
   "items": [
     {
-      "title": "ManuFarm",
-      "description": "Modern landing page for an agricultural business. Delivered in 5 days.",
-      "image": "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&q=80",
-      "tags": ["Landing Page", "Agriculture", "5 Days"]
+      "name": "NorthPixel Landing",
+      "description": "Fast, clean landing with clear pricing and strong CTA.",
+      "tags": ["Landing", "Vercel", "Performance"],
+      "link": "https://northpixel.vercel.app/"
     },
     {
-      "title": "TechConsult Pro",
-      "description": "Consulting website with services, team and blog-ready structure.",
-      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
-      "tags": ["Business Site", "Consulting", "8 Days"]
+      "name": "Local Service Website",
+      "description": "Business website: services, portfolio, contact, FAQ, SEO basics.",
+      "tags": ["Business site", "SEO", "Responsive"]
     },
     {
-      "title": "Nordic Craft Shop",
-      "description": "Small e-commerce shop with product catalog and payments integration.",
-      "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80",
-      "tags": ["E-commerce", "Retail", "12 Days"]
+      "name": "Redesign + Speed",
+      "description": "Visual refresh + structure cleanup + faster load times.",
+      "tags": ["Redesign", "Speed", "UX"]
     }
   ]
 }
