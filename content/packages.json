@@ -7,12 +7,11 @@
       "featured": false,
       "features": [
         "Single-page landing page",
-        "Mobile-responsive design",
+        "Mobile responsive",
         "Contact form integration",
-        "Basic SEO optimization",
-        "1 year hosting included",
-        "SSL certificate",
-        "One round of revisions"
+        "Basic SEO",
+        "Fast hosting setup",
+        "1 revision round"
       ]
     },
     {
@@ -21,14 +20,13 @@
       "duration": "7–10 days",
       "featured": true,
       "features": [
-        "Multi-page business website (up to 5 pages)",
-        "Custom design tailored to your brand",
-        "Contact forms & call-to-actions",
-        "Advanced SEO optimization",
-        "Google Analytics integration",
-        "1 year hosting & SSL",
-        "Admin panel for content updates",
-        "Two rounds of revisions"
+        "Up to 5 pages",
+        "Custom layout for your brand",
+        "Clear CTAs + lead capture",
+        "Advanced SEO basics",
+        "Analytics setup",
+        "Admin-ready content structure",
+        "2 revision rounds"
       ]
     },
     {
@@ -37,15 +35,13 @@
       "duration": "10–14 days",
       "featured": false,
       "features": [
-        "Multi-page website (up to 10 pages)",
-        "E-commerce integration (up to 50 products)",
-        "Payment gateway setup",
-        "Blog system with CMS",
-        "Email marketing integration",
-        "Advanced analytics & tracking",
-        "Priority support for 3 months",
-        "Full admin panel",
-        "Three rounds of revisions"
+        "Up to 10 pages",
+        "Optional blog structure",
+        "E-commerce (up to 50 products)",
+        "Payments setup",
+        "Advanced tracking",
+        "Priority support",
+        "3 revision rounds"
       ]
     }
   ]
