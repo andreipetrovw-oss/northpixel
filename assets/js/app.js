@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const y = document.getElementById("year");
+  const y = document.documentElement.classList.add('js');
   if (y) y.textContent = String(new Date().getFullYear());
 
   const burger = document.getElementById("burger");
