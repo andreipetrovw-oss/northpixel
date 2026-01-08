@@ -1,0 +1,79 @@
+{
+  "brand": {
+    "name": "NORTHPIXEL",
+    "tagline": "Fast launch • Clear price • No drama",
+    "phone": "+372 5541895",
+    "email": "info.northpixel@gmail.com",
+    "city": "Tallinn, Estonia",
+    "cta": "Get a Quote"
+  },
+  "hero": {
+    "title": "Fast Websites for Small Businesses",
+    "subtitle": "Landing pages and business websites shipped in days — with clean design, clear pricing, and zero chaos.",
+    "primaryCta": "Get a Quote",
+    "secondaryCta": "See Work"
+  },
+  "stats": [
+    { "label": "Delivery", "value": "3–14 days" },
+    { "label": "Pricing", "value": "Fixed & transparent" },
+    { "label": "Process", "value": "Simple & fast" },
+    { "label": "Support", "value": "Real humans" }
+  ],
+  "services": [
+    { "title": "Landing Pages", "desc": "High-converting pages with clear structure, copy, and CTA." },
+    { "title": "Business Websites", "desc": "Multi-page websites that look premium and feel simple." },
+    { "title": "UI Polish", "desc": "Design upgrades: typography, spacing, visuals, sections." },
+    { "title": "Speed & SEO", "desc": "Fast loading, basics covered, ready for Google." }
+  ],
+  "process": [
+    { "step": "01", "title": "Brief", "desc": "We clarify your goal, audience, offer, and structure." },
+    { "step": "02", "title": "Design", "desc": "Clean premium layout with modern visual accents." },
+    { "step": "03", "title": "Build", "desc": "Fast implementation, responsive, optimized." },
+    { "step": "04", "title": "Launch", "desc": "Deploy + handoff + next steps for growth." }
+  ],
+  "projects": [
+    {
+      "title": "ManuFarm",
+      "desc": "Landing page with clear offer, strong structure, and fast load.",
+      "tags": ["Landing", "Copy", "Conversion"],
+      "link": "#"
+    },
+    {
+      "title": "Local Service Site",
+      "desc": "Multi-page business website with pricing and lead capture.",
+      "tags": ["Website", "SEO", "Lead Form"],
+      "link": "#"
+    },
+    {
+      "title": "Creative Portfolio",
+      "desc": "Minimal showcase with bold typography and case studies.",
+      "tags": ["Portfolio", "UI", "Brand"],
+      "link": "#"
+    }
+  ],
+  "pricing": [
+    {
+      "name": "Starter",
+      "price": "€500",
+      "note": "Perfect for simple landing",
+      "features": ["1 page", "Copy structure", "Mobile responsive", "Deploy to Vercel"]
+    },
+    {
+      "name": "Business",
+      "price": "€900",
+      "note": "Best for most clients",
+      "features": ["Up to 5 pages", "Basic SEO", "Lead form", "Speed optimization"]
+    },
+    {
+      "name": "Pro",
+      "price": "€1500",
+      "note": "For premium results",
+      "features": ["Custom sections", "Animations (light)", "Case studies", "Priority delivery"]
+    }
+  ],
+  "faq": [
+    { "q": "How fast can you ship?", "a": "Usually 3–14 days depending on scope and materials." },
+    { "q": "Do you work with fixed pricing?", "a": "Yes — we define scope and deliverables before we start." },
+    { "q": "Can I edit content myself?", "a": "Yes — update content.json (or use admin.html to export it)." }
+  ]
+}
