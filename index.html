@@ -3,259 +3,591 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>NorthPixel — Fast Websites for Small Businesses</title>
-  <meta name="description" content="Fast, professional websites for small businesses. Clear scope, fixed pricing, reliable delivery." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css" />
+  <title>NorthPixel — Fast Websites</title>
+  <meta name="description" content="Fast, premium websites for small businesses. Clear pricing. Fast launch." />
+
+  <style>
+    :root{
+      --bg:#070B14;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.09);
+      --line:rgba(255,255,255,.12);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.68);
+      --muted2:rgba(255,255,255,.55);
+      --accent1:#62E1D6;
+      --accent2:#7C6BFF;
+      --accent3:#34D399;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1160px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background: radial-gradient(1200px 700px at 20% 10%, rgba(124,107,255,.22), transparent 60%),
+                  radial-gradient(900px 600px at 85% 15%, rgba(98,225,214,.18), transparent 60%),
+                  radial-gradient(900px 600px at 60% 90%, rgba(52,211,153,.12), transparent 60%),
+                  linear-gradient(180deg, #060914 0%, #070B14 40%, #050814 100%);
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .topbar{
+      position:sticky; top:0; z-index:40;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(7,11,20,.75), rgba(7,11,20,.35));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      height:74px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.6px
+    }
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(98,225,214,.95), rgba(124,107,255,.95));
+      box-shadow: 0 12px 30px rgba(124,107,255,.18);
+      position:relative;
+    }
+    .logo:after{
+      content:""; position:absolute; inset:9px;
+      border-radius:10px;
+      background: rgba(7,11,20,.78);
+      clip-path: polygon(35% 22%, 78% 50%, 35% 78%);
+    }
+    .links{display:flex; gap:18px; align-items:center}
+    .links a{
+      font-size:14px; color:var(--muted); padding:8px 10px; border-radius:12px;
+      border:1px solid transparent;
+    }
+    .links a:hover{color:var(--text); border-color:rgba(255,255,255,.08); background:rgba(255,255,255,.04)}
+    .right{
+      display:flex; gap:14px; align-items:center;
+      font-size:14px;
+    }
+    .pill{
+      color:var(--muted);
+      padding:10px 12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius:999px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 16px;
+      border-radius:999px;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.09); border-color:rgba(255,255,255,.16)}
+    .btn.primary{
+      border:none;
+      background: linear-gradient(135deg, rgba(98,225,214,.95), rgba(124,107,255,.95));
+      color:#071014;
+      box-shadow: 0 18px 40px rgba(124,107,255,.22);
+    }
+    .btn.primary:hover{transform: translateY(-1px) scale(1.01)}
+    .hero{
+      padding:64px 0 26px;
+      position:relative;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    .headline{
+      padding:26px 26px 20px;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .headline:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(700px 300px at 20% 0%, rgba(98,225,214,.18), transparent 55%),
+                  radial-gradient(700px 300px at 80% 10%, rgba(124,107,255,.18), transparent 55%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .kicker{color:var(--muted); font-size:14px; letter-spacing:.6px}
+    h1{
+      margin:10px 0 10px;
+      font-size: 52px;
+      line-height: 1.02;
+      letter-spacing: -1px;
+      position:relative;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.6;
+      max-width: 54ch;
+      position:relative;
+    }
+    .ctaRow{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; position:relative}
+    .miniNote{margin-top:12px; color:var(--muted2); font-size:13px; position:relative}
+    .side{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius2);
+      padding:22px;
+      box-shadow: var(--shadow);
+      display:flex; flex-direction:column; gap:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .side:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 260px at 40% 10%, rgba(52,211,153,.12), transparent 60%),
+                  radial-gradient(500px 260px at 85% 35%, rgba(98,225,214,.10), transparent 60%);
+      pointer-events:none;
+      opacity:.85;
+    }
+    .cardTitle{font-weight:800; letter-spacing:.2px; position:relative}
+    .statGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:4px;
+      position:relative;
+    }
+    .stat{
+      padding:14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .stat .v{font-weight:900; font-size:16px}
+    .stat .l{color:var(--muted); font-size:12px; margin-top:4px}
+
+    section{padding:26px 0}
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:16px;
+      margin-bottom: 14px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size:24px;
+      letter-spacing:-.3px;
+    }
+    .sectionHead p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      max-width: 60ch;
+    }
+    .grid4{display:grid; grid-template-columns: repeat(4, 1fr); gap:14px}
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .panel{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:18px;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .panel:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.16);
+      background: rgba(255,255,255,.055);
+    }
+    .panel h3{margin:0 0 8px; font-size:16px}
+    .panel p{margin:0; color:var(--muted); font-size:14px; line-height:1.55}
+    .tagRow{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .tag{
+      font-size:12px; color:var(--muted);
+      padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .pricing{
+      display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;
+    }
+    .priceCard{
+      border-radius: var(--radius2);
+      padding:20px;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .priceCard.featured{
+      border:none;
+      background: linear-gradient(135deg, rgba(98,225,214,.16), rgba(124,107,255,.16));
+      outline:1px solid rgba(255,255,255,.16);
+    }
+    .priceTop{display:flex; justify-content:space-between; align-items:flex-start; gap:10px}
+    .priceName{font-weight:900}
+    .price{
+      font-weight:950;
+      font-size:28px;
+      letter-spacing:-.6px;
+    }
+    .priceNote{color:var(--muted); font-size:13px; margin-top:6px}
+    .list{margin:14px 0 0; padding:0; list-style:none}
+    .list li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:8px 0;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+      font-size:14px;
+    }
+    .dot{
+      width:8px; height:8px; margin-top:6px;
+      border-radius:99px;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      flex:0 0 auto;
+    }
+    details{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.04);
+      padding: 14px 16px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      font-weight:800;
+      color:var(--text);
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{margin:10px 0 0; color:var(--muted); font-size:14px; line-height:1.6}
+    footer{
+      padding:28px 0 44px;
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top: 26px;
+    }
+    .footerGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr .8fr;
+      gap:18px;
+      align-items:start;
+    }
+    .footTitle{font-weight:900}
+    .footLink{display:block; margin-top:8px; color:var(--muted)}
+    .copyright{margin-top:22px; color:var(--muted2); font-size:13px}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns: 1fr; }
+      h1{font-size:44px}
+      .grid4{grid-template-columns: repeat(2,1fr)}
+      .grid3{grid-template-columns: repeat(2,1fr)}
+      .pricing{grid-template-columns: 1fr}
+      .footerGrid{grid-template-columns: 1fr}
+      .links{display:none}
+    }
+    @media (max-width: 520px){
+      h1{font-size:38px}
+      .statGrid{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="container topbar__inner">
-      <a class="brand" href="#home" aria-label="NorthPixel">
-        <span class="brand__mark" aria-hidden="true"></span>
-        <span class="brand__text" id="site_brand">NORTHPIXEL</span>
-      </a>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top">
+          <span class="logo" aria-hidden="true"></span>
+          <span id="brand-name">NORTHPIXEL</span>
+        </a>
 
-      <nav class="nav">
-        <a href="#services">Services</a>
-        <a href="#process">Process</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
-        <a class="nav__admin" href="admin/">Admin</a>
-      </nav>
+        <div class="links">
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#projects">Portfolio</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+          <a href="admin.html">Admin</a>
+        </div>
 
-      <div class="topbar__cta">
-        <a class="topbar__phone" id="site_phone_link" href="#">+372 0000000</a>
-        <a class="btn btn--primary" id="site_cta_link" href="#contact">Get a quote</a>
+        <div class="right">
+          <span class="pill" id="brand-phone"></span>
+          <a class="btn primary" id="brand-cta" href="#pricing">Get a Quote</a>
+        </div>
       </div>
     </div>
-  </header>
+  </div>
 
-  <main id="home">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero__grid">
-        <div class="hero__left">
-          <div class="pill" id="site_pill">Fast launch • Clear price • No drama</div>
-          <h1 class="hero__title" id="site_h1">Fast Websites for Small Business</h1>
-          <p class="hero__subtitle" id="site_subtitle">
-            Professional landing pages and business websites delivered in days — not months. Simple pricing, clear timelines, guaranteed results.
-          </p>
-
-          <div class="hero__actions">
-            <a class="btn btn--primary" href="#pricing" id="site_primary_btn">View pricing</a>
-            <a class="btn btn--ghost" href="#portfolio" id="site_secondary_btn">See work</a>
-          </div>
-
-          <div class="hero__stats" id="hero_stats">
-            <!-- injected -->
-          </div>
-        </div>
-
-        <div class="hero__right">
-          <div class="glass card-preview">
-            <div class="card-preview__top">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="card-preview__label">Preview</span>
+  <main id="top">
+    <div class="wrap">
+      <div class="hero">
+        <div class="heroGrid">
+          <div class="headline">
+            <div class="kicker" id="brand-tagline"></div>
+            <h1 id="hero-title">Fast Websites</h1>
+            <p class="sub" id="hero-subtitle"></p>
+            <div class="ctaRow">
+              <a class="btn primary" id="hero-primary" href="#pricing">Get a Quote</a>
+              <a class="btn" id="hero-secondary" href="#projects">See Work</a>
             </div>
-            <div class="card-preview__body">
-              <div class="preview-line w-80"></div>
-              <div class="preview-line w-60"></div>
-              <div class="preview-line w-90"></div>
-              <div class="preview-grid">
-                <div class="preview-tile"></div>
-                <div class="preview-tile"></div>
-                <div class="preview-tile"></div>
-                <div class="preview-tile"></div>
-              </div>
-              <div class="preview-badge">Fast ≠ Complex</div>
-            </div>
+            <div class="miniNote">Premium look, simple process, clear scope. Deploy-ready.</div>
           </div>
+
+          <aside class="side">
+            <div class="cardTitle">What you get</div>
+            <div class="statGrid" id="stats"></div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; position:relative">
+              <span class="tag">Clean layout</span>
+              <span class="tag">Fast delivery</span>
+              <span class="tag">Fixed scope</span>
+              <span class="tag">No drama</span>
+            </div>
+          </aside>
         </div>
       </div>
-      <div class="hero__bg" aria-hidden="true"></div>
-    </section>
 
-    <!-- PROBLEM -->
-    <section class="section">
-      <div class="container">
-        <div class="section__head">
-          <h2 id="site_problem_title">The problem with most web agencies</h2>
-          <p id="site_problem_text">Traditional web development is slow, expensive, and unpredictable.</p>
-        </div>
-
-        <div class="grid-3" id="problem_cards">
-          <!-- injected -->
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section__head">
-          <h2 id="site_services_title">What we do</h2>
-          <p id="site_services_text">Clean design, fast delivery, measurable results.</p>
-        </div>
-
-        <div class="grid-3" id="services_cards">
-          <!-- injected -->
-        </div>
-      </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section class="section" id="process">
-      <div class="container">
-        <div class="section__head">
-          <h2 id="site_process_title">Simple process</h2>
-          <p id="site_process_text">From idea to launch — without chaos.</p>
-        </div>
-
-        <div class="timeline" id="process_steps">
-          <!-- injected -->
-        </div>
-      </div>
-    </section>
-
-    <!-- PORTFOLIO -->
-    <section class="section" id="portfolio">
-      <div class="container">
-        <div class="section__head section__head--row">
+      <section id="services">
+        <div class="sectionHead">
           <div>
-            <h2 id="site_portfolio_title">Recent projects</h2>
-            <p id="site_portfolio_text">A few examples of what we ship.</p>
-          </div>
-          <a class="btn btn--ghost" href="#contact">Want something like this?</a>
-        </div>
-
-        <div class="cases" id="cases_grid">
-          <!-- injected -->
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section class="section" id="pricing">
-      <div class="container">
-        <div class="section__head">
-          <h2 id="site_pricing_title">Simple transparency pricing</h2>
-          <p id="site_pricing_text">Fixed scope. Clear deliverables. No surprises.</p>
-        </div>
-
-        <div class="pricing" id="pricing_cards">
-          <!-- injected -->
-        </div>
-
-        <div class="note glass" id="pricing_note">
-          <div class="note__title">Need something custom?</div>
-          <div class="note__text">We can scope it in 15 minutes and send a fixed quote.</div>
-          <a class="btn btn--primary" href="#contact">Get a quote</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section" id="faq">
-      <div class="container">
-        <div class="section__head">
-          <h2 id="site_faq_title">FAQ</h2>
-          <p id="site_faq_text">Quick answers. If you want — we can jump on a call.</p>
-        </div>
-
-        <div class="faq" id="faq_items">
-          <!-- injected -->
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="contact glass">
-          <div class="contact__left">
-            <h2 id="site_contact_title">Let’s build your website</h2>
-            <p id="site_contact_text">Tell us what you need. We’ll reply with timeline + fixed price.</p>
-
-            <div class="contact__meta">
-              <div class="meta">
-                <div class="meta__k">Email</div>
-                <div class="meta__v"><a id="site_email_link" href="#">info@northpixel.com</a></div>
-              </div>
-              <div class="meta">
-                <div class="meta__k">Phone</div>
-                <div class="meta__v"><a id="site_phone_link_2" href="#">+372 0000000</a></div>
-              </div>
-              <div class="meta">
-                <div class="meta__k">Location</div>
-                <div class="meta__v" id="site_location">Tallinn, Estonia</div>
-              </div>
-            </div>
-          </div>
-
-          <form class="contact__form" id="lead_form">
-            <label>
-              <span>Name</span>
-              <input name="name" required placeholder="Your name" />
-            </label>
-
-            <label>
-              <span>Email</span>
-              <input name="email" type="email" required placeholder="you@email.com" />
-            </label>
-
-            <label>
-              <span>What do you need?</span>
-              <textarea name="message" rows="5" required placeholder="Landing / business site / redesign…"></textarea>
-            </label>
-
-            <button class="btn btn--primary" type="submit" id="site_form_btn">Send</button>
-            <p class="form-hint" id="form_hint">This form is “demo” until you connect Formspree (2 minutes).</p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container footer__grid">
-        <div>
-          <div class="footer__brand" id="site_footer_brand">NORTHPIXEL</div>
-          <div class="footer__text" id="site_footer_text">Fast, professional websites for small businesses.</div>
-        </div>
-
-        <div class="footer__cols">
-          <div class="footer__col">
-            <div class="footer__title">Company</div>
-            <a href="#home">Home</a>
-            <a href="#services">Services</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#portfolio">Portfolio</a>
-          </div>
-          <div class="footer__col">
-            <div class="footer__title">Support</div>
-            <a href="#faq">FAQ</a>
-            <a href="#contact">Contact</a>
-            <a href="admin/">Admin Login</a>
-          </div>
-          <div class="footer__col">
-            <div class="footer__title">Contact</div>
-            <a id="site_footer_email" href="#">info@northpixel.com</a>
-            <a id="site_footer_phone" href="#">+372 0000000</a>
-            <span id="site_footer_location">Tallinn, Estonia</span>
+            <h2>What we do</h2>
+            <p>Clean design, fast delivery, measurable results. Built for small businesses.</p>
           </div>
         </div>
-      </div>
+        <div class="grid4" id="services-grid"></div>
+      </section>
 
-      <div class="container footer__bottom">
-        <span id="site_copyright">© 2026 NorthPixel. All rights reserved.</span>
-      </div>
-    </footer>
+      <section id="process">
+        <div class="sectionHead">
+          <div>
+            <h2>Simple process</h2>
+            <p>From idea to launch — without chaos.</p>
+          </div>
+        </div>
+        <div class="grid4" id="process-grid"></div>
+      </section>
+
+      <section id="projects">
+        <div class="sectionHead">
+          <div>
+            <h2>Recent projects</h2>
+            <p>A few examples of what we ship. You can replace links later.</p>
+          </div>
+        </div>
+        <div class="grid3" id="projects-grid"></div>
+      </section>
+
+      <section id="pricing">
+        <div class="sectionHead">
+          <div>
+            <h2>Simple transparency pricing</h2>
+            <p>Fixed scope. Clear deliverables. No surprises.</p>
+          </div>
+        </div>
+        <div class="pricing" id="pricing-grid"></div>
+      </section>
+
+      <section id="faq">
+        <div class="sectionHead">
+          <div>
+            <h2>FAQ</h2>
+            <p>Short answers. Straight process.</p>
+          </div>
+        </div>
+        <div id="faq-list"></div>
+      </section>
+
+      <footer id="contact">
+        <div class="footerGrid">
+          <div>
+            <div class="footTitle" id="foot-brand">NORTHPIXEL</div>
+            <div class="footLink" id="foot-tagline"></div>
+          </div>
+          <div>
+            <div class="footTitle">Company</div>
+            <a class="footLink" href="#services">Services</a>
+            <a class="footLink" href="#process">Process</a>
+            <a class="footLink" href="#projects">Portfolio</a>
+            <a class="footLink" href="#pricing">Pricing</a>
+          </div>
+          <div>
+            <div class="footTitle">Contact</div>
+            <a class="footLink" id="foot-email" href="#">email</a>
+            <div class="footLink" id="foot-phone"></div>
+            <div class="footLink" id="foot-city"></div>
+          </div>
+        </div>
+        <div class="copyright" id="copyright"></div>
+      </footer>
+    </div>
   </main>
 
-  <script src="assets/app.js" defer></script>
+  <script>
+    async function getContent(){
+      const res = await fetch('./content.json', { cache: 'no-store' });
+      if(!res.ok) throw new Error('content.json not found');
+      return res.json();
+    }
+
+    function el(tag, cls){
+      const e = document.createElement(tag);
+      if(cls) e.className = cls;
+      return e;
+    }
+
+    function renderStats(stats){
+      const root = document.getElementById('stats');
+      root.innerHTML = '';
+      stats.forEach(s => {
+        const box = el('div','stat');
+        const v = el('div','v'); v.textContent = s.value;
+        const l = el('div','l'); l.textContent = s.label;
+        box.appendChild(v); box.appendChild(l);
+        root.appendChild(box);
+      });
+    }
+
+    function renderCards(list, rootId){
+      const root = document.getElementById(rootId);
+      root.innerHTML = '';
+      list.forEach(item => {
+        const p = el('div','panel');
+        const h = el('h3'); h.textContent = item.title;
+        const d = el('p'); d.textContent = item.desc;
+        p.appendChild(h); p.appendChild(d);
+        root.appendChild(p);
+      });
+    }
+
+    function renderProjects(projects){
+      const root = document.getElementById('projects-grid');
+      root.innerHTML = '';
+      projects.forEach(pr => {
+        const p = el('div','panel');
+        const h = el('h3'); h.textContent = pr.title;
+        const d = el('p'); d.textContent = pr.desc;
+        const tags = el('div','tagRow');
+        (pr.tags || []).forEach(t => {
+          const tg = el('span','tag'); tg.textContent = t;
+          tags.appendChild(tg);
+        });
+        const link = el('a','btn');
+        link.style.marginTop = '14px';
+        link.href = pr.link || '#';
+        link.textContent = 'View';
+        p.appendChild(h); p.appendChild(d); p.appendChild(tags); p.appendChild(link);
+        root.appendChild(p);
+      });
+    }
+
+    function renderPricing(pricing){
+      const root = document.getElementById('pricing-grid');
+      root.innerHTML = '';
+      pricing.forEach((pk, i) => {
+        const card = el('div', 'priceCard' + (i===1 ? ' featured' : ''));
+        const top = el('div','priceTop');
+        const left = el('div');
+        const name = el('div','priceName'); name.textContent = pk.name;
+        const note = el('div','priceNote'); note.textContent = pk.note || '';
+        left.appendChild(name); left.appendChild(note);
+
+        const price = el('div','price'); price.textContent = pk.price;
+
+        top.appendChild(left); top.appendChild(price);
+
+        const ul = el('ul','list');
+        (pk.features || []).forEach(f => {
+          const li = document.createElement('li');
+          const dot = el('span','dot');
+          const tx = document.createElement('span');
+          tx.textContent = f;
+          li.appendChild(dot); li.appendChild(tx);
+          ul.appendChild(li);
+        });
+
+        const cta = el('a','btn primary');
+        cta.style.marginTop = '16px';
+        cta.href = '#contact';
+        cta.textContent = 'Get a quote';
+
+        card.appendChild(top);
+        card.appendChild(ul);
+        card.appendChild(cta);
+        root.appendChild(card);
+      });
+    }
+
+    function renderFAQ(faq){
+      const root = document.getElementById('faq-list');
+      root.innerHTML = '';
+      faq.forEach(f => {
+        const d = document.createElement('details');
+        const s = document.createElement('summary');
+        s.textContent = f.q;
+        const p = document.createElement('p');
+        p.textContent = f.a;
+        d.appendChild(s); d.appendChild(p);
+        root.appendChild(d);
+      });
+    }
+
+    (async () => {
+      const data = await getContent();
+
+      // Top brand
+      document.getElementById('brand-name').textContent = data.brand.name;
+      document.getElementById('brand-tagline').textContent = data.brand.tagline;
+      document.getElementById('brand-phone').textContent = data.brand.phone;
+      document.getElementById('brand-cta').textContent = data.brand.cta;
+
+      // Hero
+      document.getElementById('hero-title').textContent = data.hero.title;
+      document.getElementById('hero-subtitle').textContent = data.hero.subtitle;
+      document.getElementById('hero-primary').textContent = data.hero.primaryCta;
+      document.getElementById('hero-secondary').textContent = data.hero.secondaryCta;
+
+      // Stats, services, process
+      renderStats(data.stats || []);
+      renderCards(data.services || [], 'services-grid');
+      renderCards((data.process || []).map(p => ({
+        title: `${p.step} — ${p.title}`,
+        desc: p.desc
+      }),'process-grid');
+
+      // Projects / pricing / faq
+      renderProjects(data.projects || []);
+      renderPricing(data.pricing || []);
+      renderFAQ(data.faq || []);
+
+      // Footer
+      document.getElementById('foot-brand').textContent = data.brand.name;
+      document.getElementById('foot-tagline').textContent = data.brand.tagline;
+      const email = data.brand.email;
+      const emailA = document.getElementById('foot-email');
+      emailA.textContent = email;
+      emailA.href = 'mailto:' + email;
+      document.getElementById('foot-phone').textContent = data.brand.phone;
+      document.getElementById('foot-city').textContent = data.brand.city;
+      document.getElementById('copyright').textContent =
+        `© ${new Date().getFullYear()} ${data.brand.name}. All rights reserved.`;
+    })().catch(err => {
+      document.body.innerHTML =
+        `<div style="padding:40px;font-family:system-ui;color:#111;background:#fff">
+          <h2>Site failed to load</h2>
+          <p>Reason: <b>${String(err.message)}</b></p>
+          <p>Check that <code>content.json</code> exists in the repo root.</p>
+        </div>`;
+    });
+  </script>
 </body>
 </html>
