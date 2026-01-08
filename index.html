@@ -2,256 +2,260 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NorthPixel — Fast Websites for Small Business</title>
-  <meta name="description" content="Fast, professional websites for small businesses. Fixed price, clear timeline, no drama." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%2368F7D2'/%3E%3Cstop offset='1' stop-color='%238B5CF6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%230B1220'/%3E%3Cpath d='M18 44V20l28 12-28 12z' fill='url(%23g)'/%3E%3C/svg%3E" />
-  <!-- ВАЖНО: относительные пути через ./ -->
-  <link rel="stylesheet" href="./assets/styles.css" />
-  <script defer src="./assets/app.js"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NorthPixel — Fast Websites for Small Businesses</title>
+  <meta name="description" content="Fast, professional websites for small businesses. Clear scope, fixed pricing, reliable delivery." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 
 <body>
   <header class="topbar">
-    <a class="brand" href="#top">
-      <span class="brandMark" aria-hidden="true"></span>
-      <span class="brandText">NORTHPIXEL</span>
-    </a>
+    <div class="container topbar__inner">
+      <a class="brand" href="#home" aria-label="NorthPixel">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__text" id="site_brand">NORTHPIXEL</span>
+      </a>
 
-    <nav class="nav">
-      <a href="#services">Services</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
-    </nav>
+      <nav class="nav">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav__admin" href="admin/">Admin</a>
+      </nav>
 
-    <div class="topbarRight">
-      <a class="phone" id="top-phone" href="tel:+3725541895">+372 5541895</a>
-      <a class="btn primary" href="#contact">Get a Quote</a>
+      <div class="topbar__cta">
+        <a class="topbar__phone" id="site_phone_link" href="#">+372 0000000</a>
+        <a class="btn btn--primary" id="site_cta_link" href="#contact">Get a quote</a>
+      </div>
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero section">
-      <div class="heroGrid">
-        <div class="heroLeft">
-          <div class="pill">Fast launch • Clear price • No drama</div>
-          <h1 class="h1" id="hero-title">Fast Websites for Small Businesses</h1>
-          <p class="lead" id="hero-subtitle">
-            Professional landing pages and business websites delivered in days, not months.
-            Simple pricing, clear timelines, guaranteed results.
+  <main id="home">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__left">
+          <div class="pill" id="site_pill">Fast launch • Clear price • No drama</div>
+          <h1 class="hero__title" id="site_h1">Fast Websites for Small Business</h1>
+          <p class="hero__subtitle" id="site_subtitle">
+            Professional landing pages and business websites delivered in days — not months. Simple pricing, clear timelines, guaranteed results.
           </p>
 
-          <div class="heroCtas">
-            <a class="btn primary" href="#pricing">View Pricing</a>
-            <a class="btn ghost" href="#portfolio">See Work</a>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#pricing" id="site_primary_btn">View pricing</a>
+            <a class="btn btn--ghost" href="#portfolio" id="site_secondary_btn">See work</a>
           </div>
 
-          <div class="stats">
-            <div class="stat">
-              <div class="statNum" id="stat-delivery">3–14</div>
-              <div class="statLabel">Days Delivery</div>
-            </div>
-            <div class="stat">
-              <div class="statNum" id="stat-price">Fixed</div>
-              <div class="statLabel">Transparent Pricing</div>
-            </div>
-            <div class="stat">
-              <div class="statNum" id="stat-focus">100%</div>
-              <div class="statLabel">On-Time Focus</div>
-            </div>
+          <div class="hero__stats" id="hero_stats">
+            <!-- injected -->
           </div>
         </div>
 
-        <div class="heroRight">
-          <div class="glassCard">
-            <div class="miniTitle">What you get</div>
-            <ul class="checklist">
-              <li>Modern design + mobile first</li>
-              <li>SEO basics + fast performance</li>
-              <li>Contact form + analytics ready</li>
-              <li>Easy edit content (JSON)</li>
-            </ul>
-            <div class="miniHint">Scroll ↓ to see projects & pricing</div>
+        <div class="hero__right">
+          <div class="glass card-preview">
+            <div class="card-preview__top">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="card-preview__label">Preview</span>
+            </div>
+            <div class="card-preview__body">
+              <div class="preview-line w-80"></div>
+              <div class="preview-line w-60"></div>
+              <div class="preview-line w-90"></div>
+              <div class="preview-grid">
+                <div class="preview-tile"></div>
+                <div class="preview-tile"></div>
+                <div class="preview-tile"></div>
+                <div class="preview-tile"></div>
+              </div>
+              <div class="preview-badge">Fast ≠ Complex</div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="bgGlow" aria-hidden="true"></div>
+      <div class="hero__bg" aria-hidden="true"></div>
     </section>
 
+    <!-- PROBLEM -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2 id="site_problem_title">The problem with most web agencies</h2>
+          <p id="site_problem_text">Traditional web development is slow, expensive, and unpredictable.</p>
+        </div>
+
+        <div class="grid-3" id="problem_cards">
+          <!-- injected -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
     <section class="section" id="services">
       <div class="container">
-        <h2 class="h2">What We Do</h2>
-        <p class="muted">Simple packages. Clear outcomes. Fast delivery.</p>
+        <div class="section__head">
+          <h2 id="site_services_title">What we do</h2>
+          <p id="site_services_text">Clean design, fast delivery, measurable results.</p>
+        </div>
 
-        <div class="cards">
-          <div class="card">
-            <div class="icon">⚡</div>
-            <h3>Landing Pages</h3>
-            <p>High-converting pages for ads, offers, and services.</p>
-          </div>
-          <div class="card">
-            <div class="icon">🧩</div>
-            <h3>Business Websites</h3>
-            <p>Multi-page websites with clear structure and trust.</p>
-          </div>
-          <div class="card">
-            <div class="icon">📈</div>
-            <h3>Optimization</h3>
-            <p>Speed, SEO basics, and better conversion clarity.</p>
-          </div>
-          <div class="card">
-            <div class="icon">🛠️</div>
-            <h3>Maintenance</h3>
-            <p>Small updates, new sections, and content changes.</p>
-          </div>
+        <div class="grid-3" id="services_cards">
+          <!-- injected -->
         </div>
       </div>
     </section>
 
-    <section class="section alt">
-      <div class="container split">
-        <div>
-          <h2 class="h2">The Problem with Most Web Agencies</h2>
-          <p class="muted">Traditional web development is slow, expensive, and unpredictable.</p>
-          <div class="problemList">
-            <div class="problem"><span>⏳</span><div><b>Months of Waiting</b><p>Most agencies take 2–6 months for a simple website.</p></div></div>
-            <div class="problem"><span>💸</span><div><b>Hidden Costs</b><p>Budgets grow with endless revisions and “extra features”.</p></div></div>
-            <div class="problem"><span>🌀</span><div><b>No Clear Timeline</b><p>Launch dates slip with vague updates and no ownership.</p></div></div>
-          </div>
+    <!-- PROCESS -->
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section__head">
+          <h2 id="site_process_title">Simple process</h2>
+          <p id="site_process_text">From idea to launch — without chaos.</p>
         </div>
-        <div class="glassCard big">
-          <h3>Our Solution: Fast, Fixed-Price Websites</h3>
-          <p class="muted">You get a clear scope, fixed price, and delivery plan.</p>
-          <div class="steps">
-            <div class="step"><span>1</span><div><b>Brief</b><p>We collect info + goals.</p></div></div>
-            <div class="step"><span>2</span><div><b>Design</b><p>Modern layout + copy structure.</p></div></div>
-            <div class="step"><span>3</span><div><b>Build</b><p>Fast, responsive implementation.</p></div></div>
-            <div class="step"><span>4</span><div><b>Launch</b><p>Deploy + quick QA.</p></div></div>
-          </div>
+
+        <div class="timeline" id="process_steps">
+          <!-- injected -->
         </div>
       </div>
     </section>
 
+    <!-- PORTFOLIO -->
     <section class="section" id="portfolio">
       <div class="container">
-        <div class="row">
+        <div class="section__head section__head--row">
           <div>
-            <h2 class="h2">Recent Projects</h2>
-            <p class="muted">Editable from JSON: add, remove, reorder.</p>
+            <h2 id="site_portfolio_title">Recent projects</h2>
+            <p id="site_portfolio_text">A few examples of what we ship.</p>
           </div>
-          <a class="btn ghost" href="#contact">Need something similar?</a>
+          <a class="btn btn--ghost" href="#contact">Want something like this?</a>
         </div>
 
-        <div class="grid" id="cases-grid">
-          <!-- JS fills from /content/cases.json -->
+        <div class="cases" id="cases_grid">
+          <!-- injected -->
         </div>
       </div>
     </section>
 
-    <section class="section alt" id="pricing">
+    <!-- PRICING -->
+    <section class="section" id="pricing">
       <div class="container">
-        <h2 class="h2">Simple Transparency Pricing</h2>
-        <p class="muted">Choose a package. If you need custom — we’ll quote quickly.</p>
-
-        <div class="pricing" id="pricing-grid">
-          <!-- JS fills from /content/packages.json -->
+        <div class="section__head">
+          <h2 id="site_pricing_title">Simple transparency pricing</h2>
+          <p id="site_pricing_text">Fixed scope. Clear deliverables. No surprises.</p>
         </div>
 
-        <div class="note">
-          <b>Tip:</b> Add your real packages in <code>/content/packages.json</code>.
+        <div class="pricing" id="pricing_cards">
+          <!-- injected -->
+        </div>
+
+        <div class="note glass" id="pricing_note">
+          <div class="note__title">Need something custom?</div>
+          <div class="note__text">We can scope it in 15 minutes and send a fixed quote.</div>
+          <a class="btn btn--primary" href="#contact">Get a quote</a>
         </div>
       </div>
     </section>
 
+    <!-- FAQ -->
     <section class="section" id="faq">
       <div class="container">
-        <h2 class="h2">FAQ</h2>
-        <div class="faq">
-          <details>
-            <summary>How fast can you deliver?</summary>
-            <p>Usually 3–14 days depending on complexity and how fast you provide materials.</p>
-          </details>
-          <details>
-            <summary>Do you help with copy?</summary>
-            <p>Yes. We structure the page, refine copy, and make it clear for conversion.</p>
-          </details>
-          <details>
-            <summary>Can I edit content later?</summary>
-            <p>Yes — content can be stored in JSON and updated anytime.</p>
-          </details>
+        <div class="section__head">
+          <h2 id="site_faq_title">FAQ</h2>
+          <p id="site_faq_text">Quick answers. If you want — we can jump on a call.</p>
+        </div>
+
+        <div class="faq" id="faq_items">
+          <!-- injected -->
         </div>
       </div>
     </section>
 
-    <section class="section alt" id="contact">
-      <div class="container split">
-        <div>
-          <h2 class="h2">Contact</h2>
-          <p class="muted">Tell us what you need. We reply fast.</p>
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact glass">
+          <div class="contact__left">
+            <h2 id="site_contact_title">Let’s build your website</h2>
+            <p id="site_contact_text">Tell us what you need. We’ll reply with timeline + fixed price.</p>
 
-          <div class="contactCard">
-            <div><b>Email:</b> <a id="contact-email" href="mailto:info.northpixel@gmail.com">info.northpixel@gmail.com</a></div>
-            <div><b>Phone:</b> <a id="contact-phone" href="tel:+3725541895">+372 5541895</a></div>
-            <div><b>Location:</b> Tallinn, Estonia</div>
+            <div class="contact__meta">
+              <div class="meta">
+                <div class="meta__k">Email</div>
+                <div class="meta__v"><a id="site_email_link" href="#">info@northpixel.com</a></div>
+              </div>
+              <div class="meta">
+                <div class="meta__k">Phone</div>
+                <div class="meta__v"><a id="site_phone_link_2" href="#">+372 0000000</a></div>
+              </div>
+              <div class="meta">
+                <div class="meta__k">Location</div>
+                <div class="meta__v" id="site_location">Tallinn, Estonia</div>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <form class="form" id="quote-form">
-          <label>
-            <span>Your name</span>
-            <input name="name" required placeholder="John Doe" />
-          </label>
-          <label>
-            <span>Email</span>
-            <input type="email" name="email" required placeholder="you@email.com" />
-          </label>
-          <label>
-            <span>What do you need?</span>
-            <textarea name="message" required placeholder="Landing page for ..."></textarea>
-          </label>
-          <button class="btn primary" type="submit">Send</button>
-          <div class="formMsg" id="form-msg" aria-live="polite"></div>
-        </form>
+          <form class="contact__form" id="lead_form">
+            <label>
+              <span>Name</span>
+              <input name="name" required placeholder="Your name" />
+            </label>
+
+            <label>
+              <span>Email</span>
+              <input name="email" type="email" required placeholder="you@email.com" />
+            </label>
+
+            <label>
+              <span>What do you need?</span>
+              <textarea name="message" rows="5" required placeholder="Landing / business site / redesign…"></textarea>
+            </label>
+
+            <button class="btn btn--primary" type="submit" id="site_form_btn">Send</button>
+            <p class="form-hint" id="form_hint">This form is “demo” until you connect Formspree (2 minutes).</p>
+          </form>
+        </div>
       </div>
     </section>
 
     <footer class="footer">
-      <div class="container footerGrid">
+      <div class="container footer__grid">
         <div>
-          <div class="brand small">
-            <span class="brandMark"></span>
-            <span class="brandText">NORTHPIXEL</span>
-          </div>
-          <p class="muted">Fast, professional websites for small businesses.</p>
+          <div class="footer__brand" id="site_footer_brand">NORTHPIXEL</div>
+          <div class="footer__text" id="site_footer_text">Fast, professional websites for small businesses.</div>
         </div>
 
-        <div class="footerCols">
-          <div>
-            <div class="footerTitle">Company</div>
-            <a href="#top">Home</a>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <div class="footer__title">Company</div>
+            <a href="#home">Home</a>
             <a href="#services">Services</a>
             <a href="#pricing">Pricing</a>
             <a href="#portfolio">Portfolio</a>
           </div>
-          <div>
-            <div class="footerTitle">Support</div>
+          <div class="footer__col">
+            <div class="footer__title">Support</div>
             <a href="#faq">FAQ</a>
             <a href="#contact">Contact</a>
-            <a href="/admin/" aria-label="Admin Login">Admin Login</a>
+            <a href="admin/">Admin Login</a>
           </div>
-          <div>
-            <div class="footerTitle">Contact</div>
-            <a href="mailto:info.northpixel@gmail.com">info.northpixel@gmail.com</a>
-            <a href="tel:+3725541895">+372 5541895</a>
-            <div class="muted">Tallinn, Estonia</div>
+          <div class="footer__col">
+            <div class="footer__title">Contact</div>
+            <a id="site_footer_email" href="#">info@northpixel.com</a>
+            <a id="site_footer_phone" href="#">+372 0000000</a>
+            <span id="site_footer_location">Tallinn, Estonia</span>
           </div>
         </div>
       </div>
 
-      <div class="container copy">© <span id="year"></span> NorthPixel. All rights reserved.</div>
+      <div class="container footer__bottom">
+        <span id="site_copyright">© 2026 NorthPixel. All rights reserved.</span>
+      </div>
     </footer>
   </main>
+
+  <script src="assets/app.js" defer></script>
 </body>
 </html>
