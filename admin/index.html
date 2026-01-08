@@ -1,12 +1,49 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>NorthPixel Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css" />
 </head>
 <body>
-  <!-- Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <div class="title">NorthPixel Admin</div>
+        <div class="muted">Edit JSON → Save → site updates (localStorage). Download if you want to commit to GitHub.</div>
+      </div>
+      <div class="actions">
+        <a class="btn" href="../">← Back to site</a>
+        <button class="btn danger" id="btn_clear">Clear local changes</button>
+      </div>
+    </header>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="site">site.json</button>
+      <button class="tab" data-tab="packages">packages.json</button>
+      <button class="tab" data-tab="cases">cases.json</button>
+    </div>
+
+    <section class="panel">
+      <div class="row">
+        <div class="muted">Tip: edit carefully — invalid JSON won’t save.</div>
+        <div class="row__actions">
+          <button class="btn" id="btn_load">Load from /content</button>
+          <button class="btn" id="btn_load_local">Load from local</button>
+          <button class="btn primary" id="btn_save">Save to local</button>
+          <button class="btn" id="btn_download">Download JSON</button>
+        </div>
+      </div>
+
+      <textarea id="editor" spellcheck="false"></textarea>
+
+      <div class="status" id="status"></div>
+    </section>
+  </div>
+
+  <script src="admin.js" defer></script>
 </body>
 </html>
