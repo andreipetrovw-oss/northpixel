@@ -1,27 +1,143 @@
-/* NorthPixel — loads JSON + renders cases/pricing + form + animations */
+(function () {
+  "use strict";
 
-(() => {
-  'use strict';
-
-  const CONFIG = {
-    // ✅ поменяешь позже (если хочешь заявки)
-    // пример: https://formspree.io/f/xzbqwvyz
-    formspreeEndpoint: "https://formspree.io/f/YOUR_FORMSPREE_ID",
-
-    content: {
-      site: "content/site.json",
-      packages: "content/packages.json",
-      cases: "content/cases.json",
-    },
+  const LS = {
+    site: "np_site",
+    packages: "np_packages",
+    cases: "np_cases",
   };
 
-  const $ = (sel, root = document) => root.querySelector(sel);
-  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const PATHS = {
+    site: "content/site.json",
+    packages: "content/packages.json",
+    cases: "content/cases.json",
+  };
 
-  async function fetchJSON(url) {
-    const r = await fetch(url, { cache: "no-store" });
-    if (!r.ok) throw new Error(`Failed to load ${url}: ${r.status}`);
-    return r.json();
+  const $ = (s, r = document) => r.querySelector(s);
+
+  async function loadJSON(lsKey, url) {
+    // 1) пробуем localStorage (админка)
+    const raw = localStorage.getItem(lsKey);
+    if (raw) {
+      try { return JSON.parse(raw); } catch(e) {}
+    }
+    // 2) иначе — из /content/*.json
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Failed to load ${url} (${res.status})`);
+    return await res.json();
+  }
+
+  function setText(id, value) {
+    const el = document.getElementById(id);
+    if (el && typeof value === "string") el.textContent = value;
+  }
+  function setHref(id, href) {
+    const el = document.getElementById(id);
+    if (el && href) el.setAttribute("href", href);
+  }
+
+  function renderStats(stats) {
+    const wrap = $("#hero_stats");
+    if (!wrap) return;
+    wrap.innerHTML = "";
+    (stats || []).slice(0,3).forEach(s => {
+      const div = document.createElement("div");
+      div.className = "stat";
+      div.innerHTML = `
+        <div class="stat__k">${escapeHTML(s.k || "")}</div>
+        <div class="stat__v">${escapeHTML(s.v || "")}</div>
+      `;
+      wrap.appendChild(div);
+    });
+  }
+
+  function renderCards(targetId, cards) {
+    const wrap = document.getElementById(targetId);
+    if (!wrap) return;
+    wrap.innerHTML = "";
+    (cards || []).forEach(c => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <div class="card__icon"></div>
+        <h3 class="card__title">${escapeHTML(c.title || "")}</h3>
+        <p class="card__text">${escapeHTML(c.text || "")}</p>
+      `;
+      wrap.appendChild(div);
+    });
+  }
+
+  function renderSteps(steps) {
+    const wrap = document.getElementById("process_steps");
+    if (!wrap) return;
+    wrap.innerHTML = "";
+    (steps || []).slice(0,4).forEach((s, i) => {
+      const div = document.createElement("div");
+      div.className = "step";
+      div.innerHTML = `
+        <div class="step__n">${i + 1}</div>
+        <div class="step__t">${escapeHTML(s.title || "")}</div>
+        <p class="step__d">${escapeHTML(s.text || "")}</p>
+      `;
+      wrap.appendChild(div);
+    });
+  }
+
+  function renderCases(items) {
+    const wrap = document.getElementById("cases_grid");
+    if (!wrap) return;
+    wrap.innerHTML = "";
+    (items || []).forEach(c => {
+      const div = document.createElement("div");
+      div.className = "card";
+      const tags = Array.isArray(c.tags) ? c.tags : [];
+      div.innerHTML = `
+        <div class="case__top">
+          <h3 class="case__name">${escapeHTML(c.name || "")}</h3>
+          ${c.link ? `<a class="btn btn--ghost" href="${escapeAttr(c.link)}" target="_blank" rel="noopener">View</a>` : ``}
+        </div>
+        <p class="case__desc">${escapeHTML(c.description || "")}</p>
+        <div class="tags">
+          ${tags.map(t => `<span class="tag">${escapeHTML(t)}</span>`).join("")}
+        </div>
+      `;
+      wrap.appendChild(div);
+    });
+  }
+
+  function renderPricing(items) {
+    const wrap = document.getElementById("pricing_cards");
+    if (!wrap) return;
+    wrap.innerHTML = "";
+    (items || []).forEach(p => {
+      const div = document.createElement("div");
+      div.className = "card " + (p.featured ? "price--featured" : "");
+      const bullets = Array.isArray(p.bullets) ? p.bullets : [];
+      div.innerHTML = `
+        <h3 class="price__name">${escapeHTML(p.name || "")}</h3>
+        <div class="price__value">${escapeHTML(p.price || "")}</div>
+        <div class="price__hint">${escapeHTML(p.hint || "")}</div>
+        <ul class="ul">
+          ${bullets.map(b => `<li>${escapeHTML(b)}</li>`).join("")}
+        </ul>
+        <a class="btn btn--primary price__cta" href="#contact">${escapeHTML(p.cta || "Get a quote")}</a>
+      `;
+      wrap.appendChild(div);
+    });
+  }
+
+  function renderFAQ(items) {
+    const wrap = document.getElementById("faq_items");
+    if (!wrap) return;
+    wrap.innerHTML = "";
+    (items || []).forEach(f => {
+      const d = document.createElement("details");
+      d.innerHTML = `
+        <summary>${escapeHTML(f.q || "")}</summary>
+        <p>${escapeHTML(f.a || "")}</p>
+      `;
+      wrap.appendChild(d);
+    });
   }
 
   function escapeHTML(str) {
@@ -32,180 +148,129 @@
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#039;");
   }
+  function escapeAttr(str){ return escapeHTML(str); }
 
-  // ===== Animations (safe) =====
-  let fadeObserver = null;
+  function wireForm(formConfig) {
+    const form = document.getElementById("lead_form");
+    const hint = document.getElementById("form_hint");
+    if (!form) return;
 
-  function initFadeObserver() {
-    if (!('IntersectionObserver' in window)) {
-      // fallback: show everything
-      $$('.fade-in').forEach(el => el.classList.add('visible'));
-      return;
+    const endpoint = (formConfig && formConfig.formspreeEndpoint) || "";
+    if (endpoint && !endpoint.includes("YOUR_FORMSPREE")) {
+      hint.textContent = "Form connected. We’ll receive your message instantly.";
+    } else {
+      hint.textContent = "This form is “demo” until you connect Formspree (2 minutes).";
     }
-
-    fadeObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          fadeObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-
-    $$('.fade-in').forEach(el => fadeObserver.observe(el));
-  }
-
-  function observeFadeIns(root = document) {
-    if (!fadeObserver) return;
-    $$('.fade-in', root).forEach(el => {
-      if (!el.classList.contains('visible')) fadeObserver.observe(el);
-    });
-  }
-
-  // ===== Render dynamic blocks =====
-  function setText(id, value) {
-    const el = document.getElementById(id);
-    if (el && typeof value === "string") el.textContent = value;
-  }
-
-  function renderCases(items) {
-    const grid = $("#cases-grid");
-    if (!grid) return;
-
-    grid.innerHTML = "";
-
-    (items || []).forEach(c => {
-      const tags = Array.isArray(c.tags) ? c.tags : [];
-      const tagsHTML = tags.map(t => `<span class="tag">${escapeHTML(t)}</span>`).join("");
-
-      const el = document.createElement("article");
-      el.className = "case fade-in";
-      el.innerHTML = `
-        <img src="${escapeHTML(c.image || "")}" alt="${escapeHTML(c.title || "Project")}" loading="lazy">
-        <div class="case-body">
-          <div class="case-title">${escapeHTML(c.title || "")}</div>
-          <div class="case-desc">${escapeHTML(c.description || "")}</div>
-          ${tags.length ? `<div class="case-tags">${tagsHTML}</div>` : ""}
-        </div>
-      `;
-      grid.appendChild(el);
-    });
-
-    observeFadeIns(grid);
-  }
-
-  function renderPackages(items) {
-    const grid = $("#packages-grid");
-    if (!grid) return;
-
-    grid.innerHTML = "";
-
-    (items || []).forEach(p => {
-      const features = Array.isArray(p.features) ? p.features : [];
-      const featuresHTML = features.map(f => `<li>${escapeHTML(f)}</li>`).join("");
-
-      const el = document.createElement("article");
-      el.className = "price fade-in";
-      el.innerHTML = `
-        ${p.featured ? `<div class="badge">Most Popular</div>` : ""}
-        <h3>${escapeHTML(p.name || "")}</h3>
-        <div class="amount">${escapeHTML(p.price || "")}</div>
-        <div class="time">${escapeHTML(p.duration || "")}</div>
-        <ul class="features">${featuresHTML}</ul>
-        <a class="btn btn-ghost btn-full" href="#contact">Request this package</a>
-      `;
-      grid.appendChild(el);
-    });
-
-    observeFadeIns(grid);
-  }
-
-  // ===== FAQ =====
-  function initFAQ() {
-    $$('.faq-item').forEach(item => {
-      const btn = $('.faq-q', item);
-      if (!btn) return;
-      btn.addEventListener('click', () => item.classList.toggle('open'));
-    });
-  }
-
-  // ===== Form (optional) =====
-  function initForm() {
-    const form = $("#contact-form");
-    const msg = $("#form-message");
-    if (!form || !msg) return;
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      msg.className = "form-msg";
-      msg.textContent = "";
+      const data = Object.fromEntries(new FormData(form).entries());
 
-      // If endpoint not set — just show a success UI (no crash)
-      if (!CONFIG.formspreeEndpoint || CONFIG.formspreeEndpoint.includes("YOUR_FORMSPREE_ID")) {
-        msg.classList.add("ok");
-        msg.textContent = "✅ Form endpoint not set yet. Add Formspree ID in assets/js/app.js";
+      if (!endpoint || endpoint.includes("YOUR_FORMSPREE")) {
+        alert("Form is not connected yet. Open /admin → Settings → paste your Formspree endpoint.");
         return;
       }
 
-      const data = new FormData(form);
-
       try {
-        const r = await fetch(CONFIG.formspreeEndpoint, {
+        const res = await fetch(endpoint, {
           method: "POST",
-          body: data,
-          headers: { "Accept": "application/json" },
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify(data)
         });
-
-        if (!r.ok) throw new Error("Form submit failed");
-
+        if (!res.ok) throw new Error("Send failed");
         form.reset();
-        msg.classList.add("ok");
-        msg.textContent = "✅ Sent! We’ll get back to you within 24 hours.";
+        alert("Sent ✅ We’ll reply soon.");
       } catch (err) {
-        msg.classList.add("err");
-        msg.textContent = "❌ Error sending form. Try again or email us directly.";
-        console.error(err);
+        alert("Error sending. Try again or message us directly.");
       }
     });
   }
 
-  // ===== Load all =====
-  async function loadContent() {
+  async function main() {
     try {
-      const site = await fetchJSON(CONFIG.content.site);
-      setText("hero-title", site?.hero?.title || "");
-      setText("hero-subtitle", site?.hero?.subtitle || "");
-      setText("problems-title", site?.problems?.title || "");
-      setText("problems-subtitle", site?.problems?.subtitle || "");
-      setText("solutions-title", site?.solutions?.title || "");
-      setText("solutions-subtitle", site?.solutions?.subtitle || "");
-      setText("process-title", site?.process?.title || "");
-      setText("process-subtitle", site?.process?.subtitle || "");
-    } catch (e) {
-      console.error("Site JSON load error:", e);
-    }
+      const [site, packages, cases] = await Promise.all([
+        loadJSON(LS.site, PATHS.site),
+        loadJSON(LS.packages, PATHS.packages),
+        loadJSON(LS.cases, PATHS.cases),
+      ]);
 
-    try {
-      const cases = await fetchJSON(CONFIG.content.cases);
-      renderCases(cases?.items || []);
-    } catch (e) {
-      console.error("Cases JSON load error:", e);
-    }
+      // Site basics
+      setText("site_brand", site.brand);
+      setText("site_footer_brand", site.brand);
+      setText("site_h1", site.heroTitle);
+      setText("site_subtitle", site.heroSubtitle);
+      setText("site_pill", site.heroPill);
 
-    try {
-      const packages = await fetchJSON(CONFIG.content.packages);
-      renderPackages(packages?.items || []);
-    } catch (e) {
-      console.error("Packages JSON load error:", e);
+      setText("site_problem_title", site.problemTitle);
+      setText("site_problem_text", site.problemText);
+
+      setText("site_services_title", site.servicesTitle);
+      setText("site_services_text", site.servicesText);
+
+      setText("site_process_title", site.processTitle);
+      setText("site_process_text", site.processText);
+
+      setText("site_portfolio_title", site.portfolioTitle);
+      setText("site_portfolio_text", site.portfolioText);
+
+      setText("site_pricing_title", site.pricingTitle);
+      setText("site_pricing_text", site.pricingText);
+
+      setText("site_faq_title", site.faqTitle);
+      setText("site_faq_text", site.faqText);
+
+      setText("site_contact_title", site.contactTitle);
+      setText("site_contact_text", site.contactText);
+
+      // contact links
+      const phone = site.phone || "+372 0000000";
+      const email = site.email || "info@northpixel.com";
+
+      setText("site_location", site.location || "Tallinn, Estonia");
+      setText("site_footer_location", site.location || "Tallinn, Estonia");
+
+      setText("site_phone_link", phone);
+      setText("site_phone_link_2", phone);
+      setText("site_footer_phone", phone);
+
+      setHref("site_phone_link", `tel:${phone.replace(/\s+/g,"")}`);
+      setHref("site_phone_link_2", `tel:${phone.replace(/\s+/g,"")}`);
+      setHref("site_footer_phone", `tel:${phone.replace(/\s+/g,"")}`);
+
+      setText("site_email_link", email);
+      setText("site_footer_email", email);
+      setHref("site_email_link", `mailto:${email}`);
+      setHref("site_footer_email", `mailto:${email}`);
+
+      // buttons
+      setText("site_primary_btn", site.primaryBtnText || "View pricing");
+      setText("site_secondary_btn", site.secondaryBtnText || "See work");
+
+      renderStats(site.stats);
+      renderCards("problem_cards", site.problemCards);
+      renderCards("services_cards", site.serviceCards);
+      renderSteps(site.processSteps);
+      renderCases(cases.items);
+      renderPricing(packages.items);
+      renderFAQ(site.faqItems);
+
+      // form
+      wireForm(site);
+
+      // copyright
+      const year = new Date().getFullYear();
+      setText("site_copyright", `© ${year} ${site.brand || "NorthPixel"}. All rights reserved.`);
+    } catch (err) {
+      console.error(err);
+      document.body.innerHTML = `
+        <div style="padding:24px;font-family:Inter,Arial">
+          <h2>Site failed to load content</h2>
+          <p>Open DevTools → Console to see the error.</p>
+          <pre>${String(err)}</pre>
+        </div>
+      `;
     }
   }
 
-  function init() {
-    initFadeObserver();
-    initFAQ();
-    initForm();
-    loadContent();
-  }
-
-  document.addEventListener("DOMContentLoaded", init);
+  main();
 })();
