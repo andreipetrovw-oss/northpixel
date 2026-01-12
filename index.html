@@ -1,593 +1,377 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>NorthPixel — Fast Websites</title>
-  <meta name="description" content="Fast, premium websites for small businesses. Clear pricing. Fast launch." />
-
-  <style>
-    :root{
-      --bg:#070B14;
-      --panel:rgba(255,255,255,.06);
-      --panel2:rgba(255,255,255,.09);
-      --line:rgba(255,255,255,.12);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.68);
-      --muted2:rgba(255,255,255,.55);
-      --accent1:#62E1D6;
-      --accent2:#7C6BFF;
-      --accent3:#34D399;
-      --shadow: 0 20px 60px rgba(0,0,0,.45);
-      --radius: 18px;
-      --radius2: 26px;
-      --max: 1160px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--text);
-      background: radial-gradient(1200px 700px at 20% 10%, rgba(124,107,255,.22), transparent 60%),
-                  radial-gradient(900px 600px at 85% 15%, rgba(98,225,214,.18), transparent 60%),
-                  radial-gradient(900px 600px at 60% 90%, rgba(52,211,153,.12), transparent 60%),
-                  linear-gradient(180deg, #060914 0%, #070B14 40%, #050814 100%);
-      overflow-x:hidden;
-    }
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
-    .topbar{
-      position:sticky; top:0; z-index:40;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, rgba(7,11,20,.75), rgba(7,11,20,.35));
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      height:74px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.6px
-    }
-    .logo{
-      width:38px; height:38px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(98,225,214,.95), rgba(124,107,255,.95));
-      box-shadow: 0 12px 30px rgba(124,107,255,.18);
-      position:relative;
-    }
-    .logo:after{
-      content:""; position:absolute; inset:9px;
-      border-radius:10px;
-      background: rgba(7,11,20,.78);
-      clip-path: polygon(35% 22%, 78% 50%, 35% 78%);
-    }
-    .links{display:flex; gap:18px; align-items:center}
-    .links a{
-      font-size:14px; color:var(--muted); padding:8px 10px; border-radius:12px;
-      border:1px solid transparent;
-    }
-    .links a:hover{color:var(--text); border-color:rgba(255,255,255,.08); background:rgba(255,255,255,.04)}
-    .right{
-      display:flex; gap:14px; align-items:center;
-      font-size:14px;
-    }
-    .pill{
-      color:var(--muted);
-      padding:10px 12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      border-radius:999px;
-    }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:12px 16px;
-      border-radius:999px;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.06);
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-      white-space:nowrap;
-    }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.09); border-color:rgba(255,255,255,.16)}
-    .btn.primary{
-      border:none;
-      background: linear-gradient(135deg, rgba(98,225,214,.95), rgba(124,107,255,.95));
-      color:#071014;
-      box-shadow: 0 18px 40px rgba(124,107,255,.22);
-    }
-    .btn.primary:hover{transform: translateY(-1px) scale(1.01)}
-    .hero{
-      padding:64px 0 26px;
-      position:relative;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:22px;
-      align-items:stretch;
-    }
-    .headline{
-      padding:26px 26px 20px;
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-    .headline:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(700px 300px at 20% 0%, rgba(98,225,214,.18), transparent 55%),
-                  radial-gradient(700px 300px at 80% 10%, rgba(124,107,255,.18), transparent 55%);
-      opacity:.9;
-      pointer-events:none;
-    }
-    .kicker{color:var(--muted); font-size:14px; letter-spacing:.6px}
-    h1{
-      margin:10px 0 10px;
-      font-size: 52px;
-      line-height: 1.02;
-      letter-spacing: -1px;
-      position:relative;
-    }
-    .sub{
-      margin:0;
-      color:var(--muted);
-      font-size:16px;
-      line-height:1.6;
-      max-width: 54ch;
-      position:relative;
-    }
-    .ctaRow{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; position:relative}
-    .miniNote{margin-top:12px; color:var(--muted2); font-size:13px; position:relative}
-    .side{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      border-radius: var(--radius2);
-      padding:22px;
-      box-shadow: var(--shadow);
-      display:flex; flex-direction:column; gap:14px;
-      position:relative;
-      overflow:hidden;
-    }
-    .side:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(500px 260px at 40% 10%, rgba(52,211,153,.12), transparent 60%),
-                  radial-gradient(500px 260px at 85% 35%, rgba(98,225,214,.10), transparent 60%);
-      pointer-events:none;
-      opacity:.85;
-    }
-    .cardTitle{font-weight:800; letter-spacing:.2px; position:relative}
-    .statGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-      margin-top:4px;
-      position:relative;
-    }
-    .stat{
-      padding:14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.10);
-    }
-    .stat .v{font-weight:900; font-size:16px}
-    .stat .l{color:var(--muted); font-size:12px; margin-top:4px}
-
-    section{padding:26px 0}
-    .sectionHead{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap:16px;
-      margin-bottom: 14px;
-    }
-    .sectionHead h2{
-      margin:0;
-      font-size:24px;
-      letter-spacing:-.3px;
-    }
-    .sectionHead p{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
-      max-width: 60ch;
-    }
-    .grid4{display:grid; grid-template-columns: repeat(4, 1fr); gap:14px}
-    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
-    .panel{
-      border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      padding:18px;
-      transition: transform .15s ease, border-color .15s ease, background .15s ease;
-    }
-    .panel:hover{
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,.16);
-      background: rgba(255,255,255,.055);
-    }
-    .panel h3{margin:0 0 8px; font-size:16px}
-    .panel p{margin:0; color:var(--muted); font-size:14px; line-height:1.55}
-    .tagRow{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
-    .tag{
-      font-size:12px; color:var(--muted);
-      padding:6px 10px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-    }
-    .pricing{
-      display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;
-    }
-    .priceCard{
-      border-radius: var(--radius2);
-      padding:20px;
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));
-      box-shadow: var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-    .priceCard.featured{
-      border:none;
-      background: linear-gradient(135deg, rgba(98,225,214,.16), rgba(124,107,255,.16));
-      outline:1px solid rgba(255,255,255,.16);
-    }
-    .priceTop{display:flex; justify-content:space-between; align-items:flex-start; gap:10px}
-    .priceName{font-weight:900}
-    .price{
-      font-weight:950;
-      font-size:28px;
-      letter-spacing:-.6px;
-    }
-    .priceNote{color:var(--muted); font-size:13px; margin-top:6px}
-    .list{margin:14px 0 0; padding:0; list-style:none}
-    .list li{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:8px 0;
-      border-top:1px solid rgba(255,255,255,.08);
-      color:var(--muted);
-      font-size:14px;
-    }
-    .dot{
-      width:8px; height:8px; margin-top:6px;
-      border-radius:99px;
-      background: linear-gradient(135deg, var(--accent1), var(--accent2));
-      flex:0 0 auto;
-    }
-    details{
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.04);
-      padding: 14px 16px;
-    }
-    details + details{margin-top:10px}
-    summary{
-      cursor:pointer;
-      font-weight:800;
-      color:var(--text);
-      list-style:none;
-    }
-    summary::-webkit-details-marker{display:none}
-    details p{margin:10px 0 0; color:var(--muted); font-size:14px; line-height:1.6}
-    footer{
-      padding:28px 0 44px;
-      border-top:1px solid rgba(255,255,255,.08);
-      margin-top: 26px;
-    }
-    .footerGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr .8fr;
-      gap:18px;
-      align-items:start;
-    }
-    .footTitle{font-weight:900}
-    .footLink{display:block; margin-top:8px; color:var(--muted)}
-    .copyright{margin-top:22px; color:var(--muted2); font-size:13px}
-
-    /* Responsive */
-    @media (max-width: 980px){
-      .heroGrid{grid-template-columns: 1fr; }
-      h1{font-size:44px}
-      .grid4{grid-template-columns: repeat(2,1fr)}
-      .grid3{grid-template-columns: repeat(2,1fr)}
-      .pricing{grid-template-columns: 1fr}
-      .footerGrid{grid-template-columns: 1fr}
-      .links{display:none}
-    }
-    @media (max-width: 520px){
-      h1{font-size:38px}
-      .statGrid{grid-template-columns:1fr}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NorthPixel - Fast, professional websites for small businesses. Landing pages and business sites delivered in days, not months.">
+    <title>NorthPixel | Fast Websites for Small Business</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <div class="topbar">
-    <div class="wrap">
-      <div class="nav">
-        <a class="brand" href="#top">
-          <span class="logo" aria-hidden="true"></span>
-          <span id="brand-name">NORTHPIXEL</span>
-        </a>
-
-        <div class="links">
-          <a href="#services">Services</a>
-          <a href="#process">Process</a>
-          <a href="#projects">Portfolio</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
-          <a href="admin.html">Admin</a>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
+                        <path d="M10 22V10L22 16L10 22Z" fill="white"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
+                                <stop offset="0%" stop-color="#10b981"/>
+                                <stop offset="100%" stop-color="#059669"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>NorthPixel</span>
+                </div>
+                <div class="nav-actions">
+                    <a href="tel:+3725541895" class="phone">+372 5541895</a>
+                    <a href="#contact" class="btn btn-primary">Get a Quote</a>
+                </div>
+            </nav>
         </div>
+    </header>
 
-        <div class="right">
-          <span class="pill" id="brand-phone"></span>
-          <a class="btn primary" id="brand-cta" href="#pricing">Get a Quote</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <main id="top">
-    <div class="wrap">
-      <div class="hero">
-        <div class="heroGrid">
-          <div class="headline">
-            <div class="kicker" id="brand-tagline"></div>
-            <h1 id="hero-title">Fast Websites</h1>
-            <p class="sub" id="hero-subtitle"></p>
-            <div class="ctaRow">
-              <a class="btn primary" id="hero-primary" href="#pricing">Get a Quote</a>
-              <a class="btn" id="hero-secondary" href="#projects">See Work</a>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1 class="hero-title" id="hero-title">Fast Websites for Small Business</h1>
+                <p class="hero-subtitle" id="hero-subtitle">Professional landing pages and business websites delivered in days, not months. Simple pricing, clear timelines, guaranteed results.</p>
+                <div class="hero-cta">
+                    <a href="#packages" class="btn btn-primary btn-lg">View Packages</a>
+                    <a href="#cases" class="btn btn-secondary btn-lg">See Our Work</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">3-14</div>
+                        <div class="stat-label">Days Delivery</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">On-Time Rate</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                </div>
             </div>
-            <div class="miniNote">Premium look, simple process, clear scope. Deploy-ready.</div>
-          </div>
+        </div>
+    </section>
 
-          <aside class="side">
-            <div class="cardTitle">What you get</div>
-            <div class="statGrid" id="stats"></div>
-            <div style="display:flex; gap:10px; flex-wrap:wrap; position:relative">
-              <span class="tag">Clean layout</span>
-              <span class="tag">Fast delivery</span>
-              <span class="tag">Fixed scope</span>
-              <span class="tag">No drama</span>
+    <!-- Problems Section -->
+    <section class="problems" id="problems">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 id="problems-title">The Problem with Most Web Agencies</h2>
+                <p id="problems-subtitle">Traditional web development is slow, expensive, and unpredictable.</p>
             </div>
-          </aside>
+            <div class="problems-grid">
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">⏳</div>
+                    <h3>Months of Waiting</h3>
+                    <p>Most agencies take 2-6 months to deliver a simple website.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">💸</div>
+                    <h3>Hidden Costs</h3>
+                    <p>Prices balloon with endless revisions and "additional features".</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">🤷</div>
+                    <h3>No Clear Timeline</h3>
+                    <p>Launch dates keep getting pushed back with vague excuses.</p>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <section id="services">
-        <div class="sectionHead">
-          <div>
-            <h2>What we do</h2>
-            <p>Clean design, fast delivery, measurable results. Built for small businesses.</p>
-          </div>
+    <!-- Solutions Section -->
+    <section class="solutions">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 id="solutions-title">Our Solution: Fast, Fixed-Price Websites</h2>
+                <p id="solutions-subtitle">We deliver professional websites in days with transparent pricing and guaranteed deadlines.</p>
+            </div>
+            <div class="solutions-grid">
+                <div class="solution-card fade-in">
+                    <div class="solution-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Get your website live in 3-14 days. Not months. Not weeks. Days.</p>
+                </div>
+                <div class="solution-card fade-in">
+                    <div class="solution-icon">💎</div>
+                    <h3>Fixed Pricing</h3>
+                    <p>Know exactly what you'll pay upfront. No surprises, no hidden fees.</p>
+                </div>
+                <div class="solution-card fade-in">
+                    <div class="solution-icon">🎯</div>
+                    <h3>Guaranteed Deadline</h3>
+                    <p>We commit to a delivery date and stick to it. Every single time.</p>
+                </div>
+            </div>
         </div>
-        <div class="grid4" id="services-grid"></div>
-      </section>
+    </section>
 
-      <section id="process">
-        <div class="sectionHead">
-          <div>
-            <h2>Simple process</h2>
-            <p>From idea to launch — without chaos.</p>
-          </div>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>What We Build</h2>
+                <p>Focused solutions for small businesses who need results fast.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <h3>Landing Pages</h3>
+                    <p>High-converting single-page sites perfect for campaigns, products, or services. Delivered in 3-5 days.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <h3>Business Websites</h3>
+                    <p>Professional multi-page websites with contact forms, portfolios, and service pages. Ready in 7-10 days.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <h3>Small E-Commerce</h3>
+                    <p>Simple online stores with product catalogs and payment integration. Launched in 10-14 days.</p>
+                </div>
+            </div>
         </div>
-        <div class="grid4" id="process-grid"></div>
-      </section>
+    </section>
 
-      <section id="projects">
-        <div class="sectionHead">
-          <div>
-            <h2>Recent projects</h2>
-            <p>A few examples of what we ship. You can replace links later.</p>
-          </div>
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 id="process-title">Simple 4-Step Process</h2>
+                <p id="process-subtitle">From first contact to live website in record time.</p>
+            </div>
+            <div class="process-steps">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Brief Call</h3>
+                    <p>30-minute call to understand your needs, goals, and timeline.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Design & Build</h3>
+                    <p>We create your website based on proven templates and best practices.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>Review & Refine</h3>
+                    <p>One round of revisions to ensure everything is perfect.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>Launch</h3>
+                    <p>Your website goes live on schedule with full documentation.</p>
+                </div>
+            </div>
         </div>
-        <div class="grid3" id="projects-grid"></div>
-      </section>
+    </section>
 
-      <section id="pricing">
-        <div class="sectionHead">
-          <div>
-            <h2>Simple transparency pricing</h2>
-            <p>Fixed scope. Clear deliverables. No surprises.</p>
-          </div>
+    <!-- Cases Section -->
+    <section class="cases" id="cases">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Recent Projects</h2>
+                <p>Real websites delivered on time, on budget, for real businesses.</p>
+            </div>
+            <div class="cases-grid" id="cases-grid">
+                <!-- Cases will be loaded dynamically from cases.json -->
+            </div>
         </div>
-        <div class="pricing" id="pricing-grid"></div>
-      </section>
+    </section>
 
-      <section id="faq">
-        <div class="sectionHead">
-          <div>
-            <h2>FAQ</h2>
-            <p>Short answers. Straight process.</p>
-          </div>
+    <!-- Packages Section -->
+    <section class="packages" id="packages">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Simple, Transparent Pricing</h2>
+                <p>Choose the package that fits your needs. No hidden fees, no surprises.</p>
+            </div>
+            <div class="packages-grid" id="packages-grid">
+                <!-- Packages will be loaded dynamically from packages.json -->
+            </div>
         </div>
-        <div id="faq-list"></div>
-      </section>
+    </section>
 
-      <footer id="contact">
-        <div class="footerGrid">
-          <div>
-            <div class="footTitle" id="foot-brand">NORTHPIXEL</div>
-            <div class="footLink" id="foot-tagline"></div>
-          </div>
-          <div>
-            <div class="footTitle">Company</div>
-            <a class="footLink" href="#services">Services</a>
-            <a class="footLink" href="#process">Process</a>
-            <a class="footLink" href="#projects">Portfolio</a>
-            <a class="footLink" href="#pricing">Pricing</a>
-          </div>
-          <div>
-            <div class="footTitle">Contact</div>
-            <a class="footLink" id="foot-email" href="#">email</a>
-            <div class="footLink" id="foot-phone"></div>
-            <div class="footLink" id="foot-city"></div>
-          </div>
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item fade-in">
+                    <h3 class="faq-question">How can you deliver so fast?</h3>
+                    <div class="faq-answer">
+                        <p>We use proven frameworks, pre-built components, and streamlined processes. Instead of reinventing the wheel for each project, we focus on customizing battle-tested solutions to your specific needs.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <h3 class="faq-question">Do I own the website?</h3>
+                    <div class="faq-answer">
+                        <p>Yes, 100%. You own all the code, content, and design. We'll provide full access to everything and documentation on how to make updates.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <h3 class="faq-question">What if I need changes after launch?</h3>
+                    <div class="faq-answer">
+                        <p>Each package includes one round of revisions before launch. After launch, we offer support packages starting at €99/month for minor updates and maintenance.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <h3 class="faq-question">Can you build custom features?</h3>
+                    <div class="faq-answer">
+                        <p>For standard business needs - absolutely. For highly custom applications or complex systems, we can provide a custom quote with adjusted timeline.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <h3 class="faq-question">What about hosting and domain?</h3>
+                    <div class="faq-answer">
+                        <p>We can handle everything or work with your existing hosting. All packages include 1 year of hosting. Domains are additional (typically €10-15/year).</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="copyright" id="copyright"></div>
-      </footer>
-    </div>
-  </main>
+    </section>
 
-  <script>
-    async function getContent(){
-      const res = await fetch('./content.json', { cache: 'no-store' });
-      if(!res.ok) throw new Error('content.json not found');
-      return res.json();
-    }
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info fade-in">
+                    <h2>Ready to Get Started?</h2>
+                    <p>Get a detailed quote within 24 hours. Most projects start within a week.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <a href="mailto:info.northpixel@gmail.com">info.northpixel@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Phone:</strong>
+                            <a href="tel:+3725541895">+372 5541895</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Location:</strong>
+                            <span>Tallinn, Estonia</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper fade-in">
+                    <form class="contact-form" id="contact-form">
+                        <!-- 
+                        IMPORTANT: Replace YOUR_FORMSPREE_ID with your actual Formspree form ID
+                        Get one free at https://formspree.io/
+                        -->
+                        <input type="hidden" name="_subject" value="New NorthPixel Quote Request">
+                        <input type="hidden" name="_cc" value="info.northpixel@gmail.com">
+                        
+                        <div class="form-group">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company Name</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="budget">Budget</label>
+                                <select id="budget" name="budget">
+                                    <option value="">Select budget</option>
+                                    <option value="€490-€1,000">€490-€1,000</option>
+                                    <option value="€1,000-€2,500">€1,000-€2,500</option>
+                                    <option value="€2,500-€5,000">€2,500-€5,000</option>
+                                    <option value="€5,000+">€5,000+</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="timeline">Timeline</label>
+                                <select id="timeline" name="timeline">
+                                    <option value="">Select timeline</option>
+                                    <option value="Urgent (1-2 weeks)">Urgent (1-2 weeks)</option>
+                                    <option value="Soon (2-4 weeks)">Soon (2-4 weeks)</option>
+                                    <option value="Flexible (1-2 months)">Flexible (1-2 months)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Project Details *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project, goals, and any specific requirements..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg btn-full">Send Quote Request</button>
+                        
+                        <div class="form-message" id="form-message"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    function el(tag, cls){
-      const e = document.createElement(tag);
-      if(cls) e.className = cls;
-      return e;
-    }
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect width="32" height="32" rx="8" fill="url(#gradient-footer)"/>
+                            <path d="M10 22V10L22 16L10 22Z" fill="white"/>
+                            <defs>
+                                <linearGradient id="gradient-footer" x1="0" y1="0" x2="32" y2="32">
+                                    <stop offset="0%" stop-color="#10b981"/>
+                                    <stop offset="100%" stop-color="#059669"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span>NorthPixel</span>
+                    </div>
+                    <p>Fast, professional websites for small businesses.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#home">Home</a>
+                        <a href="#services">Services</a>
+                        <a href="#packages">Pricing</a>
+                        <a href="#cases">Portfolio</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <a href="#faq">FAQ</a>
+                        <a href="#contact">Contact</a>
+                        <a href="/admin">Admin Login</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <a href="mailto:info.northpixel@gmail.com">info.northpixel@gmail.com</a>
+                        <a href="tel:+3725541895">+372 5541895</a>
+                        <span>Tallinn, Estonia</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NorthPixel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-    function renderStats(stats){
-      const root = document.getElementById('stats');
-      root.innerHTML = '';
-      stats.forEach(s => {
-        const box = el('div','stat');
-        const v = el('div','v'); v.textContent = s.value;
-        const l = el('div','l'); l.textContent = s.label;
-        box.appendChild(v); box.appendChild(l);
-        root.appendChild(box);
-      });
-    }
-
-    function renderCards(list, rootId){
-      const root = document.getElementById(rootId);
-      root.innerHTML = '';
-      list.forEach(item => {
-        const p = el('div','panel');
-        const h = el('h3'); h.textContent = item.title;
-        const d = el('p'); d.textContent = item.desc;
-        p.appendChild(h); p.appendChild(d);
-        root.appendChild(p);
-      });
-    }
-
-    function renderProjects(projects){
-      const root = document.getElementById('projects-grid');
-      root.innerHTML = '';
-      projects.forEach(pr => {
-        const p = el('div','panel');
-        const h = el('h3'); h.textContent = pr.title;
-        const d = el('p'); d.textContent = pr.desc;
-        const tags = el('div','tagRow');
-        (pr.tags || []).forEach(t => {
-          const tg = el('span','tag'); tg.textContent = t;
-          tags.appendChild(tg);
-        });
-        const link = el('a','btn');
-        link.style.marginTop = '14px';
-        link.href = pr.link || '#';
-        link.textContent = 'View';
-        p.appendChild(h); p.appendChild(d); p.appendChild(tags); p.appendChild(link);
-        root.appendChild(p);
-      });
-    }
-
-    function renderPricing(pricing){
-      const root = document.getElementById('pricing-grid');
-      root.innerHTML = '';
-      pricing.forEach((pk, i) => {
-        const card = el('div', 'priceCard' + (i===1 ? ' featured' : ''));
-        const top = el('div','priceTop');
-        const left = el('div');
-        const name = el('div','priceName'); name.textContent = pk.name;
-        const note = el('div','priceNote'); note.textContent = pk.note || '';
-        left.appendChild(name); left.appendChild(note);
-
-        const price = el('div','price'); price.textContent = pk.price;
-
-        top.appendChild(left); top.appendChild(price);
-
-        const ul = el('ul','list');
-        (pk.features || []).forEach(f => {
-          const li = document.createElement('li');
-          const dot = el('span','dot');
-          const tx = document.createElement('span');
-          tx.textContent = f;
-          li.appendChild(dot); li.appendChild(tx);
-          ul.appendChild(li);
-        });
-
-        const cta = el('a','btn primary');
-        cta.style.marginTop = '16px';
-        cta.href = '#contact';
-        cta.textContent = 'Get a quote';
-
-        card.appendChild(top);
-        card.appendChild(ul);
-        card.appendChild(cta);
-        root.appendChild(card);
-      });
-    }
-
-    function renderFAQ(faq){
-      const root = document.getElementById('faq-list');
-      root.innerHTML = '';
-      faq.forEach(f => {
-        const d = document.createElement('details');
-        const s = document.createElement('summary');
-        s.textContent = f.q;
-        const p = document.createElement('p');
-        p.textContent = f.a;
-        d.appendChild(s); d.appendChild(p);
-        root.appendChild(d);
-      });
-    }
-
-    (async () => {
-      const data = await getContent();
-
-      // Top brand
-      document.getElementById('brand-name').textContent = data.brand.name;
-      document.getElementById('brand-tagline').textContent = data.brand.tagline;
-      document.getElementById('brand-phone').textContent = data.brand.phone;
-      document.getElementById('brand-cta').textContent = data.brand.cta;
-
-      // Hero
-      document.getElementById('hero-title').textContent = data.hero.title;
-      document.getElementById('hero-subtitle').textContent = data.hero.subtitle;
-      document.getElementById('hero-primary').textContent = data.hero.primaryCta;
-      document.getElementById('hero-secondary').textContent = data.hero.secondaryCta;
-
-      // Stats, services, process
-      renderStats(data.stats || []);
-      renderCards(data.services || [], 'services-grid');
-      renderCards((data.process || []).map(p => ({
-        title: `${p.step} — ${p.title}`,
-        desc: p.desc
-      }),'process-grid');
-
-      // Projects / pricing / faq
-      renderProjects(data.projects || []);
-      renderPricing(data.pricing || []);
-      renderFAQ(data.faq || []);
-
-      // Footer
-      document.getElementById('foot-brand').textContent = data.brand.name;
-      document.getElementById('foot-tagline').textContent = data.brand.tagline;
-      const email = data.brand.email;
-      const emailA = document.getElementById('foot-email');
-      emailA.textContent = email;
-      emailA.href = 'mailto:' + email;
-      document.getElementById('foot-phone').textContent = data.brand.phone;
-      document.getElementById('foot-city').textContent = data.brand.city;
-      document.getElementById('copyright').textContent =
-        `© ${new Date().getFullYear()} ${data.brand.name}. All rights reserved.`;
-    })().catch(err => {
-      document.body.innerHTML =
-        `<div style="padding:40px;font-family:system-ui;color:#111;background:#fff">
-          <h2>Site failed to load</h2>
-          <p>Reason: <b>${String(err.message)}</b></p>
-          <p>Check that <code>content.json</code> exists in the repo root.</p>
-        </div>`;
-    });
-  </script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
