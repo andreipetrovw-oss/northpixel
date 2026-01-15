@@ -1,79 +1,255 @@
 {
   "brand": {
-    "name": "NORTHPIXEL",
-    "tagline": "Fast launch • Clear price • No drama",
+    "name": "NorthPixel",
+    "tagline": "Fast websites for small business",
+    "logo": "",
     "phone": "+372 5541895",
     "email": "info.northpixel@gmail.com",
-    "city": "Tallinn, Estonia",
-    "cta": "Get a Quote"
+    "location": "Tallinn, Estonia",
+    "formspreeEndpoint": "",
+    "social": {
+      "linkedin": "Andrei Petrov",
+      "facebook": "NorthPixel",
+      "instagram": "",
+      "twitter": ""
+    }
+  },
+  "theme": {
+    "colors": {
+      "bg": "#0f172a",
+      "bgLight": "#1e293b",
+      "text": "#f8fafc",
+      "textMuted": "#cbd5e1",
+      "accent": "#06b6d4",
+      "accentHover": "#0891b2",
+      "card": "#1e293b",
+      "border": "#334155"
+    },
+    "fontFamily": "Inter"
   },
   "hero": {
-    "title": "Fast Websites for Small Businesses",
-    "subtitle": "Landing pages and business websites shipped in days — with clean design, clear pricing, and zero chaos.",
-    "primaryCta": "Get a Quote",
-    "secondaryCta": "See Work"
+    "title": "Fast Websites for Small Business",
+    "subtitle": "Professional landing pages and business websites delivered in days, not months. Simple pricing, clear timelines, guaranteed results.",
+    "ctaPrimary": "Get a Quote",
+    "ctaSecondary": "See Our Work",
+    "trustBullets": [
+      "3-14 Days Delivery",
+      "Fixed Price",
+      "100% Satisfaction"
+    ]
   },
-  "stats": [
-    { "label": "Delivery", "value": "3–14 days" },
-    { "label": "Pricing", "value": "Fixed & transparent" },
-    { "label": "Process", "value": "Simple & fast" },
-    { "label": "Support", "value": "Real humans" }
-  ],
-  "services": [
-    { "title": "Landing Pages", "desc": "High-converting pages with clear structure, copy, and CTA." },
-    { "title": "Business Websites", "desc": "Multi-page websites that look premium and feel simple." },
-    { "title": "UI Polish", "desc": "Design upgrades: typography, spacing, visuals, sections." },
-    { "title": "Speed & SEO", "desc": "Fast loading, basics covered, ready for Google." }
-  ],
-  "process": [
-    { "step": "01", "title": "Brief", "desc": "We clarify your goal, audience, offer, and structure." },
-    { "step": "02", "title": "Design", "desc": "Clean premium layout with modern visual accents." },
-    { "step": "03", "title": "Build", "desc": "Fast implementation, responsive, optimized." },
-    { "step": "04", "title": "Launch", "desc": "Deploy + handoff + next steps for growth." }
-  ],
-  "projects": [
-    {
-      "title": "ManuFarm",
-      "desc": "Landing page with clear offer, strong structure, and fast load.",
-      "tags": ["Landing", "Copy", "Conversion"],
-      "link": "#"
+  "sections": {
+    "problem": {
+      "title": "The Problem with Most Web Agencies",
+      "subtitle": "Traditional web development is slow, expensive, and unpredictable.",
+      "items": [
+        {
+          "icon": "⏳",
+          "title": "Months of Waiting",
+          "description": "Most agencies take 2-6 months to deliver a simple website."
+        },
+        {
+          "icon": "💸",
+          "title": "Hidden Costs",
+          "description": "Prices balloon with endless revisions and additional features."
+        },
+        {
+          "icon": "🤷",
+          "title": "No Clear Timeline",
+          "description": "Launch dates keep getting pushed back with vague excuses."
+        }
+      ]
     },
-    {
-      "title": "Local Service Site",
-      "desc": "Multi-page business website with pricing and lead capture.",
-      "tags": ["Website", "SEO", "Lead Form"],
-      "link": "#"
+    "solution": {
+      "title": "Our Solution: Fast, Fixed-Price Websites",
+      "subtitle": "We deliver professional websites in days with transparent pricing and guaranteed deadlines.",
+      "items": [
+        {
+          "icon": "⚡",
+          "title": "Lightning Fast",
+          "description": "Get your website live in 3-14 days. Not months. Not weeks. Days."
+        },
+        {
+          "icon": "💎",
+          "title": "Fixed Pricing",
+          "description": "Know exactly what you'll pay upfront. No surprises, no hidden fees."
+        },
+        {
+          "icon": "🎯",
+          "title": "Guaranteed Deadline",
+          "description": "We commit to a delivery date and stick to it. Every single time."
+        }
+      ]
     },
-    {
-      "title": "Creative Portfolio",
-      "desc": "Minimal showcase with bold typography and case studies.",
-      "tags": ["Portfolio", "UI", "Brand"],
-      "link": "#"
-    }
-  ],
-  "pricing": [
-    {
-      "name": "Starter",
-      "price": "€500",
-      "note": "Perfect for simple landing",
-      "features": ["1 page", "Copy structure", "Mobile responsive", "Deploy to Vercel"]
-    },
-    {
-      "name": "Business",
-      "price": "€900",
-      "note": "Best for most clients",
-      "features": ["Up to 5 pages", "Basic SEO", "Lead form", "Speed optimization"]
-    },
-    {
-      "name": "Pro",
-      "price": "€1500",
-      "note": "For premium results",
-      "features": ["Custom sections", "Animations (light)", "Case studies", "Priority delivery"]
-    }
-  ],
-  "faq": [
-    { "q": "How fast can you ship?", "a": "Usually 3–14 days depending on scope and materials." },
-    { "q": "Do you work with fixed pricing?", "a": "Yes — we define scope and deliverables before we start." },
-    { "q": "Can I edit content myself?", "a": "Yes — update content.json (or use admin.html to export it)." }
-  ]
+    "services": [
+      {
+        "icon": "📄",
+        "name": "Landing Pages",
+        "description": "High-converting single-page sites perfect for campaigns, products, or services. Delivered in 3-5 days."
+      },
+      {
+        "icon": "🏢",
+        "name": "Business Websites",
+        "description": "Professional multi-page websites with contact forms, portfolios, and service pages. Ready in 7-10 days."
+      },
+      {
+        "icon": "🎨",
+        "name": "Website Redesign",
+        "description": "Refresh your existing website with modern design and better performance. Completed in 5-7 days."
+      },
+      {
+        "icon": "🔍",
+        "name": "SEO Basics",
+        "description": "Essential optimization to help customers find you on Google. On-page SEO and technical improvements."
+      },
+      {
+        "icon": "🔌",
+        "name": "Integrations",
+        "description": "Connect your website with booking systems, CRMs, payment gateways, and email marketing tools."
+      }
+    ],
+    "processSteps": [
+      {
+        "name": "Discovery",
+        "description": "30-minute call to understand your business, goals, and target audience."
+      },
+      {
+        "name": "Design",
+        "description": "We create mockups based on proven templates and your brand guidelines."
+      },
+      {
+        "name": "Build",
+        "description": "Development with daily progress updates and access to staging environment."
+      },
+      {
+        "name": "Launch",
+        "description": "Go live with full documentation, training, and post-launch support."
+      }
+    ],
+    "projects": [
+      {
+        "title": "ManuFarm",
+        "industry": "Agriculture",
+        "result": "Modern landing page with product catalog. Delivered in 5 days.",
+        "tags": ["Landing Page", "E-commerce"],
+        "imageUrl": "",
+        "link": ""
+      },
+      {
+        "title": "TechConsult Pro",
+        "industry": "Consulting",
+        "result": "Professional business website with service pages and blog. 8-day delivery.",
+        "tags": ["Business Site", "Consulting"],
+        "imageUrl": "",
+        "link": ""
+      },
+      {
+        "title": "Nordic Craft Shop",
+        "industry": "Retail",
+        "result": "E-commerce store with payment integration. Launched in 12 days.",
+        "tags": ["E-commerce", "Retail"],
+        "imageUrl": "",
+        "link": ""
+      }
+    ],
+    "pricingPlans": [
+      {
+        "name": "Starter",
+        "price": "from €490",
+        "duration": "3–5 days",
+        "featured": false,
+        "features": [
+          "Single-page landing page",
+          "Mobile-responsive design",
+          "Contact form integration",
+          "Basic SEO optimization",
+          "1 year hosting included",
+          "SSL certificate",
+          "One round of revisions"
+        ]
+      },
+      {
+        "name": "Business",
+        "price": "from €1,290",
+        "duration": "7–10 days",
+        "featured": true,
+        "features": [
+          "Multi-page website (up to 5 pages)",
+          "Custom design tailored to your brand",
+          "Contact forms & CTAs",
+          "Advanced SEO optimization",
+          "Google Analytics integration",
+          "1 year hosting & SSL",
+          "Admin panel for content updates",
+          "Two rounds of revisions"
+        ]
+      },
+      {
+        "name": "Pro",
+        "price": "from €2,490",
+        "duration": "10–14 days",
+        "featured": false,
+        "features": [
+          "Multi-page website (up to 10 pages)",
+          "E-commerce integration",
+          "Payment gateway setup",
+          "Blog system with CMS",
+          "Email marketing integration",
+          "Advanced analytics & tracking",
+          "Priority support for 3 months",
+          "Full admin panel",
+          "Three rounds of revisions"
+        ]
+      },
+      {
+        "name": "Custom",
+        "price": "Let's talk",
+        "duration": "Flexible",
+        "featured": false,
+        "features": [
+          "Tailored to your specific needs",
+          "Complex integrations",
+          "Custom functionality",
+          "Ongoing support & maintenance",
+          "Dedicated project manager",
+          "We'll create a custom proposal"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "How can you deliver websites so fast?",
+        "answer": "We use proven frameworks, pre-built components, and streamlined processes. Instead of reinventing the wheel for each project, we focus on customizing battle-tested solutions to your specific needs. This allows us to deliver professional results in days, not months."
+      },
+      {
+        "question": "Do I own the website after it's delivered?",
+        "answer": "Yes, 100%. You own all the code, content, and design. We'll provide full access to everything along with documentation on how to make updates yourself. You're never locked into working with us."
+      },
+      {
+        "question": "What if I need changes after the website is launched?",
+        "answer": "Each package includes one or more rounds of revisions before launch. After launch, we offer support packages starting at €99/month for minor updates and maintenance. For larger changes or new features, we can provide a custom quote."
+      },
+      {
+        "question": "Can you build custom features and functionality?",
+        "answer": "Absolutely. For standard business needs like contact forms, booking systems, or payment integration, we can handle it within our packages. For highly custom applications or complex systems, we'll provide a custom quote with an adjusted timeline."
+      },
+      {
+        "question": "What about hosting and domain registration?",
+        "answer": "We can handle everything or work with your existing hosting provider. All packages include 1 year of hosting on reliable infrastructure. Domain registration is additional (typically €10-15/year) and we can help you register one or transfer an existing domain."
+      },
+      {
+        "question": "Do you provide ongoing support and maintenance?",
+        "answer": "Yes. We offer support packages starting at €99/month which include minor content updates, security patches, performance monitoring, and priority support. We're here to help your website succeed long-term."
+      },
+      {
+        "question": "What if I'm not happy with the result?",
+        "answer": "We work closely with you throughout the process to ensure you're happy with every step. Each package includes revision rounds where you can request changes. We've never had a client we couldn't satisfy, but if something truly isn't working, we'll make it right."
+      },
+      {
+        "question": "Can you help with content and copywriting?",
+        "answer": "Yes! While we expect you to provide key information about your business, we can help polish the copy and ensure it's clear, professional, and conversion-focused. Content writing services are available as an add-on."
+      }
+    ]
+  },
+  "adminPassword": "northpixel2025"
 }
