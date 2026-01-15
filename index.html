@@ -3,114 +3,767 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NorthPixel - Fast, professional websites for small businesses. Landing pages and business sites delivered in days, not months.">
-    <title>NorthPixel | Fast Websites for Small Business</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>NorthPixel - Fast Websites for Small Business</title>
+    <meta name="description" content="Professional websites delivered in days. Fixed pricing, guaranteed deadlines, transparent process.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0f172a;
+            --bg-light: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #cbd5e1;
+            --accent: #06b6d4;
+            --accent-hover: #0891b2;
+            --border: #334155;
+            --card: #1e293b;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: white;
+            padding: 0.625rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 10rem 0 6rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .trust-chips {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .chip {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--card);
+            border-radius: 2rem;
+            font-weight: 600;
+        }
+
+        .chip-icon {
+            font-size: 1.25rem;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+        }
+
+        /* Problem/Solution */
+        .problem-solution {
+            background: var(--bg-light);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Process */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            position: relative;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 1rem;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card);
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-industry {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--accent);
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 2px solid var(--border);
+            position: relative;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .pricing-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-duration {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pricing-features li:before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* FAQ */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Contact */
+        .contact-section {
+            background: var(--bg-light);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1rem;
+        }
+
+        .contact-details {
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: var(--text);
+            font-family: inherit;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-message {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .form-message.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+            display: block;
+        }
+
+        .form-message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-light);
+            padding: 3rem 0 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Mobile floating CTA */
+        .floating-cta {
+            display: none;
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-light);
+                flex-direction: column;
+                padding: 1rem;
+                border-top: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-cta {
+                display: block;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <div class="logo">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                        <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
-                        <path d="M10 22V10L22 16L10 22Z" fill="white"/>
-                        <defs>
-                            <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
-                                <stop offset="0%" stop-color="#10b981"/>
-                                <stop offset="100%" stop-color="#059669"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                    <span>NorthPixel</span>
-                </div>
-                <div class="nav-actions">
-                    <a href="tel:+3725541895" class="phone">+372 5541895</a>
-                    <a href="#contact" class="btn btn-primary">Get a Quote</a>
-                </div>
-            </nav>
-        </div>
+    <header>
+        <nav>
+            <a href="#home" class="logo" id="brand-name">NorthPixel</a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Get a Quote</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero" id="home">
         <div class="container">
-            <div class="hero-content fade-in">
-                <h1 class="hero-title" id="hero-title">Fast Websites for Small Business</h1>
-                <p class="hero-subtitle" id="hero-subtitle">Professional landing pages and business websites delivered in days, not months. Simple pricing, clear timelines, guaranteed results.</p>
-                <div class="hero-cta">
-                    <a href="#packages" class="btn btn-primary btn-lg">View Packages</a>
-                    <a href="#cases" class="btn btn-secondary btn-lg">See Our Work</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-number">3-14</div>
-                        <div class="stat-label">Days Delivery</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">On-Time Rate</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Happy Clients</div>
-                    </div>
-                </div>
+            <h1 id="hero-title">Fast Websites for Small Business</h1>
+            <p class="hero-subtitle" id="hero-subtitle">Professional landing pages and business websites delivered in days, not months. Simple pricing, clear timelines, guaranteed results.</p>
+            <div class="btn-group">
+                <a href="#contact" class="btn btn-primary">Get a Quote</a>
+                <a href="#work" class="btn btn-secondary">See Our Work</a>
+            </div>
+            <div class="trust-chips" id="trust-chips">
+                <div class="chip"><span class="chip-icon">⚡</span><span>3-14 Days Delivery</span></div>
+                <div class="chip"><span class="chip-icon">💎</span><span>Fixed Price</span></div>
+                <div class="chip"><span class="chip-icon">✓</span><span>100% Satisfaction</span></div>
             </div>
         </div>
     </section>
 
-    <!-- Problems Section -->
-    <section class="problems" id="problems">
+    <!-- Problem/Solution -->
+    <section class="problem-solution" id="problem">
         <div class="container">
-            <div class="section-header fade-in">
-                <h2 id="problems-title">The Problem with Most Web Agencies</h2>
-                <p id="problems-subtitle">Traditional web development is slow, expensive, and unpredictable.</p>
+            <div class="section-header">
+                <h2>The Problem with Most Web Agencies</h2>
+                <p>Traditional web development is slow, expensive, and unpredictable.</p>
             </div>
-            <div class="problems-grid">
-                <div class="problem-card fade-in">
-                    <div class="problem-icon">⏳</div>
+            <div class="grid" id="problems-grid">
+                <div class="card">
+                    <div class="card-icon">⏳</div>
                     <h3>Months of Waiting</h3>
                     <p>Most agencies take 2-6 months to deliver a simple website.</p>
                 </div>
-                <div class="problem-card fade-in">
-                    <div class="problem-icon">💸</div>
+                <div class="card">
+                    <div class="card-icon">💸</div>
                     <h3>Hidden Costs</h3>
                     <p>Prices balloon with endless revisions and "additional features".</p>
                 </div>
-                <div class="problem-card fade-in">
-                    <div class="problem-icon">🤷</div>
+                <div class="card">
+                    <div class="card-icon">🤷</div>
                     <h3>No Clear Timeline</h3>
                     <p>Launch dates keep getting pushed back with vague excuses.</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Solutions Section -->
-    <section class="solutions">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 id="solutions-title">Our Solution: Fast, Fixed-Price Websites</h2>
-                <p id="solutions-subtitle">We deliver professional websites in days with transparent pricing and guaranteed deadlines.</p>
+            <div class="section-header" style="margin-top: 4rem;">
+                <h2>Our Solution: Fast, Fixed-Price Websites</h2>
+                <p>We deliver professional websites in days with transparent pricing and guaranteed deadlines.</p>
             </div>
-            <div class="solutions-grid">
-                <div class="solution-card fade-in">
-                    <div class="solution-icon">⚡</div>
+            <div class="grid" id="solutions-grid">
+                <div class="card">
+                    <div class="card-icon">⚡</div>
                     <h3>Lightning Fast</h3>
                     <p>Get your website live in 3-14 days. Not months. Not weeks. Days.</p>
                 </div>
-                <div class="solution-card fade-in">
-                    <div class="solution-icon">💎</div>
+                <div class="card">
+                    <div class="card-icon">💎</div>
                     <h3>Fixed Pricing</h3>
                     <p>Know exactly what you'll pay upfront. No surprises, no hidden fees.</p>
                 </div>
-                <div class="solution-card fade-in">
-                    <div class="solution-icon">🎯</div>
+                <div class="card">
+                    <div class="card-icon">🎯</div>
                     <h3>Guaranteed Deadline</h3>
                     <p>We commit to a delivery date and stick to it. Every single time.</p>
                 </div>
@@ -118,205 +771,168 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services -->
     <section class="services" id="services">
         <div class="container">
-            <div class="section-header fade-in">
+            <div class="section-header">
                 <h2>What We Build</h2>
                 <p>Focused solutions for small businesses who need results fast.</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card fade-in">
+            <div class="services-grid" id="services-grid">
+                <div class="card">
+                    <div class="card-icon">📄</div>
                     <h3>Landing Pages</h3>
-                    <p>High-converting single-page sites perfect for campaigns, products, or services. Delivered in 3-5 days.</p>
+                    <p>High-converting single-page sites perfect for campaigns, products, or services.</p>
                 </div>
-                <div class="service-card fade-in">
+                <div class="card">
+                    <div class="card-icon">🏢</div>
                     <h3>Business Websites</h3>
-                    <p>Professional multi-page websites with contact forms, portfolios, and service pages. Ready in 7-10 days.</p>
+                    <p>Professional multi-page websites with portfolios and service pages.</p>
                 </div>
-                <div class="service-card fade-in">
-                    <h3>Small E-Commerce</h3>
-                    <p>Simple online stores with product catalogs and payment integration. Launched in 10-14 days.</p>
+                <div class="card">
+                    <div class="card-icon">🎨</div>
+                    <h3>Redesign</h3>
+                    <p>Refresh your existing website with modern design and better performance.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔍</div>
+                    <h3>SEO Basics</h3>
+                    <p>Essential optimization to help customers find you on Google.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔌</div>
+                    <h3>Integrations</h3>
+                    <p>Connect your website with booking systems, CRMs, and payment tools.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Process Section -->
-    <section class="process">
+    <!-- Process -->
+    <section class="process" id="process">
         <div class="container">
-            <div class="section-header fade-in">
-                <h2 id="process-title">Simple 4-Step Process</h2>
-                <p id="process-subtitle">From first contact to live website in record time.</p>
+            <div class="section-header">
+                <h2>Simple 4-Step Process</h2>
+                <p>From first contact to live website in record time.</p>
             </div>
-            <div class="process-steps">
-                <div class="step fade-in">
+            <div class="process-steps" id="process-steps">
+                <div class="step">
                     <div class="step-number">1</div>
-                    <h3>Brief Call</h3>
-                    <p>30-minute call to understand your needs, goals, and timeline.</p>
+                    <h3>Discovery</h3>
+                    <p>30-minute call to understand your needs and goals.</p>
                 </div>
-                <div class="step fade-in">
+                <div class="step">
                     <div class="step-number">2</div>
-                    <h3>Design & Build</h3>
-                    <p>We create your website based on proven templates and best practices.</p>
+                    <h3>Design</h3>
+                    <p>We create mockups based on proven templates.</p>
                 </div>
-                <div class="step fade-in">
+                <div class="step">
                     <div class="step-number">3</div>
-                    <h3>Review & Refine</h3>
-                    <p>One round of revisions to ensure everything is perfect.</p>
+                    <h3>Build</h3>
+                    <p>Development with daily progress updates.</p>
                 </div>
-                <div class="step fade-in">
+                <div class="step">
                     <div class="step-number">4</div>
                     <h3>Launch</h3>
-                    <p>Your website goes live on schedule with full documentation.</p>
+                    <p>Go live with full documentation and training.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Cases Section -->
-    <section class="cases" id="cases">
+    <!-- Projects -->
+    <section class="projects" id="work">
         <div class="container">
-            <div class="section-header fade-in">
+            <div class="section-header">
                 <h2>Recent Projects</h2>
                 <p>Real websites delivered on time, on budget, for real businesses.</p>
             </div>
-            <div class="cases-grid" id="cases-grid">
-                <!-- Cases will be loaded dynamically from cases.json -->
+            <div class="projects-grid" id="projects-grid">
+                <!-- Projects loaded from JSON -->
             </div>
         </div>
     </section>
 
-    <!-- Packages Section -->
-    <section class="packages" id="packages">
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
         <div class="container">
-            <div class="section-header fade-in">
+            <div class="section-header">
                 <h2>Simple, Transparent Pricing</h2>
                 <p>Choose the package that fits your needs. No hidden fees, no surprises.</p>
             </div>
-            <div class="packages-grid" id="packages-grid">
-                <!-- Packages will be loaded dynamically from packages.json -->
+            <div class="pricing-grid" id="pricing-grid">
+                <!-- Pricing loaded from JSON -->
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- FAQ -->
     <section class="faq" id="faq">
         <div class="container">
-            <div class="section-header fade-in">
+            <div class="section-header">
                 <h2>Frequently Asked Questions</h2>
             </div>
-            <div class="faq-list">
-                <div class="faq-item fade-in">
-                    <h3 class="faq-question">How can you deliver so fast?</h3>
-                    <div class="faq-answer">
-                        <p>We use proven frameworks, pre-built components, and streamlined processes. Instead of reinventing the wheel for each project, we focus on customizing battle-tested solutions to your specific needs.</p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <h3 class="faq-question">Do I own the website?</h3>
-                    <div class="faq-answer">
-                        <p>Yes, 100%. You own all the code, content, and design. We'll provide full access to everything and documentation on how to make updates.</p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <h3 class="faq-question">What if I need changes after launch?</h3>
-                    <div class="faq-answer">
-                        <p>Each package includes one round of revisions before launch. After launch, we offer support packages starting at €99/month for minor updates and maintenance.</p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <h3 class="faq-question">Can you build custom features?</h3>
-                    <div class="faq-answer">
-                        <p>For standard business needs - absolutely. For highly custom applications or complex systems, we can provide a custom quote with adjusted timeline.</p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <h3 class="faq-question">What about hosting and domain?</h3>
-                    <div class="faq-answer">
-                        <p>We can handle everything or work with your existing hosting. All packages include 1 year of hosting. Domains are additional (typically €10-15/year).</p>
-                    </div>
-                </div>
+            <div class="faq-list" id="faq-list">
+                <!-- FAQ loaded from JSON -->
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <!-- Contact -->
+    <section class="contact-section" id="contact">
         <div class="container">
-            <div class="contact-wrapper">
-                <div class="contact-info fade-in">
-                    <h2>Ready to Get Started?</h2>
-                    <p>Get a detailed quote within 24 hours. Most projects start within a week.</p>
+            <div class="section-header">
+                <h2>Ready to Get Started?</h2>
+                <p>Get a detailed quote within 24 hours. Most projects start within a week.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>Fill out the form and we'll respond within 24 hours.</p>
                     <div class="contact-details">
                         <div class="contact-item">
-                            <strong>Email:</strong>
-                            <a href="mailto:info.northpixel@gmail.com">info.northpixel@gmail.com</a>
+                            <span class="contact-icon">📧</span>
+                            <a href="mailto:info.northpixel@gmail.com" id="contact-email">info.northpixel@gmail.com</a>
                         </div>
                         <div class="contact-item">
-                            <strong>Phone:</strong>
-                            <a href="tel:+3725541895">+372 5541895</a>
+                            <span class="contact-icon">📱</span>
+                            <a href="tel:+3725541895" id="contact-phone">+372 5541895</a>
                         </div>
                         <div class="contact-item">
-                            <strong>Location:</strong>
-                            <span>Tallinn, Estonia</span>
+                            <span class="contact-icon">📍</span>
+                            <span id="contact-location">Tallinn, Estonia</span>
                         </div>
                     </div>
                 </div>
-                <div class="contact-form-wrapper fade-in">
-                    <form class="contact-form" id="contact-form">
-                        <!-- 
-                        IMPORTANT: Replace YOUR_FORMSPREE_ID with your actual Formspree form ID
-                        Get one free at https://formspree.io/
-                        -->
-                        <input type="hidden" name="_subject" value="New NorthPixel Quote Request">
-                        <input type="hidden" name="_cc" value="info.northpixel@gmail.com">
-                        
+                <div class="contact-form-wrapper">
+                    <form id="contact-form">
                         <div class="form-group">
-                            <label for="name">Your Name *</label>
+                            <label for="name">Name *</label>
                             <input type="text" id="name" name="name" required>
                         </div>
-                        
                         <div class="form-group">
-                            <label for="email">Email Address *</label>
+                            <label for="email">Email *</label>
                             <input type="email" id="email" name="email" required>
                         </div>
-                        
                         <div class="form-group">
-                            <label for="company">Company Name</label>
+                            <label for="company">Company</label>
                             <input type="text" id="company" name="company">
                         </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="budget">Budget</label>
-                                <select id="budget" name="budget">
-                                    <option value="">Select budget</option>
-                                    <option value="€490-€1,000">€490-€1,000</option>
-                                    <option value="€1,000-€2,500">€1,000-€2,500</option>
-                                    <option value="€2,500-€5,000">€2,500-€5,000</option>
-                                    <option value="€5,000+">€5,000+</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="timeline">Timeline</label>
-                                <select id="timeline" name="timeline">
-                                    <option value="">Select timeline</option>
-                                    <option value="Urgent (1-2 weeks)">Urgent (1-2 weeks)</option>
-                                    <option value="Soon (2-4 weeks)">Soon (2-4 weeks)</option>
-                                    <option value="Flexible (1-2 months)">Flexible (1-2 months)</option>
-                                </select>
-                            </div>
-                        </div>
-                        
                         <div class="form-group">
-                            <label for="message">Project Details *</label>
-                            <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project, goals, and any specific requirements..."></textarea>
+                            <label for="budget">Budget</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select budget</option>
+                                <option value="€500-€1,000">€500-€1,000</option>
+                                <option value="€1,000-€2,500">€1,000-€2,500</option>
+                                <option value="€2,500-€5,000">€2,500-€5,000</option>
+                                <option value="€5,000+">€5,000+</option>
+                            </select>
                         </div>
-                        
-                        <button type="submit" class="btn btn-primary btn-lg btn-full">Send Quote Request</button>
-                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
                         <div class="form-message" id="form-message"></div>
                     </form>
                 </div>
@@ -325,53 +941,405 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                            <rect width="32" height="32" rx="8" fill="url(#gradient-footer)"/>
-                            <path d="M10 22V10L22 16L10 22Z" fill="white"/>
-                            <defs>
-                                <linearGradient id="gradient-footer" x1="0" y1="0" x2="32" y2="32">
-                                    <stop offset="0%" stop-color="#10b981"/>
-                                    <stop offset="100%" stop-color="#059669"/>
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                        <span>NorthPixel</span>
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4 id="footer-brand">NorthPixel</h4>
+                    <p id="footer-tagline">Fast websites for small business.</p>
+                    <div class="social-links" id="social-links">
+                        <!-- Social links loaded from JSON -->
                     </div>
-                    <p>Fast, professional websites for small businesses.</p>
                 </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Company</h4>
-                        <a href="#home">Home</a>
-                        <a href="#services">Services</a>
-                        <a href="#packages">Pricing</a>
-                        <a href="#cases">Portfolio</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Support</h4>
-                        <a href="#faq">FAQ</a>
-                        <a href="#contact">Contact</a>
-                        <a href="/admin">Admin Login</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Contact</h4>
-                        <a href="mailto:info.northpixel@gmail.com">info.northpixel@gmail.com</a>
-                        <a href="tel:+3725541895">+372 5541895</a>
-                        <span>Tallinn, Estonia</span>
-                    </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#work">Portfolio</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="/admin">Admin</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:info.northpixel@gmail.com">Email Us</a></li>
+                        <li><a href="tel:+3725541895">Call Us</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 NorthPixel. All rights reserved.</p>
+                <p>&copy; <span id="current-year"></span> NorthPixel. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="assets/js/app.js"></script>
+    <!-- Floating CTA (Mobile) -->
+    <a href="#contact" class="floating-cta">Get a Quote</a>
+
+    <script>
+        // Global state
+        let content = null;
+        let formEndpoint = '';
+
+        // Check for preview override from admin
+        function loadContent() {
+            const override = localStorage.getItem('NP_CONTENT_OVERRIDE');
+            if (override) {
+                try {
+                    content = JSON.parse(override);
+                    console.log('Using preview content from admin');
+                    renderContent();
+                    return;
+                } catch (e) {
+                    console.error('Invalid override content:', e);
+                    localStorage.removeItem('NP_CONTENT_OVERRIDE');
+                }
+            }
+
+            // Fetch from content.json
+            fetch('/content.json?t=' + Date.now())
+                .then(res => res.json())
+                .then(data => {
+                    content = data;
+                    renderContent();
+                })
+                .catch(err => {
+                    console.error('Failed to load content:', err);
+                    useFallbackContent();
+                });
+        }
+
+        // Render content
+        function renderContent() {
+            if (!content) return;
+
+            // Brand
+            if (content.brand) {
+                const brand = content.brand;
+                document.getElementById('brand-name').textContent = brand.name || 'NorthPixel';
+                document.getElementById('footer-brand').textContent = brand.name || 'NorthPixel';
+                document.getElementById('footer-tagline').textContent = brand.tagline || '';
+                document.getElementById('contact-email').textContent = brand.email || '';
+                document.getElementById('contact-email').href = 'mailto:' + (brand.email || '');
+                document.getElementById('contact-phone').textContent = brand.phone || '';
+                document.getElementById('contact-phone').href = 'tel:' + (brand.phone || '').replace(/\s/g, '');
+                document.getElementById('contact-location').textContent = brand.location || '';
+                
+                // Social links
+                if (brand.social) {
+                    const socialContainer = document.getElementById('social-links');
+                    socialContainer.innerHTML = '';
+                    Object.entries(brand.social).forEach(([platform, url]) => {
+                        if (url) {
+                            const link = document.createElement('a');
+                            link.href = url;
+                            link.target = '_blank';
+                            link.textContent = getsocialIcon(platform);
+                            socialContainer.appendChild(link);
+                        }
+                    });
+                }
+
+                formEndpoint = brand.formspreeEndpoint || '';
+            }
+
+            // Theme
+            if (content.theme && content.theme.colors) {
+                const colors = content.theme.colors;
+                const root = document.documentElement;
+                if (colors.bg) root.style.setProperty('--bg', colors.bg);
+                if (colors.text) root.style.setProperty('--text', colors.text);
+                if (colors.accent) root.style.setProperty('--accent', colors.accent);
+                if (colors.card) root.style.setProperty('--card', colors.card);
+                if (colors.border) root.style.setProperty('--border', colors.border);
+            }
+
+            // Hero
+            if (content.hero) {
+                document.getElementById('hero-title').textContent = content.hero.title || '';
+                document.getElementById('hero-subtitle').textContent = content.hero.subtitle || '';
+            }
+
+            // Projects
+            if (content.sections && content.sections.projects) {
+                renderProjects(content.sections.projects);
+            }
+
+            // Pricing
+            if (content.sections && content.sections.pricingPlans) {
+                renderPricing(content.sections.pricingPlans);
+            }
+
+            // FAQ
+            if (content.sections && content.sections.faq) {
+                renderFAQ(content.sections.faq);
+            }
+
+            // Services
+            if (content.sections && content.sections.services) {
+                renderServices(content.sections.services);
+            }
+
+            // Process
+            if (content.sections && content.sections.processSteps) {
+                renderProcess(content.sections.processSteps);
+            }
+        }
+
+        // Render Projects
+        function renderProjects(projects) {
+            const grid = document.getElementById('projects-grid');
+            grid.innerHTML = '';
+
+            projects.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                
+                let imageHTML = '';
+                if (project.imageUrl) {
+                    imageHTML = `<div class="project-image"><img src="${project.imageUrl}" alt="${project.title}"></div>`;
+                } else {
+                    imageHTML = `<div class="project-image">🌐</div>`;
+                }
+
+                const tagsHTML = project.tags && project.tags.length > 0 
+                    ? `<div class="project-tags">${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>`
+                    : '';
+
+                card.innerHTML = `
+                    ${imageHTML}
+                    <div class="project-content">
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-industry">${project.industry || ''}</p>
+                        <p>${project.result || ''}</p>
+                        ${tagsHTML}
+                    </div>
+                `;
+
+                if (project.link) {
+                    card.style.cursor = 'pointer';
+                    card.onclick = () => window.open(project.link, '_blank');
+                }
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Render Pricing
+        function renderPricing(plans) {
+            const grid = document.getElementById('pricing-grid');
+            grid.innerHTML = '';
+
+            plans.forEach(plan => {
+                const card = document.createElement('div');
+                card.className = 'pricing-card' + (plan.featured ? ' featured' : '');
+
+                const badgeHTML = plan.featured ? '<div class="pricing-badge">Popular</div>' : '';
+                const featuresHTML = plan.features && plan.features.length > 0
+                    ? `<ul class="pricing-features">${plan.features.map(f => `<li>${f}</li>`).join('')}</ul>`
+                    : '';
+
+                card.innerHTML = `
+                    ${badgeHTML}
+                    <h3 class="pricing-name">${plan.name}</h3>
+                    <div class="pricing-price">${plan.price}</div>
+                    <div class="pricing-duration">${plan.duration || ''}</div>
+                    ${featuresHTML}
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Get Started</a>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Render FAQ
+        function renderFAQ(faqs) {
+            const list = document.getElementById('faq-list');
+            list.innerHTML = '';
+
+            faqs.forEach((faq, index) => {
+                const item = document.createElement('div');
+                item.className = 'faq-item';
+                item.innerHTML = `
+                    <div class="faq-question">
+                        <span>${faq.question}</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">${faq.answer}</div>
+                `;
+
+                item.querySelector('.faq-question').onclick = () => {
+                    item.classList.toggle('active');
+                };
+
+                list.appendChild(item);
+            });
+        }
+
+        // Render Services
+        function renderServices(services) {
+            const grid = document.getElementById('services-grid');
+            grid.innerHTML = '';
+
+            services.forEach(service => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-icon">${service.icon || '📄'}</div>
+                    <h3>${service.name}</h3>
+                    <p>${service.description || ''}</p>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Render Process
+        function renderProcess(steps) {
+            const container = document.getElementById('process-steps');
+            container.innerHTML = '';
+
+            steps.forEach((step, index) => {
+                const div = document.createElement('div');
+                div.className = 'step';
+                div.innerHTML = `
+                    <div class="step-number">${index + 1}</div>
+                    <h3>${step.name}</h3>
+                    <p>${step.description || ''}</p>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Fallback content if fetch fails
+        function useFallbackContent() {
+            // Use existing HTML content as fallback
+            console.log('Using fallback content');
+        }
+
+        // Social icon helper
+        function getsocialIcon(platform) {
+            const icons = {
+                facebook: '📘',
+                twitter: '🐦',
+                linkedin: '💼',
+                instagram: '📷',
+                github: '🐙'
+            };
+            return icons[platform.toLowerCase()] || '🔗';
+        }
+
+        // Form handling
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            const messageEl = document.getElementById('form-message');
+
+            // Validation
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+
+            if (!name || !email || !message) {
+                messageEl.textContent = 'Please fill in all required fields.';
+                messageEl.className = 'form-message error';
+                return;
+            }
+
+            if (!email.includes('@')) {
+                messageEl.textContent = 'Please enter a valid email address.';
+                messageEl.className = 'form-message error';
+                return;
+            }
+
+            // Submit
+            if (formEndpoint) {
+                try {
+                    const response = await fetch(formEndpoint, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        messageEl.textContent = 'Thank you! We\'ll get back to you within 24 hours.';
+                        messageEl.className = 'form-message success';
+                        form.reset();
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                } catch (err) {
+                    messageEl.textContent = 'Something went wrong. Please email us directly.';
+                    messageEl.className = 'form-message error';
+                }
+            } else {
+                // Fallback to mailto
+                const subject = encodeURIComponent('Quote Request from ' + name);
+                const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${formData.get('company')}\nBudget: ${formData.get('budget')}\n\nMessage:\n${message}`);
+                window.location.href = `mailto:info.northpixel@gmail.com?subject=${subject}&body=${body}`;
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            document.getElementById('nav-links').classList.toggle('active');
+        }
+
+        // Active nav link
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu
+                    document.getElementById('nav-links').classList.remove('active');
+                }
+            });
+        });
+
+        // Init
+        window.addEventListener('scroll', updateActiveNav);
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Load content
+        loadContent();
+    </script>
 </body>
 </html>
