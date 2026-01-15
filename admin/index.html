@@ -281,6 +281,14 @@
             display: block;
         }
 
+        .lang-tab-content {
+            display: none;
+        }
+
+        .lang-tab-content.active {
+            display: block;
+        }
+
         .checkbox-group {
             display: flex;
             align-items: center;
@@ -350,6 +358,8 @@
             <button class="tab" onclick="switchTab('projects')">Projects</button>
             <button class="tab" onclick="switchTab('pricing')">Pricing</button>
             <button class="tab" onclick="switchTab('faq')">FAQ</button>
+            <button class="tab" onclick="switchTab('form')">Contact Form</button>
+            <button class="tab" onclick="switchTab('languages')">Languages</button>
         </div>
 
         <!-- Brand Tab -->
@@ -435,6 +445,45 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="section">
+                <h2 class="section-title">Typography</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="theme-font-heading">Heading Font</label>
+                        <select id="theme-font-heading">
+                            <option value="system">System Default</option>
+                            <option value="Inter">Inter</option>
+                            <option value="Poppins">Poppins</option>
+                            <option value="Montserrat">Montserrat</option>
+                            <option value="Roboto">Roboto</option>
+                            <option value="Open Sans">Open Sans</option>
+                            <option value="Lato">Lato</option>
+                            <option value="Raleway">Raleway</option>
+                            <option value="Playfair Display">Playfair Display</option>
+                            <option value="Merriweather">Merriweather</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme-font-body">Body Font</label>
+                        <select id="theme-font-body">
+                            <option value="system">System Default</option>
+                            <option value="Inter">Inter</option>
+                            <option value="Poppins">Poppins</option>
+                            <option value="Montserrat">Montserrat</option>
+                            <option value="Roboto">Roboto</option>
+                            <option value="Open Sans">Open Sans</option>
+                            <option value="Lato">Lato</option>
+                            <option value="Raleway">Raleway</option>
+                            <option value="Source Sans Pro">Source Sans Pro</option>
+                            <option value="Nunito">Nunito</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="alert alert-warning">
+                    <strong>Note:</strong> Selected fonts will be loaded from Google Fonts. "System Default" uses -apple-system, BlinkMacSystemFont, 'Segoe UI'.
+                </div>
+            </div>
         </div>
 
         <!-- Hero Tab -->
@@ -509,6 +558,145 @@
                 <div class="repeater" id="faq-repeater"></div>
             </div>
         </div>
+
+        <!-- Contact Form Tab -->
+        <div class="tab-content" id="tab-form">
+            <div class="section">
+                <h2 class="section-title">Contact Form Settings</h2>
+                <div class="form-group">
+                    <label for="form-title">Form Title</label>
+                    <input type="text" id="form-title" placeholder="Get in Touch">
+                </div>
+                <div class="form-group">
+                    <label for="form-subtitle">Form Subtitle</label>
+                    <textarea id="form-subtitle" rows="2" placeholder="Have a project in mind? Let's talk!"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="form-button-text">Submit Button Text</label>
+                        <input type="text" id="form-button-text" placeholder="Send Message">
+                    </div>
+                    <div class="form-group">
+                        <label for="form-success-message">Success Message</label>
+                        <input type="text" id="form-success-message" placeholder="Thank you! We'll get back to you soon.">
+                    </div>
+                </div>
+                
+                <h3 style="margin: 2rem 0 1rem; color: #cbd5e1;">Form Fields</h3>
+                <div class="repeater" id="form-fields-repeater"></div>
+                <button class="btn btn-primary btn-add" onclick="addFormField()">+ Add Field</button>
+            </div>
+        </div>
+
+        <!-- Languages Tab -->
+        <div class="tab-content" id="tab-languages">
+            <div class="section">
+                <h2 class="section-title">Language Settings</h2>
+                <div class="alert alert-warning">
+                    <strong>Info:</strong> English is the default language. Add translations for Russian and Estonian below. Empty fields will fallback to English.
+                </div>
+                
+                <div class="form-group">
+                    <label for="lang-default">Default Language</label>
+                    <select id="lang-default">
+                        <option value="en">English</option>
+                        <option value="ru">Русский</option>
+                        <option value="et">Eesti</option>
+                    </select>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem; color: #cbd5e1;">Language Switcher Labels</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>English Label</label>
+                        <input type="text" id="lang-label-en" placeholder="EN">
+                    </div>
+                    <div class="form-group">
+                        <label>Russian Label</label>
+                        <input type="text" id="lang-label-ru" placeholder="RU">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Estonian Label</label>
+                        <input type="text" id="lang-label-et" placeholder="ET">
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem; color: #cbd5e1;">Translations</h3>
+                <p style="color: #94a3b8; margin-bottom: 1rem;">Translate all content sections. You can edit English content in respective tabs.</p>
+                
+                <div class="tabs" style="margin-top: 1.5rem;">
+                    <button class="tab active" onclick="switchLangTab('ru')">Russian Translations</button>
+                    <button class="tab" onclick="switchLangTab('et')">Estonian Translations</button>
+                </div>
+
+                <div class="lang-tab-content active" id="lang-tab-ru">
+                    <div style="margin-top: 1.5rem;">
+                        <h4 style="color: #cbd5e1; margin-bottom: 1rem;">Hero Section (Русский)</h4>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" id="lang-ru-hero-title" placeholder="Быстрые сайты для малого бизнеса">
+                        </div>
+                        <div class="form-group">
+                            <label>Subtitle</label>
+                            <textarea id="lang-ru-hero-subtitle" rows="3"></textarea>
+                        </div>
+
+                        <h4 style="color: #cbd5e1; margin: 2rem 0 1rem;">Contact Form (Русский)</h4>
+                        <div class="form-group">
+                            <label>Form Title</label>
+                            <input type="text" id="lang-ru-form-title" placeholder="Связаться с нами">
+                        </div>
+                        <div class="form-group">
+                            <label>Form Subtitle</label>
+                            <textarea id="lang-ru-form-subtitle" rows="2"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Submit Button</label>
+                            <input type="text" id="lang-ru-form-button" placeholder="Отправить">
+                        </div>
+                        <div class="form-group">
+                            <label>Success Message</label>
+                            <input type="text" id="lang-ru-form-success" placeholder="Спасибо! Мы скоро свяжемся с вами.">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lang-tab-content" id="lang-tab-et">
+                    <div style="margin-top: 1.5rem;">
+                        <h4 style="color: #cbd5e1; margin-bottom: 1rem;">Hero Section (Eesti)</h4>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" id="lang-et-hero-title" placeholder="Kiired veebilehed väikeettevõtetele">
+                        </div>
+                        <div class="form-group">
+                            <label>Subtitle</label>
+                            <textarea id="lang-et-hero-subtitle" rows="3"></textarea>
+                        </div>
+
+                        <h4 style="color: #cbd5e1; margin: 2rem 0 1rem;">Contact Form (Eesti)</h4>
+                        <div class="form-group">
+                            <label>Form Title</label>
+                            <input type="text" id="lang-et-form-title" placeholder="Võta ühendust">
+                        </div>
+                        <div class="form-group">
+                            <label>Form Subtitle</label>
+                            <textarea id="lang-et-form-subtitle" rows="2"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Submit Button</label>
+                            <input type="text" id="lang-et-form-button" placeholder="Saada">
+                        </div>
+                        <div class="form-group">
+                            <label>Success Message</label>
+                            <input type="text" id="lang-et-form-success" placeholder="Täname! Võtame teiega peagi ühendust.">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -557,11 +745,20 @@
 
         // Tab switching
         function switchTab(name) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tabs > .tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             
             event.target.classList.add('active');
             document.getElementById('tab-' + name).classList.add('active');
+        }
+
+        // Language tab switching
+        function switchLangTab(lang) {
+            document.querySelectorAll('#tab-languages .tabs .tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.lang-tab-content').forEach(t => t.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById('lang-tab-' + lang).classList.add('active');
         }
 
         // Load content into form
@@ -585,6 +782,8 @@
             document.getElementById('theme-text').value = content.theme?.colors?.text || '';
             document.getElementById('theme-accent').value = content.theme?.colors?.accent || '';
             document.getElementById('theme-card').value = content.theme?.colors?.card || '';
+            document.getElementById('theme-font-heading').value = content.theme?.fonts?.heading || 'system';
+            document.getElementById('theme-font-body').value = content.theme?.fonts?.body || 'system';
 
             // Hero
             document.getElementById('hero-title').value = content.hero?.title || '';
@@ -604,6 +803,35 @@
             
             // FAQ
             renderFAQ();
+
+            // Contact Form
+            document.getElementById('form-title').value = content.contactForm?.title || '';
+            document.getElementById('form-subtitle').value = content.contactForm?.subtitle || '';
+            document.getElementById('form-button-text').value = content.contactForm?.buttonText || '';
+            document.getElementById('form-success-message').value = content.contactForm?.successMessage || '';
+            renderFormFields();
+
+            // Languages
+            document.getElementById('lang-default').value = content.languages?.default || 'en';
+            document.getElementById('lang-label-en').value = content.languages?.labels?.en || 'EN';
+            document.getElementById('lang-label-ru').value = content.languages?.labels?.ru || 'RU';
+            document.getElementById('lang-label-et').value = content.languages?.labels?.et || 'ET';
+            
+            // Russian translations
+            document.getElementById('lang-ru-hero-title').value = content.languages?.translations?.ru?.hero?.title || '';
+            document.getElementById('lang-ru-hero-subtitle').value = content.languages?.translations?.ru?.hero?.subtitle || '';
+            document.getElementById('lang-ru-form-title').value = content.languages?.translations?.ru?.contactForm?.title || '';
+            document.getElementById('lang-ru-form-subtitle').value = content.languages?.translations?.ru?.contactForm?.subtitle || '';
+            document.getElementById('lang-ru-form-button').value = content.languages?.translations?.ru?.contactForm?.buttonText || '';
+            document.getElementById('lang-ru-form-success').value = content.languages?.translations?.ru?.contactForm?.successMessage || '';
+            
+            // Estonian translations
+            document.getElementById('lang-et-hero-title').value = content.languages?.translations?.et?.hero?.title || '';
+            document.getElementById('lang-et-hero-subtitle').value = content.languages?.translations?.et?.hero?.subtitle || '';
+            document.getElementById('lang-et-form-title').value = content.languages?.translations?.et?.contactForm?.title || '';
+            document.getElementById('lang-et-form-subtitle').value = content.languages?.translations?.et?.contactForm?.subtitle || '';
+            document.getElementById('lang-et-form-button').value = content.languages?.translations?.et?.contactForm?.buttonText || '';
+            document.getElementById('lang-et-form-success').value = content.languages?.translations?.et?.contactForm?.successMessage || '';
         }
 
         // Services
@@ -936,6 +1164,83 @@
             }
         }
 
+        // Contact Form Fields
+        function renderFormFields() {
+            const container = document.getElementById('form-fields-repeater');
+            container.innerHTML = '';
+            
+            (content.contactForm?.fields || []).forEach((field, index) => {
+                const item = document.createElement('div');
+                item.className = 'repeater-item';
+                item.innerHTML = `
+                    <div class="repeater-item-header">
+                        <span class="repeater-item-title">${field.label || 'Field ' + (index + 1)}</span>
+                        <button class="btn btn-danger btn-small" onclick="removeFormField(${index})">Remove</button>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Field Name</label>
+                            <input type="text" value="${field.name || ''}" onchange="updateFormField(${index}, 'name', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Label</label>
+                            <input type="text" value="${field.label || ''}" onchange="updateFormField(${index}, 'label', this.value)">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Type</label>
+                            <select onchange="updateFormField(${index}, 'type', this.value)">
+                                <option value="text" ${field.type === 'text' ? 'selected' : ''}>Text</option>
+                                <option value="email" ${field.type === 'email' ? 'selected' : ''}>Email</option>
+                                <option value="tel" ${field.type === 'tel' ? 'selected' : ''}>Phone</option>
+                                <option value="textarea" ${field.type === 'textarea' ? 'selected' : ''}>Textarea</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Placeholder</label>
+                            <input type="text" value="${field.placeholder || ''}" onchange="updateFormField(${index}, 'placeholder', this.value)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-group">
+                            <input type="checkbox" ${field.required ? 'checked' : ''} onchange="updateFormField(${index}, 'required', this.checked)">
+                            Required Field
+                        </label>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function addFormField() {
+            if (!content.contactForm) content.contactForm = {};
+            if (!content.contactForm.fields) content.contactForm.fields = [];
+            content.contactForm.fields.push({
+                name: 'field' + (content.contactForm.fields.length + 1),
+                label: 'New Field',
+                type: 'text',
+                placeholder: '',
+                required: false
+            });
+            renderFormFields();
+            saveDraft();
+        }
+
+        function updateFormField(index, field, value) {
+            content.contactForm.fields[index][field] = value;
+            saveDraft();
+            if (field === 'label') renderFormFields();
+        }
+
+        function removeFormField(index) {
+            if (confirm('Remove this field?')) {
+                content.contactForm.fields.splice(index, 1);
+                renderFormFields();
+                saveDraft();
+            }
+        }
+
         // Collect all form data
         function collectFormData() {
             const data = JSON.parse(JSON.stringify(content));
@@ -962,11 +1267,57 @@
             data.theme.colors.text = document.getElementById('theme-text').value;
             data.theme.colors.accent = document.getElementById('theme-accent').value;
             data.theme.colors.card = document.getElementById('theme-card').value;
+            data.theme.fonts = data.theme.fonts || {};
+            data.theme.fonts.heading = document.getElementById('theme-font-heading').value;
+            data.theme.fonts.body = document.getElementById('theme-font-body').value;
 
             // Hero
             data.hero = data.hero || {};
             data.hero.title = document.getElementById('hero-title').value;
             data.hero.subtitle = document.getElementById('hero-subtitle').value;
+
+            // Contact Form
+            data.contactForm = data.contactForm || {};
+            data.contactForm.title = document.getElementById('form-title').value;
+            data.contactForm.subtitle = document.getElementById('form-subtitle').value;
+            data.contactForm.buttonText = document.getElementById('form-button-text').value;
+            data.contactForm.successMessage = document.getElementById('form-success-message').value;
+
+            // Languages
+            data.languages = data.languages || {};
+            data.languages.default = document.getElementById('lang-default').value;
+            data.languages.labels = {
+                en: document.getElementById('lang-label-en').value,
+                ru: document.getElementById('lang-label-ru').value,
+                et: document.getElementById('lang-label-et').value
+            };
+            
+            data.languages.translations = data.languages.translations || {};
+            data.languages.translations.ru = {
+                hero: {
+                    title: document.getElementById('lang-ru-hero-title').value,
+                    subtitle: document.getElementById('lang-ru-hero-subtitle').value
+                },
+                contactForm: {
+                    title: document.getElementById('lang-ru-form-title').value,
+                    subtitle: document.getElementById('lang-ru-form-subtitle').value,
+                    buttonText: document.getElementById('lang-ru-form-button').value,
+                    successMessage: document.getElementById('lang-ru-form-success').value
+                }
+            };
+            
+            data.languages.translations.et = {
+                hero: {
+                    title: document.getElementById('lang-et-hero-title').value,
+                    subtitle: document.getElementById('lang-et-hero-subtitle').value
+                },
+                contactForm: {
+                    title: document.getElementById('lang-et-form-title').value,
+                    subtitle: document.getElementById('lang-et-form-subtitle').value,
+                    buttonText: document.getElementById('lang-et-form-button').value,
+                    successMessage: document.getElementById('lang-et-form-success').value
+                }
+            };
 
             return data;
         }
