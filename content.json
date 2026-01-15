@@ -25,7 +25,11 @@
       "card": "#1e293b",
       "border": "#334155"
     },
-    "fontFamily": "Inter"
+    "fontFamily": "Inter",
+    "fonts": {
+      "heading": "Roboto",
+      "body": "Roboto"
+    }
   },
   "hero": {
     "title": "Fast Websites for Small Business",
@@ -260,5 +264,45 @@
       }
     ]
   },
-  "adminPassword": "northpixel2025"
+  "adminPassword": "northpixel2025",
+  "contactForm": {
+    "title": "",
+    "subtitle": "",
+    "buttonText": "",
+    "successMessage": ""
+  },
+  "languages": {
+    "default": "en",
+    "labels": {
+      "en": "EN",
+      "ru": "RU",
+      "et": "ET"
+    },
+    "translations": {
+      "ru": {
+        "hero": {
+          "title": "",
+          "subtitle": ""
+        },
+        "contactForm": {
+          "title": "",
+          "subtitle": "",
+          "buttonText": "",
+          "successMessage": ""
+        }
+      },
+      "et": {
+        "hero": {
+          "title": "",
+          "subtitle": ""
+        },
+        "contactForm": {
+          "title": "",
+          "subtitle": "",
+          "buttonText": "",
+          "successMessage": ""
+        }
+      }
+    }
+  }
 }
