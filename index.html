@@ -7,7 +7,7 @@
     <meta name="description" content="Professional websites delivered in days. Fixed pricing, guaranteed deadlines, transparent process.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -34,6 +34,11 @@
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Crimson Text', Georgia, serif;
+            font-weight: 700;
         }
 
         .container {
@@ -68,6 +73,13 @@
             font-weight: 800;
             color: var(--accent);
             text-decoration: none;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
 
         .nav-links {
@@ -86,6 +98,36 @@
         .nav-links a:hover,
         .nav-links a.active {
             color: var(--accent);
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 0.25rem;
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover {
+            color: var(--accent);
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: white;
         }
 
         .nav-cta {
@@ -254,11 +296,393 @@
             color: var(--text-muted);
         }
 
-        /* Services */
+        /* Services - НОВЫЙ ДИЗАЙН */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card-new {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.05) 0%, rgba(30, 41, 59, 0.8) 100%);
+            padding: 3rem 2.5rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card-new::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), #10b981);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .service-card-new:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card-new:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(6, 182, 212, 0.3);
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(30, 41, 59, 0.9) 100%);
+        }
+
+        .service-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent), #0891b2);
+            border-radius: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
+            transition: all 0.4s;
+        }
+
+        .service-card-new:hover .service-icon-wrapper {
+            transform: rotateY(360deg) scale(1.1);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.6);
+        }
+
+        .service-card-new h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .service-card-new p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1.0625rem;
+        }
+
+        .service-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            padding: 0.375rem 0.875rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Process - НОВЫЙ ДИЗАЙН с Timeline */
+        .process-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent), #10b981);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(30, 41, 59, 0.9));
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            border-color: var(--accent);
+            box-shadow: 0 15px 50px rgba(6, 182, 212, 0.4);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), #0891b2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 0 0 8px rgba(6, 182, 212, 0.2), 0 10px 30px rgba(6, 182, 212, 0.4);
+            z-index: 2;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.875rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .timeline-content p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1.0625rem;
+        }
+
+        /* Footer - НОВЫЙ ПРОФЕССИОНАЛЬНЫЙ ДИЗАЙН */
+        footer {
+            background: linear-gradient(180deg, var(--bg) 0%, #0a0f1a 100%);
+            padding: 5rem 0 2rem;
+            border-top: 1px solid var(--border);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer-brand-section {
+            padding-right: 2rem;
+        }
+
+        .footer-brand-section .logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .footer-brand-section p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .footer-stat {
+            background: rgba(6, 182, 212, 0.05);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(6, 182, 212, 0.1);
+        }
+
+        .footer-stat-number {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--accent);
+            font-family: 'Crimson Text', serif;
+        }
+
+        .footer-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+            color: var(--text);
+            font-family: 'Crimson Text', serif;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.875rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            font-size: 0.9375rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer-links a::before {
+            content: '→';
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+        }
+
+        .footer-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+        }
+
+        .footer-contact-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(6, 182, 212, 0.1);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.125rem;
+        }
+
+        .footer-contact-item a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-contact-item a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+        }
+
+        .footer-legal-links {
+            display: flex;
             gap: 1.5rem;
+            list-style: none;
+        }
+
+        .footer-legal-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .footer-legal-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(6, 182, 212, 0.1);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.25rem;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-3px);
         }
 
         /* Process */
@@ -637,8 +1061,38 @@
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-main {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .footer-brand-section {
+                grid-column: 1 / -1;
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+            }
+
+            .timeline-content {
+                width: 100% !important;
+                margin: 0 !important;
+            }
+
+            .timeline-dot {
+                position: relative;
+                margin: 2rem auto;
+            }
+
+            .process-timeline::before {
+                display: none;
+            }
+        }
+
         @media (max-width: 768px) {
-            .nav-links {
+            .nav-center {
                 display: none;
                 position: absolute;
                 top: 100%;
@@ -648,10 +1102,21 @@
                 flex-direction: column;
                 padding: 1rem;
                 border-top: 1px solid var(--border);
+                gap: 1rem;
             }
 
-            .nav-links.active {
+            .nav-center.active {
                 display: flex;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .lang-switcher {
+                width: 100%;
+                justify-content: center;
             }
 
             .mobile-menu-btn {
@@ -677,6 +1142,35 @@
             .pricing-card.featured {
                 transform: scale(1);
             }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-bottom-left {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card-new {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-stats {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Loading */
@@ -692,15 +1186,22 @@
     <header>
         <nav>
             <a href="#home" class="logo" id="brand-name">NorthPixel</a>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <a href="#contact" class="nav-cta">Get a Quote</a>
+            <div class="nav-center">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#services" data-i18n="nav.services">Services</a></li>
+                    <li><a href="#process" data-i18n="nav.process">Process</a></li>
+                    <li><a href="#work" data-i18n="nav.work">Work</a></li>
+                    <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
+                    <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+                    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+                </ul>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="en" onclick="switchLanguage('en')">EN</button>
+                    <button class="lang-btn" data-lang="ru" onclick="switchLanguage('ru')">RU</button>
+                    <button class="lang-btn" data-lang="et" onclick="switchLanguage('et')">ET</button>
+                </div>
+            </div>
+            <a href="#contact" class="nav-cta" data-i18n="nav.cta">Get a Quote</a>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </nav>
     </header>
@@ -812,30 +1313,11 @@
     <section class="process" id="process">
         <div class="container">
             <div class="section-header">
-                <h2>Simple 4-Step Process</h2>
-                <p>From first contact to live website in record time.</p>
+                <h2 data-i18n="process.title">Simple 4-Step Process</h2>
+                <p data-i18n="process.subtitle">From first contact to live website in record time.</p>
             </div>
-            <div class="process-steps" id="process-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Discovery</h3>
-                    <p>30-minute call to understand your needs and goals.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Design</h3>
-                    <p>We create mockups based on proven templates.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Build</h3>
-                    <p>Development with daily progress updates.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Launch</h3>
-                    <p>Go live with full documentation and training.</p>
-                </div>
+            <div class="process-timeline" id="process-timeline">
+                <!-- Process steps loaded from JSON -->
             </div>
         </div>
     </section>
@@ -943,40 +1425,80 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4 id="footer-brand">NorthPixel</h4>
-                    <p id="footer-tagline">Fast websites for small business.</p>
-                    <div class="social-links" id="social-links">
-                        <!-- Social links loaded from JSON -->
+            <div class="footer-main">
+                <div class="footer-brand-section">
+                    <a href="#home" class="logo" id="footer-brand">NorthPixel</a>
+                    <p id="footer-tagline">Fast, professional websites for small businesses. Delivered in days, not months.</p>
+                    <div class="footer-stats">
+                        <div class="footer-stat">
+                            <div class="footer-stat-number">50+</div>
+                            <div class="footer-stat-label" data-i18n="footer.clients">Happy Clients</div>
+                        </div>
+                        <div class="footer-stat">
+                            <div class="footer-stat-number">100%</div>
+                            <div class="footer-stat-label" data-i18n="footer.ontime">On-Time Rate</div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="footer-section">
-                    <h4>Company</h4>
+                    <h4 data-i18n="footer.company">Company</h4>
                     <ul class="footer-links">
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#work">Portfolio</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#services" data-i18n="nav.services">Services</a></li>
+                        <li><a href="#process" data-i18n="nav.process">Process</a></li>
+                        <li><a href="#work" data-i18n="nav.work">Work</a></li>
+                        <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-section">
-                    <h4>Support</h4>
+                    <h4 data-i18n="footer.support">Support</h4>
                     <ul class="footer-links">
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="/admin">Admin</a></li>
+                        <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+                        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+                        <li><a href="/admin" data-i18n="footer.admin">Admin</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-section">
-                    <h4>Contact</h4>
+                    <h4 data-i18n="footer.legal">Legal</h4>
                     <ul class="footer-links">
-                        <li><a href="mailto:info.northpixel@gmail.com">Email Us</a></li>
-                        <li><a href="tel:+3725541895">Call Us</a></li>
+                        <li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li>
+                        <li><a href="#" data-i18n="footer.terms">Terms of Service</a></li>
                     </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-i18n="footer.contactTitle">Get in Touch</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon">📧</div>
+                            <a href="mailto:info.northpixel@gmail.com" id="footer-email">info.northpixel@gmail.com</a>
+                        </div>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon">📱</div>
+                            <a href="tel:+3725541895" id="footer-phone">+372 5541895</a>
+                        </div>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon">📍</div>
+                            <span id="footer-location">Tallinn, Estonia</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+
             <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> NorthPixel. All rights reserved.</p>
+                <div class="footer-bottom-left">
+                    <p class="footer-copyright">&copy; <span id="current-year"></span> NorthPixel. <span data-i18n="footer.rights">All rights reserved.</span></p>
+                    <ul class="footer-legal-links">
+                        <li><a href="#" data-i18n="footer.privacy">Privacy</a></li>
+                        <li><a href="#" data-i18n="footer.terms">Terms</a></li>
+                        <li><a href="#" data-i18n="footer.cookies">Cookies</a></li>
+                    </ul>
+                </div>
+                <div class="social-links" id="footer-social">
+                    <!-- Social links loaded from JSON -->
+                </div>
             </div>
         </div>
     </footer>
@@ -985,6 +1507,55 @@
     <a href="#contact" class="floating-cta">Get a Quote</a>
 
     <script>
+        // Translations
+        const translations = {
+            en: {
+                nav: { services: 'Services', process: 'Process', work: 'Work', pricing: 'Pricing', faq: 'FAQ', contact: 'Contact', cta: 'Get a Quote' },
+                process: { title: 'Simple 4-Step Process', subtitle: 'From first contact to live website in record time.' },
+                footer: { company: 'Company', support: 'Support', legal: 'Legal', contactTitle: 'Get in Touch', clients: 'Happy Clients', ontime: 'On-Time Rate', rights: 'All rights reserved.', privacy: 'Privacy Policy', terms: 'Terms of Service', cookies: 'Cookies', admin: 'Admin' }
+            },
+            ru: {
+                nav: { services: 'Услуги', process: 'Процесс', work: 'Работы', pricing: 'Цены', faq: 'FAQ', contact: 'Контакты', cta: 'Получить предложение' },
+                process: { title: 'Простой процесс из 4 шагов', subtitle: 'От первого контакта до запуска сайта в рекордные сроки.' },
+                footer: { company: 'Компания', support: 'Поддержка', legal: 'Юридическое', contactTitle: 'Свяжитесь с нами', clients: 'Довольных клиентов', ontime: 'Вовремя', rights: 'Все права защищены.', privacy: 'Политика конфиденциальности', terms: 'Условия использования', cookies: 'Куки', admin: 'Админка' }
+            },
+            et: {
+                nav: { services: 'Teenused', process: 'Protsess', work: 'Tööd', pricing: 'Hinnad', faq: 'KKK', contact: 'Kontakt', cta: 'Küsi pakkumist' },
+                process: { title: 'Lihtne 4-sammuline protsess', subtitle: 'Esimesest kontaktist valmis veebileheni rekordiliselt kiiresti.' },
+                footer: { company: 'Ettevõte', support: 'Tugi', legal: 'Õiguslik', contactTitle: 'Võta ühendust', clients: 'Rahulolev klient', ontime: 'Õigeaegselt', rights: 'Kõik õigused kaitstud.', privacy: 'Privaatsuspoliitika', terms: 'Kasutustingimused', cookies: 'Küpsised', admin: 'Admin' }
+            }
+        };
+
+        let currentLang = 'en';
+
+        // Switch language
+        function switchLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('NP_LANG', lang);
+            
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            // Update all i18n elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                const keys = key.split('.');
+                let value = translations[lang];
+                for (let k of keys) {
+                    value = value[k];
+                }
+                if (value) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = value;
+                    } else {
+                        el.textContent = value;
+                    }
+                }
+            });
+        }
+
         // Global state
         let content = null;
         let formEndpoint = '';
@@ -1027,6 +1598,11 @@
                 document.getElementById('brand-name').textContent = brand.name || 'NorthPixel';
                 document.getElementById('footer-brand').textContent = brand.name || 'NorthPixel';
                 document.getElementById('footer-tagline').textContent = brand.tagline || '';
+                document.getElementById('footer-email').textContent = brand.email || '';
+                document.getElementById('footer-email').href = 'mailto:' + (brand.email || '');
+                document.getElementById('footer-phone').textContent = brand.phone || '';
+                document.getElementById('footer-phone').href = 'tel:' + (brand.phone || '').replace(/\s/g, '');
+                document.getElementById('footer-location').textContent = brand.location || '';
                 document.getElementById('contact-email').textContent = brand.email || '';
                 document.getElementById('contact-email').href = 'mailto:' + (brand.email || '');
                 document.getElementById('contact-phone').textContent = brand.phone || '';
@@ -1035,14 +1611,15 @@
                 
                 // Social links
                 if (brand.social) {
-                    const socialContainer = document.getElementById('social-links');
+                    const socialContainer = document.getElementById('footer-social');
                     socialContainer.innerHTML = '';
                     Object.entries(brand.social).forEach(([platform, url]) => {
                         if (url) {
                             const link = document.createElement('a');
                             link.href = url;
                             link.target = '_blank';
-                            link.textContent = getsocialIcon(platform);
+                            link.className = 'social-link';
+                            link.textContent = getSocialIcon(platform);
                             socialContainer.appendChild(link);
                         }
                     });
@@ -1092,6 +1669,46 @@
             if (content.sections && content.sections.processSteps) {
                 renderProcess(content.sections.processSteps);
             }
+        }
+
+        // Render Services - NEW DESIGN
+        function renderServices(services) {
+            const grid = document.getElementById('services-grid');
+            grid.innerHTML = '';
+
+            services.forEach((service, index) => {
+                const card = document.createElement('div');
+                card.className = 'service-card-new';
+                
+                const badge = index === 0 ? '<div class="service-badge">Popular</div>' : '';
+                
+                card.innerHTML = `
+                    ${badge}
+                    <div class="service-icon-wrapper">${service.icon || '📄'}</div>
+                    <h3>${service.name}</h3>
+                    <p>${service.description || ''}</p>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Render Process - NEW TIMELINE DESIGN
+        function renderProcess(steps) {
+            const container = document.getElementById('process-timeline');
+            container.innerHTML = '';
+
+            steps.forEach((step, index) => {
+                const item = document.createElement('div');
+                item.className = 'timeline-item';
+                item.innerHTML = `
+                    <div class="timeline-content">
+                        <h3>${step.name}</h3>
+                        <p>${step.description || ''}</p>
+                    </div>
+                    <div class="timeline-dot">${index + 1}</div>
+                `;
+                container.appendChild(item);
+            });
         }
 
         // Render Projects
@@ -1184,48 +1801,13 @@
             });
         }
 
-        // Render Services
-        function renderServices(services) {
-            const grid = document.getElementById('services-grid');
-            grid.innerHTML = '';
-
-            services.forEach(service => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <div class="card-icon">${service.icon || '📄'}</div>
-                    <h3>${service.name}</h3>
-                    <p>${service.description || ''}</p>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        // Render Process
-        function renderProcess(steps) {
-            const container = document.getElementById('process-steps');
-            container.innerHTML = '';
-
-            steps.forEach((step, index) => {
-                const div = document.createElement('div');
-                div.className = 'step';
-                div.innerHTML = `
-                    <div class="step-number">${index + 1}</div>
-                    <h3>${step.name}</h3>
-                    <p>${step.description || ''}</p>
-                `;
-                container.appendChild(div);
-            });
-        }
-
         // Fallback content if fetch fails
         function useFallbackContent() {
-            // Use existing HTML content as fallback
             console.log('Using fallback content');
         }
 
         // Social icon helper
-        function getsocialIcon(platform) {
+        function getSocialIcon(platform) {
             const icons = {
                 facebook: '📘',
                 twitter: '🐦',
@@ -1293,7 +1875,8 @@
 
         // Mobile menu toggle
         function toggleMobileMenu() {
-            document.getElementById('nav-links').classList.toggle('active');
+            const navCenter = document.querySelector('.nav-center');
+            navCenter.classList.toggle('active');
         }
 
         // Active nav link
@@ -1329,7 +1912,7 @@
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     // Close mobile menu
-                    document.getElementById('nav-links').classList.remove('active');
+                    document.querySelector('.nav-center')?.classList.remove('active');
                 }
             });
         });
@@ -1337,6 +1920,10 @@
         // Init
         window.addEventListener('scroll', updateActiveNav);
         document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Load saved language
+        const savedLang = localStorage.getItem('NP_LANG') || 'en';
+        switchLanguage(savedLang);
         
         // Load content
         loadContent();
