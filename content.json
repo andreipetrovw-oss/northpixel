@@ -25,7 +25,7 @@
       "card": "#1e293b",
       "border": "#334155"
     },
-    "fontFamily": "Inter"
+    "fontFamily": "Roboto"
   },
   "hero": {
     "title": "Fast Websites for Small Business",
@@ -131,7 +131,10 @@
         "title": "ManuFarm",
         "industry": "Agriculture",
         "result": "Modern landing page with product catalog. Delivered in 5 days.",
-        "tags": ["Landing Page", "E-commerce"],
+        "tags": [
+          "Landing Page",
+          "E-commerce"
+        ],
         "imageUrl": "",
         "link": ""
       },
@@ -139,7 +142,10 @@
         "title": "TechConsult Pro",
         "industry": "Consulting",
         "result": "Professional business website with service pages and blog. 8-day delivery.",
-        "tags": ["Business Site", "Consulting"],
+        "tags": [
+          "Business Site",
+          "Consulting"
+        ],
         "imageUrl": "",
         "link": ""
       },
@@ -147,7 +153,10 @@
         "title": "Nordic Craft Shop",
         "industry": "Retail",
         "result": "E-commerce store with payment integration. Launched in 12 days.",
-        "tags": ["E-commerce", "Retail"],
+        "tags": [
+          "E-commerce",
+          "Retail"
+        ],
         "imageUrl": "",
         "link": ""
       }
@@ -253,4 +262,3 @@
   },
   "adminPassword": "northpixel2025"
 }
-
