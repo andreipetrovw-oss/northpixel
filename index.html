@@ -7,7 +7,7 @@
     <meta name="description" content="Professional websites delivered in days. Fixed pricing, guaranteed deadlines, transparent process.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -1547,7 +1547,7 @@
                     <ul class="footer-links">
                         <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
                         <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
-                
+                        <li><a href="/admin" data-i18n="footer.admin">Admin</a></li>
                     </ul>
                 </div>
 
@@ -1835,7 +1835,7 @@
                     rights: 'Kõik õigused kaitstud.', 
                     privacy: 'Privaatsuspoliitika', 
                     terms: 'Kasutustingimused', 
-                    cookies: 'Küpsised',
+                    cookies: 'Küpsised', 
                     admin: 'Admin',
                     tagline: 'Kiired, professionaalsed veebilehed väikeettevõtetele. Tarne päevadega, mitte kuudega.'
                 }
@@ -1843,6 +1843,21 @@
         };
 
         let currentLang = 'en';
+
+        // Font family helper (doesn't wipe other body classes)
+        function applyFontFamily(fontName) {
+            const fontMap = {
+                'Inter': 'font-inter',
+                'Crimson Text': 'font-crimson',
+                'Roboto': 'font-roboto'
+            };
+            const cls = fontMap[fontName] || 'font-crimson';
+            const body = document.body;
+            body.classList.remove('font-inter', 'font-crimson', 'font-roboto');
+            body.classList.add(cls);
+            // Persist choice so it survives reloads (optional)
+            if (fontName) localStorage.setItem('NP_FONT', fontName);
+        }
 
         // Switch language - ПОЛНЫЙ ПЕРЕВОД
         function switchLanguage(lang) {
@@ -2025,15 +2040,10 @@
             }
 
             // Font Family
-            if (content.theme && content.theme.fontFamily) {
-                const fontMap = {
-                    'Inter': 'font-inter',
-                    'Crimson Text': 'font-crimson',
-                    'Roboto': 'font-roboto'
-                };
-                const fontClass = fontMap[content.theme.fontFamily] || 'font-crimson';
-                document.body.className = fontClass;
-            }
+            // Priority: localStorage override (NP_FONT) -> content.theme.fontFamily -> default
+            const storedFont = localStorage.getItem('NP_FONT');
+            const desiredFont = storedFont || (content.theme ? content.theme.fontFamily : null) || 'Crimson Text';
+            applyFontFamily(desiredFont);
 
             // Hero
             if (content.hero) {
