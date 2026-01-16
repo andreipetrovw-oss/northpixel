@@ -1605,6 +1605,7 @@
                 hero: { 
                     title: 'Fast Websites for Small Business',
                     subtitle: 'Professional landing pages and business websites delivered in days, not months. Simple pricing, clear timelines, guaranteed results.',
+                    badgePopular: 'Popular',
                     cta1: 'Get a Quote',
                     cta2: 'See Our Work',
                     chip1: '3-14 Days Delivery',
@@ -1684,6 +1685,7 @@
                 hero: {
                     title: 'Быстрые сайты для малого бизнеса',
                     subtitle: 'Профессиональные лендинги и бизнес-сайты за несколько дней, а не месяцев. Простые цены, четкие сроки, гарантированный результат.',
+                    badgePopular: 'Популярно',
                     cta1: 'Получить предложение',
                     cta2: 'Посмотреть работы',
                     chip1: 'Доставка 3-14 дней',
@@ -1763,6 +1765,7 @@
                 hero: {
                     title: 'Kiired veebilehed väikeettevõtetele',
                     subtitle: 'Professionaalsed sihtlehed ja äri veebilehed tarnitud päevadega, mitte kuudega. Lihtsad hinnad, selged tähtajad, garanteeritud tulemused.',
+                    badgePopular: 'Populaarne',
                     cta1: 'Küsi pakkumist',
                     cta2: 'Vaata meie töid',
                     chip1: '3-14 päeva tarnimine',
@@ -1915,6 +1918,11 @@
             
             // Footer
             document.getElementById('footer-tagline').textContent = t.footer.tagline;
+
+            // Floating CTA (mobile)
+            const floating = document.querySelector('.floating-cta');
+            if (floating) floating.textContent = t.nav.cta;
+
             
             // Update all i18n elements
             document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -2057,69 +2065,9 @@
             if (content.sections && content.sections.processSteps) {
                 renderProcess(content.sections.processSteps);
             }
-        }'tel:' + (brand.phone || '').replace(/\s/g, '');
-                document.getElementById('contact-location').textContent = brand.location || '';
-                
-                // Social links
-                if (brand.social) {
-                    const socialContainer = document.getElementById('footer-social');
-                    socialContainer.innerHTML = '';
-                    Object.entries(brand.social).forEach(([platform, url]) => {
-                        if (url) {
-                            const link = document.createElement('a');
-                            link.href = url;
-                            link.target = '_blank';
-                            link.className = 'social-link';
-                            link.textContent = getSocialIcon(platform);
-                            socialContainer.appendChild(link);
-                        }
-                    });
-                }
 
-                formEndpoint = brand.formspreeEndpoint || '';
-            }
-
-            // Theme
-            if (content.theme && content.theme.colors) {
-                const colors = content.theme.colors;
-                const root = document.documentElement;
-                if (colors.bg) root.style.setProperty('--bg', colors.bg);
-                if (colors.text) root.style.setProperty('--text', colors.text);
-                if (colors.accent) root.style.setProperty('--accent', colors.accent);
-                if (colors.card) root.style.setProperty('--card', colors.card);
-                if (colors.border) root.style.setProperty('--border', colors.border);
-            }
-
-            // Hero
-            if (content.hero) {
-                document.getElementById('hero-title').textContent = content.hero.title || '';
-                document.getElementById('hero-subtitle').textContent = content.hero.subtitle || '';
-            }
-
-            // Projects
-            if (content.sections && content.sections.projects) {
-                renderProjects(content.sections.projects);
-            }
-
-            // Pricing
-            if (content.sections && content.sections.pricingPlans) {
-                renderPricing(content.sections.pricingPlans);
-            }
-
-            // FAQ
-            if (content.sections && content.sections.faq) {
-                renderFAQ(content.sections.faq);
-            }
-
-            // Services
-            if (content.sections && content.sections.services) {
-                renderServices(content.sections.services);
-            }
-
-            // Process
-            if (content.sections && content.sections.processSteps) {
-                renderProcess(content.sections.processSteps);
-            }
+            // Apply current language after dynamic content is rendered
+            switchLanguage(currentLang);
         }
 
         // Render Services - NEW DESIGN
@@ -2131,7 +2079,8 @@
                 const card = document.createElement('div');
                 card.className = 'service-card-new';
                 
-                const badge = index === 0 ? '<div class="service-badge">Popular</div>' : '';
+                const badgeLabel = (translations?.[currentLang]?.services?.badgePopular) || 'Popular';
+                const badge = index === 0 ? `<div class="service-badge">${badgeLabel}</div>` : '';
                 
                 card.innerHTML = `
                     ${badge}
@@ -2210,7 +2159,8 @@
                 const card = document.createElement('div');
                 card.className = 'pricing-card' + (plan.featured ? ' featured' : '');
 
-                const badgeHTML = plan.featured ? '<div class="pricing-badge">Popular</div>' : '';
+                const badgeLabel = (translations?.[currentLang]?.pricing?.badgePopular) || 'Popular';
+                const badgeHTML = plan.featured ? `<div class="pricing-badge">${badgeLabel}</div>` : '';
                 const featuresHTML = plan.features && plan.features.length > 0
                     ? `<ul class="pricing-features">${plan.features.map(f => `<li>${f}</li>`).join('')}</ul>`
                     : '';
@@ -2221,7 +2171,7 @@
                     <div class="pricing-price">${plan.price}</div>
                     <div class="pricing-duration">${plan.duration || ''}</div>
                     ${featuresHTML}
-                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Get Started</a>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">${(translations?.[currentLang]?.pricing?.cta) || 'Get Started'}</a>
                 `;
 
                 grid.appendChild(card);
