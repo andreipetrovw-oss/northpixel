@@ -29,16 +29,38 @@
         }
 
         body {
-            font-family: 'Roboto';
+            font-family: 'Inter', -apple-system, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
+        body.font-crimson {
+            font-family: 'Crimson Text', Georgia, serif;
+        }
+
+        body.font-inter {
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body.font-roboto {
+            font-family: 'Roboto', -apple-system, sans-serif;
+        }
+
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Crimson Text', Georgia, serif;
             font-weight: 700;
+        }
+
+        body.font-inter h1, body.font-inter h2, body.font-inter h3, 
+        body.font-inter h4, body.font-inter h5, body.font-inter h6 {
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body.font-roboto h1, body.font-roboto h2, body.font-roboto h3,
+        body.font-roboto h4, body.font-roboto h5, body.font-roboto h6 {
+            font-family: 'Roboto', -apple-system, sans-serif;
         }
 
         .container {
@@ -907,28 +929,71 @@
 
         .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 3rem;
-            align-items: start;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            text-align: center;
         }
 
         .contact-info h3 {
             margin-bottom: 1rem;
+            font-size: 1.75rem;
         }
 
         .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
             margin-top: 2rem;
+            flex-wrap: wrap;
         }
 
         .contact-item {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 0.5rem;
         }
 
         .contact-icon {
-            font-size: 1.25rem;
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), #0891b2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
+        }
+
+        .contact-item a,
+        .contact-item span {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent);
+        }
+
+        .contact-form-wrapper {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(30, 41, 59, 0.9));
+            padding: 3rem;
+            border-radius: 2rem;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
         }
 
         .form-group {
@@ -939,18 +1004,24 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
+            color: var(--accent);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         input,
         textarea,
         select {
             width: 100%;
-            padding: 0.75rem;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 0.75rem;
             color: var(--text);
             font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s;
         }
 
         input:focus,
@@ -958,6 +1029,8 @@
         select:focus {
             outline: none;
             border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+            background: rgba(15, 23, 42, 0.9);
         }
 
         textarea {
@@ -965,22 +1038,27 @@
             resize: vertical;
         }
 
+        select {
+            cursor: pointer;
+        }
+
         .form-message {
             padding: 1rem;
-            border-radius: 0.5rem;
+            border-radius: 0.75rem;
             margin-top: 1rem;
             display: none;
+            font-weight: 600;
         }
 
         .form-message.success {
-            background: rgba(16, 185, 129, 0.1);
+            background: rgba(16, 185, 129, 0.15);
             color: var(--success);
             border: 1px solid var(--success);
             display: block;
         }
 
         .form-message.error {
-            background: rgba(239, 68, 68, 0.1);
+            background: rgba(239, 68, 68, 0.15);
             color: #ef4444;
             border: 1px solid #ef4444;
             display: block;
@@ -1129,6 +1207,19 @@
 
             .contact-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .contact-details {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-wrapper {
+                padding: 2rem;
             }
 
             .floating-cta {
@@ -1507,28 +1598,250 @@
     <a href="#contact" class="floating-cta">Get a Quote</a>
 
     <script>
-        // Translations
+        // Translations - ПОЛНЫЕ ПЕРЕВОДЫ ВСЕГО САЙТА
         const translations = {
             en: {
                 nav: { services: 'Services', process: 'Process', work: 'Work', pricing: 'Pricing', faq: 'FAQ', contact: 'Contact', cta: 'Get a Quote' },
-                process: { title: 'Simple 4-Step Process', subtitle: 'From first contact to live website in record time.' },
-                footer: { company: 'Company', support: 'Support', legal: 'Legal', contactTitle: 'Get in Touch', clients: 'Happy Clients', ontime: 'On-Time Rate', rights: 'All rights reserved.', privacy: 'Privacy Policy', terms: 'Terms of Service', cookies: 'Cookies', admin: 'Admin' }
+                hero: { 
+                    title: 'Fast Websites for Small Business',
+                    subtitle: 'Professional landing pages and business websites delivered in days, not months. Simple pricing, clear timelines, guaranteed results.',
+                    cta1: 'Get a Quote',
+                    cta2: 'See Our Work',
+                    chip1: '3-14 Days Delivery',
+                    chip2: 'Fixed Price',
+                    chip3: '100% Satisfaction'
+                },
+                problem: {
+                    title: 'The Problem with Most Web Agencies',
+                    subtitle: 'Traditional web development is slow, expensive, and unpredictable.',
+                    item1title: 'Months of Waiting',
+                    item1desc: 'Most agencies take 2-6 months to deliver a simple website.',
+                    item2title: 'Hidden Costs',
+                    item2desc: 'Prices balloon with endless revisions and "additional features".',
+                    item3title: 'No Clear Timeline',
+                    item3desc: 'Launch dates keep getting pushed back with vague excuses.'
+                },
+                solution: {
+                    title: 'Our Solution: Fast, Fixed-Price Websites',
+                    subtitle: 'We deliver professional websites in days with transparent pricing and guaranteed deadlines.',
+                    item1title: 'Lightning Fast',
+                    item1desc: 'Get your website live in 3-14 days. Not months. Not weeks. Days.',
+                    item2title: 'Fixed Pricing',
+                    item2desc: 'Know exactly what you\'ll pay upfront. No surprises, no hidden fees.',
+                    item3title: 'Guaranteed Deadline',
+                    item3desc: 'We commit to a delivery date and stick to it. Every single time.'
+                },
+                services: {
+                    title: 'What We Build',
+                    subtitle: 'Focused solutions for small businesses who need results fast.'
+                },
+                process: { 
+                    title: 'Simple 4-Step Process', 
+                    subtitle: 'From first contact to live website in record time.' 
+                },
+                work: {
+                    title: 'Recent Projects',
+                    subtitle: 'Real websites delivered on time, on budget, for real businesses.'
+                },
+                pricing: {
+                    title: 'Simple, Transparent Pricing',
+                    subtitle: 'Choose the package that fits your needs. No hidden fees, no surprises.',
+                    cta: 'Get Started'
+                },
+                faq: {
+                    title: 'Frequently Asked Questions'
+                },
+                contact: {
+                    title: 'Ready to Get Started?',
+                    subtitle: 'Get a detailed quote within 24 hours. Most projects start within a week.',
+                    formtitle: 'Get in Touch',
+                    formdesc: 'Fill out the form and we\'ll respond within 24 hours.',
+                    name: 'Name',
+                    email: 'Email',
+                    company: 'Company',
+                    budget: 'Budget',
+                    budgetSelect: 'Select budget',
+                    message: 'Message',
+                    send: 'Send Message'
+                },
+                footer: { 
+                    company: 'Company', 
+                    support: 'Support', 
+                    legal: 'Legal', 
+                    contactTitle: 'Get in Touch', 
+                    clients: 'Happy Clients', 
+                    ontime: 'On-Time Rate', 
+                    rights: 'All rights reserved.', 
+                    privacy: 'Privacy Policy', 
+                    terms: 'Terms of Service', 
+                    cookies: 'Cookies', 
+                    admin: 'Admin',
+                    tagline: 'Fast, professional websites for small businesses. Delivered in days, not months.'
+                }
             },
             ru: {
                 nav: { services: 'Услуги', process: 'Процесс', work: 'Работы', pricing: 'Цены', faq: 'FAQ', contact: 'Контакты', cta: 'Получить предложение' },
-                process: { title: 'Простой процесс из 4 шагов', subtitle: 'От первого контакта до запуска сайта в рекордные сроки.' },
-                footer: { company: 'Компания', support: 'Поддержка', legal: 'Юридическое', contactTitle: 'Свяжитесь с нами', clients: 'Довольных клиентов', ontime: 'Вовремя', rights: 'Все права защищены.', privacy: 'Политика конфиденциальности', terms: 'Условия использования', cookies: 'Куки', admin: 'Админка' }
+                hero: {
+                    title: 'Быстрые сайты для малого бизнеса',
+                    subtitle: 'Профессиональные лендинги и бизнес-сайты за несколько дней, а не месяцев. Простые цены, четкие сроки, гарантированный результат.',
+                    cta1: 'Получить предложение',
+                    cta2: 'Посмотреть работы',
+                    chip1: 'Доставка 3-14 дней',
+                    chip2: 'Фиксированная цена',
+                    chip3: '100% удовлетворенность'
+                },
+                problem: {
+                    title: 'Проблема с большинством веб-агентств',
+                    subtitle: 'Традиционная веб-разработка медленная, дорогая и непредсказуемая.',
+                    item1title: 'Месяцы ожидания',
+                    item1desc: 'Большинство агентств тратят 2-6 месяцев на простой сайт.',
+                    item2title: 'Скрытые расходы',
+                    item2desc: 'Цены растут бесконечными правками и "дополнительными функциями".',
+                    item3title: 'Нет четких сроков',
+                    item3desc: 'Даты запуска постоянно откладываются с расплывчатыми оправданиями.'
+                },
+                solution: {
+                    title: 'Наше решение: быстрые сайты с фиксированной ценой',
+                    subtitle: 'Мы создаем профессиональные сайты за дни с прозрачным ценообразованием и гарантированными сроками.',
+                    item1title: 'Молниеносно',
+                    item1desc: 'Ваш сайт будет онлайн за 3-14 дней. Не месяцев. Не недель. Дней.',
+                    item2title: 'Фиксированная цена',
+                    item2desc: 'Вы точно знаете, сколько заплатите. Никаких сюрпризов, никаких скрытых платежей.',
+                    item3title: 'Гарантированный срок',
+                    item3desc: 'Мы берем на себя обязательство по срокам и соблюдаем его. Каждый раз.'
+                },
+                services: {
+                    title: 'Что мы создаем',
+                    subtitle: 'Целевые решения для малого бизнеса, которому нужны быстрые результаты.'
+                },
+                process: { 
+                    title: 'Простой процесс из 4 шагов', 
+                    subtitle: 'От первого контакта до запуска сайта в рекордные сроки.' 
+                },
+                work: {
+                    title: 'Последние проекты',
+                    subtitle: 'Реальные сайты, доставленные вовремя и в рамках бюджета для реального бизнеса.'
+                },
+                pricing: {
+                    title: 'Простое, прозрачное ценообразование',
+                    subtitle: 'Выберите пакет, который соответствует вашим потребностям. Никаких скрытых платежей и сюрпризов.',
+                    cta: 'Начать'
+                },
+                faq: {
+                    title: 'Часто задаваемые вопросы'
+                },
+                contact: {
+                    title: 'Готовы начать?',
+                    subtitle: 'Получите подробное предложение в течение 24 часов. Большинство проектов начинается в течение недели.',
+                    formtitle: 'Свяжитесь с нами',
+                    formdesc: 'Заполните форму, и мы ответим в течение 24 часов.',
+                    name: 'Имя',
+                    email: 'Email',
+                    company: 'Компания',
+                    budget: 'Бюджет',
+                    budgetSelect: 'Выберите бюджет',
+                    message: 'Сообщение',
+                    send: 'Отправить сообщение'
+                },
+                footer: { 
+                    company: 'Компания', 
+                    support: 'Поддержка', 
+                    legal: 'Юридическое', 
+                    contactTitle: 'Свяжитесь с нами', 
+                    clients: 'Довольных клиентов', 
+                    ontime: 'Вовремя', 
+                    rights: 'Все права защищены.', 
+                    privacy: 'Политика конфиденциальности', 
+                    terms: 'Условия использования', 
+                    cookies: 'Куки', 
+                    admin: 'Админка',
+                    tagline: 'Быстрые, профессиональные сайты для малого бизнеса. Доставка за дни, а не месяцы.'
+                }
             },
             et: {
                 nav: { services: 'Teenused', process: 'Protsess', work: 'Tööd', pricing: 'Hinnad', faq: 'KKK', contact: 'Kontakt', cta: 'Küsi pakkumist' },
-                process: { title: 'Lihtne 4-sammuline protsess', subtitle: 'Esimesest kontaktist valmis veebileheni rekordiliselt kiiresti.' },
-                footer: { company: 'Ettevõte', support: 'Tugi', legal: 'Õiguslik', contactTitle: 'Võta ühendust', clients: 'Rahulolev klient', ontime: 'Õigeaegselt', rights: 'Kõik õigused kaitstud.', privacy: 'Privaatsuspoliitika', terms: 'Kasutustingimused', cookies: 'Küpsised', admin: 'Admin' }
+                hero: {
+                    title: 'Kiired veebilehed väikeettevõtetele',
+                    subtitle: 'Professionaalsed sihtlehed ja äri veebilehed tarnitud päevadega, mitte kuudega. Lihtsad hinnad, selged tähtajad, garanteeritud tulemused.',
+                    cta1: 'Küsi pakkumist',
+                    cta2: 'Vaata meie töid',
+                    chip1: '3-14 päeva tarnimine',
+                    chip2: 'Fikseeritud hind',
+                    chip3: '100% rahulolu'
+                },
+                problem: {
+                    title: 'Probleem enamike veebiagentuuridega',
+                    subtitle: 'Traditsiooniline veebiarendus on aeglane, kallis ja ettearvamatu.',
+                    item1title: 'Kuude ootamine',
+                    item1desc: 'Enamik agentuure kulutab 2-6 kuud lihtsa veebilehe tarnimiseks.',
+                    item2title: 'Peidetud kulud',
+                    item2desc: 'Hinnad paisuvad lõputute paranduste ja "lisafunktsioonidega".',
+                    item3title: 'Pole selget ajakava',
+                    item3desc: 'Käivitamise kuupäevad lükatakse pidevalt edasi ebamäärase vabandusega.'
+                },
+                solution: {
+                    title: 'Meie lahendus: kiired, fikseeritud hinnaga veebilehed',
+                    subtitle: 'Tarnime professionaalseid veebilehti päevadega läbipaistva hinnakujunduse ja garanteeritud tähtaegadega.',
+                    item1title: 'Välkkiire',
+                    item1desc: 'Teie veebileht on valmis 3-14 päevaga. Mitte kuudega. Mitte nädalatega. Päevadega.',
+                    item2title: 'Fikseeritud hind',
+                    item2desc: 'Teate täpselt, mida maksate. Üllatusi, peidetud tasusid ei ole.',
+                    item3title: 'Garanteeritud tähtaeg',
+                    item3desc: 'Võtame endale kohustuse tähtaja suhtes ja järgime seda. Iga kord.'
+                },
+                services: {
+                    title: 'Mida me ehitame',
+                    subtitle: 'Sihipärased lahendused väikeettevõtetele, kes vajavad kiireid tulemusi.'
+                },
+                process: { 
+                    title: 'Lihtne 4-sammuline protsess', 
+                    subtitle: 'Esimesest kontaktist valmis veebileheni rekordiliselt kiiresti.' 
+                },
+                work: {
+                    title: 'Hiljutised projektid',
+                    subtitle: 'Tõelised veebilehed tarnitud õigeaegselt, eelarve piires tegelikele ettevõtetele.'
+                },
+                pricing: {
+                    title: 'Lihtne, läbipaistev hinnakiri',
+                    subtitle: 'Valige pakett, mis sobib teie vajadustega. Peidetud tasusid, üllatusi ei ole.',
+                    cta: 'Alusta'
+                },
+                faq: {
+                    title: 'Korduma kippuvad küsimused'
+                },
+                contact: {
+                    title: 'Valmis alustama?',
+                    subtitle: 'Saate üksikasjaliku pakkumise 24 tunni jooksul. Enamik projekte algab nädala jooksul.',
+                    formtitle: 'Võta ühendust',
+                    formdesc: 'Täitke vorm ja me vastame 24 tunni jooksul.',
+                    name: 'Nimi',
+                    email: 'E-post',
+                    company: 'Ettevõte',
+                    budget: 'Eelarve',
+                    budgetSelect: 'Valige eelarve',
+                    message: 'Sõnum',
+                    send: 'Saada sõnum'
+                },
+                footer: { 
+                    company: 'Ettevõte', 
+                    support: 'Tugi', 
+                    legal: 'Õiguslik', 
+                    contactTitle: 'Võta ühendust', 
+                    clients: 'Rahulolev klient', 
+                    ontime: 'Õigeaegselt', 
+                    rights: 'Kõik õigused kaitstud.', 
+                    privacy: 'Privaatsuspoliitika', 
+                    terms: 'Kasutustingimused', 
+                    cookies: 'Küpsised', 
+                    admin: 'Admin',
+                    tagline: 'Kiired, professionaalsed veebilehed väikeettevõtetele. Tarne päevadega, mitte kuudega.'
+                }
             }
         };
 
         let currentLang = 'en';
 
-        // Switch language
+        // Switch language - ПОЛНЫЙ ПЕРЕВОД
         function switchLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('NP_LANG', lang);
@@ -1538,13 +1851,78 @@
                 btn.classList.toggle('active', btn.dataset.lang === lang);
             });
             
+            const t = translations[lang];
+            
+            // Hero
+            document.getElementById('hero-title').textContent = t.hero.title;
+            document.getElementById('hero-subtitle').textContent = t.hero.subtitle;
+            document.querySelectorAll('.hero .btn-primary')[0].textContent = t.hero.cta1;
+            document.querySelectorAll('.hero .btn-secondary')[0].textContent = t.hero.cta2;
+            document.querySelectorAll('.chip')[0].querySelector('span:last-child').textContent = t.hero.chip1;
+            document.querySelectorAll('.chip')[1].querySelector('span:last-child').textContent = t.hero.chip2;
+            document.querySelectorAll('.chip')[2].querySelector('span:last-child').textContent = t.hero.chip3;
+            
+            // Problem
+            const problemHeaders = document.querySelectorAll('#problem .section-header');
+            problemHeaders[0].querySelector('h2').textContent = t.problem.title;
+            problemHeaders[0].querySelector('p').textContent = t.problem.subtitle;
+            const problemCards = document.querySelectorAll('#problems-grid .card');
+            problemCards[0].querySelector('h3').textContent = t.problem.item1title;
+            problemCards[0].querySelector('p').textContent = t.problem.item1desc;
+            problemCards[1].querySelector('h3').textContent = t.problem.item2title;
+            problemCards[1].querySelector('p').textContent = t.problem.item2desc;
+            problemCards[2].querySelector('h3').textContent = t.problem.item3title;
+            problemCards[2].querySelector('p').textContent = t.problem.item3desc;
+            
+            // Solution
+            problemHeaders[1].querySelector('h2').textContent = t.solution.title;
+            problemHeaders[1].querySelector('p').textContent = t.solution.subtitle;
+            const solutionCards = document.querySelectorAll('#solutions-grid .card');
+            solutionCards[0].querySelector('h3').textContent = t.solution.item1title;
+            solutionCards[0].querySelector('p').textContent = t.solution.item1desc;
+            solutionCards[1].querySelector('h3').textContent = t.solution.item2title;
+            solutionCards[1].querySelector('p').textContent = t.solution.item2desc;
+            solutionCards[2].querySelector('h3').textContent = t.solution.item3title;
+            solutionCards[2].querySelector('p').textContent = t.solution.item3desc;
+            
+            // Services
+            document.querySelector('#services .section-header h2').textContent = t.services.title;
+            document.querySelector('#services .section-header p').textContent = t.services.subtitle;
+            
+            // Work
+            document.querySelector('#work .section-header h2').textContent = t.work.title;
+            document.querySelector('#work .section-header p').textContent = t.work.subtitle;
+            
+            // Pricing
+            document.querySelector('#pricing .section-header h2').textContent = t.pricing.title;
+            document.querySelector('#pricing .section-header p').textContent = t.pricing.subtitle;
+            
+            // FAQ
+            document.querySelector('#faq .section-header h2').textContent = t.faq.title;
+            
+            // Contact
+            document.querySelector('#contact .section-header h2').textContent = t.contact.title;
+            document.querySelector('#contact .section-header p').textContent = t.contact.subtitle;
+            document.querySelector('.contact-info h3').textContent = t.contact.formtitle;
+            document.querySelector('.contact-info p').textContent = t.contact.formdesc;
+            document.querySelector('label[for="name"]').textContent = t.contact.name + ' *';
+            document.querySelector('label[for="email"]').textContent = t.contact.email + ' *';
+            document.querySelector('label[for="company"]').textContent = t.contact.company;
+            document.querySelector('label[for="budget"]').textContent = t.contact.budget;
+            document.querySelector('#budget option[value=""]').textContent = t.contact.budgetSelect;
+            document.querySelector('label[for="message"]').textContent = t.contact.message + ' *';
+            document.querySelector('#contact-form button').textContent = t.contact.send;
+            
+            // Footer
+            document.getElementById('footer-tagline').textContent = t.footer.tagline;
+            
             // Update all i18n elements
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.dataset.i18n;
                 const keys = key.split('.');
-                let value = translations[lang];
+                let value = t;
                 for (let k of keys) {
-                    value = value[k];
+                    value = value?.[k];
                 }
                 if (value) {
                     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
@@ -1597,7 +1975,6 @@
                 const brand = content.brand;
                 document.getElementById('brand-name').textContent = brand.name || 'NorthPixel';
                 document.getElementById('footer-brand').textContent = brand.name || 'NorthPixel';
-                document.getElementById('footer-tagline').textContent = brand.tagline || '';
                 document.getElementById('footer-email').textContent = brand.email || '';
                 document.getElementById('footer-email').href = 'mailto:' + (brand.email || '');
                 document.getElementById('footer-phone').textContent = brand.phone || '';
@@ -1607,6 +1984,80 @@
                 document.getElementById('contact-email').href = 'mailto:' + (brand.email || '');
                 document.getElementById('contact-phone').textContent = brand.phone || '';
                 document.getElementById('contact-phone').href = 'tel:' + (brand.phone || '').replace(/\s/g, '');
+                document.getElementById('contact-location').textContent = brand.location || '';
+                
+                // Social links
+                if (brand.social) {
+                    const socialContainer = document.getElementById('footer-social');
+                    socialContainer.innerHTML = '';
+                    Object.entries(brand.social).forEach(([platform, url]) => {
+                        if (url) {
+                            const link = document.createElement('a');
+                            link.href = url;
+                            link.target = '_blank';
+                            link.className = 'social-link';
+                            link.textContent = getSocialIcon(platform);
+                            socialContainer.appendChild(link);
+                        }
+                    });
+                }
+
+                formEndpoint = brand.formspreeEndpoint || '';
+            }
+
+            // Theme
+            if (content.theme && content.theme.colors) {
+                const colors = content.theme.colors;
+                const root = document.documentElement;
+                if (colors.bg) root.style.setProperty('--bg', colors.bg);
+                if (colors.text) root.style.setProperty('--text', colors.text);
+                if (colors.accent) root.style.setProperty('--accent', colors.accent);
+                if (colors.card) root.style.setProperty('--card', colors.card);
+                if (colors.border) root.style.setProperty('--border', colors.border);
+            }
+
+            // Font Family
+            if (content.theme && content.theme.fontFamily) {
+                const fontMap = {
+                    'Inter': 'font-inter',
+                    'Crimson Text': 'font-crimson',
+                    'Roboto': 'font-roboto'
+                };
+                const fontClass = fontMap[content.theme.fontFamily] || 'font-crimson';
+                document.body.className = fontClass;
+            }
+
+            // Hero
+            if (content.hero) {
+                document.getElementById('hero-title').textContent = content.hero.title || '';
+                document.getElementById('hero-subtitle').textContent = content.hero.subtitle || '';
+            }
+
+            // Projects
+            if (content.sections && content.sections.projects) {
+                renderProjects(content.sections.projects);
+            }
+
+            // Pricing
+            if (content.sections && content.sections.pricingPlans) {
+                renderPricing(content.sections.pricingPlans);
+            }
+
+            // FAQ
+            if (content.sections && content.sections.faq) {
+                renderFAQ(content.sections.faq);
+            }
+
+            // Services
+            if (content.sections && content.sections.services) {
+                renderServices(content.sections.services);
+            }
+
+            // Process
+            if (content.sections && content.sections.processSteps) {
+                renderProcess(content.sections.processSteps);
+            }
+        }'tel:' + (brand.phone || '').replace(/\s/g, '');
                 document.getElementById('contact-location').textContent = brand.location || '';
                 
                 // Social links
