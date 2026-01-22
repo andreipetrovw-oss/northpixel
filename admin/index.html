@@ -329,6 +329,14 @@
     <div class="admin-container" id="admin-container">
         <div class="admin-header">
             <h1>NorthPixel Admin Panel</h1>
+            <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+                <label style="font-weight:600; color:#cbd5e1;">Language</label>
+                <select id="locale-select" style="padding:0.6rem 0.75rem; background:#0f172a; border:1px solid #334155; border-radius:0.5rem; color:#f8fafc;" onchange="setLocale(this.value)">
+                    <option value="en">EN</option>
+                    <option value="ru">RU</option>
+                    <option value="et">ET</option>
+                </select>
+            </div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="preview()">👁 Preview</button>
                 <button class="btn btn-secondary" onclick="downloadJSON()">⬇ Download JSON</button>
@@ -531,6 +539,40 @@
         let content = null;
         let originalContent = null;
         let currentPassword = '';
+        let currentLocale = 'en';
+
+        function ensureLocaleStructure(obj) {
+            if (!obj.locales) {
+                obj.locales = {
+                    en: {
+                        hero: obj.hero || {},
+                        sections: obj.sections || {}
+                    }
+                };
+                delete obj.hero;
+                delete obj.sections;
+            }
+        }
+
+        function getLocaleData() {
+            if (!content) return { hero: {}, sections: {} };
+            ensureLocaleStructure(content);
+            if (!content.locales[currentLocale]) {
+                content.locales[currentLocale] = { hero: {}, sections: {} };
+            }
+            content.locales[currentLocale].hero = content.locales[currentLocale].hero || {};
+            content.locales[currentLocale].sections = content.locales[currentLocale].sections || {};
+            return content.locales[currentLocale];
+        }
+
+        function setLocale(lang) {
+            currentLocale = lang;
+            localStorage.setItem('NP_ADMIN_LANG', lang);
+            const sel = document.getElementById('locale-select');
+            if (sel) sel.value = lang;
+            loadContent();
+            saveDraft();
+        }
 
         // Login
         async function login() {
@@ -548,6 +590,10 @@
                     originalContent = JSON.parse(JSON.stringify(data));
                     document.getElementById('login-screen').style.display = 'none';
                     document.getElementById('admin-container').style.display = 'block';
+                    ensureLocaleStructure(content);
+                    currentLocale = localStorage.getItem('NP_ADMIN_LANG') || 'en';
+                    const sel = document.getElementById('locale-select');
+                    if (sel) sel.value = currentLocale;
                     loadContent();
                     loadDraft();
                 } else {
@@ -603,8 +649,11 @@
             if (document.getElementById('theme-font')) document.getElementById('theme-font').value = content.theme?.fontFamily || 'Inter';
 
             // Hero
-            document.getElementById('hero-title').value = content.hero?.title || '';
-            document.getElementById('hero-subtitle').value = content.hero?.subtitle || '';
+            const loc = getLocaleData();
+
+            // Hero (localized)
+            document.getElementById('hero-title').value = loc.hero?.title || '';
+            document.getElementById('hero-subtitle').value = loc.hero?.subtitle || '';
 
             // Services
             renderServices();
@@ -627,7 +676,7 @@
             const container = document.getElementById('services-repeater');
             container.innerHTML = '';
             
-            (content.sections?.services || []).forEach((service, index) => {
+            (getLocaleData().sections?.services || []).forEach((service, index) => {
                 const item = document.createElement('div');
                 item.className = 'repeater-item';
                 item.innerHTML = `
@@ -655,21 +704,23 @@
         }
 
         function addService() {
-            if (!content.sections) content.sections = {};
-            if (!content.sections.services) content.sections.services = [];
-            content.sections.services.push({ icon: '📄', name: 'New Service', description: '' });
+            const loc = getLocaleData();
+            if (!loc.sections.services) loc.sections.services = [];
+            loc.sections.services.push({ icon: '📄', name: 'New Service', description: '' });
             renderServices();
             saveDraft();
         }
 
         function updateService(index, field, value) {
-            content.sections.services[index][field] = value;
+            const loc = getLocaleData();
+            loc.sections.services[index][field] = value;
             saveDraft();
         }
 
         function removeService(index) {
+            const loc = getLocaleData();
             if (confirm('Remove this service?')) {
-                content.sections.services.splice(index, 1);
+                loc.sections.services.splice(index, 1);
                 renderServices();
                 saveDraft();
             }
@@ -680,7 +731,7 @@
             const container = document.getElementById('process-repeater');
             container.innerHTML = '';
             
-            (content.sections?.processSteps || []).forEach((step, index) => {
+            (getLocaleData().sections?.processSteps || []).forEach((step, index) => {
                 const item = document.createElement('div');
                 item.className = 'repeater-item';
                 item.innerHTML = `
@@ -702,21 +753,23 @@
         }
 
         function addProcessStep() {
-            if (!content.sections) content.sections = {};
-            if (!content.sections.processSteps) content.sections.processSteps = [];
-            content.sections.processSteps.push({ name: 'New Step', description: '' });
+            const loc = getLocaleData();
+            if (!loc.sections.processSteps) loc.sections.processSteps = [];
+            loc.sections.processSteps.push({ name: 'New Step', description: '' });
             renderProcess();
             saveDraft();
         }
 
         function updateProcessStep(index, field, value) {
-            content.sections.processSteps[index][field] = value;
+            const loc = getLocaleData();
+            loc.sections.processSteps[index][field] = value;
             saveDraft();
         }
 
         function removeProcessStep(index) {
+            const loc = getLocaleData();
             if (confirm('Remove this step?')) {
-                content.sections.processSteps.splice(index, 1);
+                loc.sections.processSteps.splice(index, 1);
                 renderProcess();
                 saveDraft();
             }
@@ -727,7 +780,7 @@
             const container = document.getElementById('projects-repeater');
             container.innerHTML = '';
             
-            (content.sections?.projects || []).forEach((project, index) => {
+            (getLocaleData().sections?.projects || []).forEach((project, index) => {
                 const item = document.createElement('div');
                 item.className = 'repeater-item';
                 
@@ -777,9 +830,9 @@
         }
 
         function addProject() {
-            if (!content.sections) content.sections = {};
-            if (!content.sections.projects) content.sections.projects = [];
-            content.sections.projects.push({
+            const loc = getLocaleData();
+            if (!loc.sections.projects) loc.sections.projects = [];
+            loc.sections.projects.push({
                 title: 'New Project',
                 industry: '',
                 result: '',
@@ -792,36 +845,40 @@
         }
 
         function updateProject(index, field, value) {
-            content.sections.projects[index][field] = value;
+            const loc = getLocaleData();
+            loc.sections.projects[index][field] = value;
             saveDraft();
             if (field === 'title') renderProjects();
         }
 
         function updateProjectTags(index, value) {
-            content.sections.projects[index].tags = value.split(',').map(t => t.trim()).filter(Boolean);
+            const loc = getLocaleData();
+            loc.sections.projects[index].tags = value.split(',').map(t => t.trim()).filter(Boolean);
             saveDraft();
         }
 
         function removeProject(index) {
+            const loc = getLocaleData();
             if (confirm('Remove this project?')) {
-                content.sections.projects.splice(index, 1);
+                loc.sections.projects.splice(index, 1);
                 renderProjects();
                 saveDraft();
             }
         }
 
         function uploadProjectImage(index, input) {
+            const loc = getLocaleData();
             const file = input.files[0];
             if (!file) return;
-            
+
             if (file.size > 2 * 1024 * 1024) {
                 alert('File is too large. Please use images under 2MB or paste an image URL instead.');
                 return;
             }
-            
+
             const reader = new FileReader();
             reader.onload = (e) => {
-                content.sections.projects[index].imageUrl = e.target.result;
+                loc.sections.projects[index].imageUrl = e.target.result;
                 renderProjects();
                 saveDraft();
             };
@@ -833,7 +890,7 @@
             const container = document.getElementById('pricing-repeater');
             container.innerHTML = '';
             
-            (content.sections?.pricingPlans || []).forEach((plan, index) => {
+            (getLocaleData().sections?.pricingPlans || []).forEach((plan, index) => {
                 const item = document.createElement('div');
                 item.className = 'repeater-item';
                 item.innerHTML = `
@@ -873,9 +930,9 @@
         }
 
         function addPricingPlan() {
-            if (!content.sections) content.sections = {};
-            if (!content.sections.pricingPlans) content.sections.pricingPlans = [];
-            content.sections.pricingPlans.push({
+            const loc = getLocaleData();
+            if (!loc.sections.pricingPlans) loc.sections.pricingPlans = [];
+            loc.sections.pricingPlans.push({
                 name: 'New Plan',
                 price: 'from €0',
                 duration: '0 days',
@@ -887,19 +944,22 @@
         }
 
         function updatePricing(index, field, value) {
-            content.sections.pricingPlans[index][field] = value;
+            const loc = getLocaleData();
+            loc.sections.pricingPlans[index][field] = value;
             saveDraft();
             if (field === 'name') renderPricing();
         }
 
         function updatePricingFeatures(index, value) {
-            content.sections.pricingPlans[index].features = value.split('\n').filter(Boolean);
+            const loc = getLocaleData();
+            loc.sections.pricingPlans[index].features = value.split('\n').filter(Boolean);
             saveDraft();
         }
 
         function removePricing(index) {
+            const loc = getLocaleData();
             if (confirm('Remove this pricing plan?')) {
-                content.sections.pricingPlans.splice(index, 1);
+                loc.sections.pricingPlans.splice(index, 1);
                 renderPricing();
                 saveDraft();
             }
@@ -910,7 +970,7 @@
             const container = document.getElementById('faq-repeater');
             container.innerHTML = '';
             
-            (content.sections?.faq || []).forEach((faq, index) => {
+            (getLocaleData().sections?.faq || []).forEach((faq, index) => {
                 const item = document.createElement('div');
                 item.className = 'repeater-item';
                 item.innerHTML = `
@@ -932,21 +992,23 @@
         }
 
         function addFAQ() {
-            if (!content.sections) content.sections = {};
-            if (!content.sections.faq) content.sections.faq = [];
-            content.sections.faq.push({ question: 'New Question?', answer: '' });
+            const loc = getLocaleData();
+            if (!loc.sections.faq) loc.sections.faq = [];
+            loc.sections.faq.push({ question: 'New Question?', answer: '' });
             renderFAQ();
             saveDraft();
         }
 
         function updateFAQ(index, field, value) {
-            content.sections.faq[index][field] = value;
+            const loc = getLocaleData();
+            loc.sections.faq[index][field] = value;
             saveDraft();
         }
 
         function removeFAQ(index) {
+            const loc = getLocaleData();
             if (confirm('Remove this FAQ?')) {
-                content.sections.faq.splice(index, 1);
+                loc.sections.faq.splice(index, 1);
                 renderFAQ();
                 saveDraft();
             }
@@ -981,10 +1043,14 @@
             const fontSel = document.getElementById('theme-font');
             if (fontSel) data.theme.fontFamily = fontSel.value;
 
-            // Hero
-            data.hero = data.hero || {};
-            data.hero.title = document.getElementById('hero-title').value;
-            data.hero.subtitle = document.getElementById('hero-subtitle').value;
+            // Localized content (Hero)
+            ensureLocaleStructure(data);
+            data.locales[currentLocale] = data.locales[currentLocale] || { hero: {}, sections: {} };
+            data.locales[currentLocale].hero = data.locales[currentLocale].hero || {};
+            data.locales[currentLocale].sections = data.locales[currentLocale].sections || {};
+
+            data.locales[currentLocale].hero.title = document.getElementById('hero-title').value;
+            data.locales[currentLocale].hero.subtitle = document.getElementById('hero-subtitle').value;
 
             return data;
         }
@@ -1002,6 +1068,10 @@
                 try {
                     const data = JSON.parse(draft);
                     content = data;
+                    ensureLocaleStructure(content);
+                    currentLocale = localStorage.getItem('NP_ADMIN_LANG') || 'en';
+                    const sel2 = document.getElementById('locale-select');
+                    if (sel2) sel2.value = currentLocale;
                     loadContent();
                     showAlert('Draft loaded from localStorage', 'success');
                 } catch (e) {
