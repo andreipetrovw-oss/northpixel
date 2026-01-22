@@ -336,9 +336,6 @@
                     <option value="ru">RU</option>
                     <option value="et">ET</option>
                 </select>
-                <button class="btn btn-secondary btn-small" onclick="copyEnToCurrentLocale()" title="Copy all localized blocks from EN into the selected language">
-                    ⇄ Copy EN → current
-                </button>
             </div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="preview()">👁 Preview</button>
@@ -544,13 +541,67 @@
         let currentPassword = '';
         let currentLocale = 'en';
 
+                // ---------- Locale helpers ----------
+        function deepClone(v) {
+            return JSON.parse(JSON.stringify(v));
+        }
+
+        // Fill missing keys in target from defaults (does NOT overwrite existing values)
+        function mergeDefaults(target, defaults) {
+            if (target == null) return deepClone(defaults);
+            if (defaults == null) return target;
+
+            // Arrays: if target is missing/empty, clone defaults; otherwise keep target
+            if (Array.isArray(defaults)) {
+                if (!Array.isArray(target) || target.length === 0) return deepClone(defaults);
+                return target;
+            }
+
+            // Objects
+            if (typeof defaults === 'object') {
+                if (typeof target !== 'object' || Array.isArray(target)) return deepClone(defaults);
+                for (const k of Object.keys(defaults)) {
+                    if (target[k] === undefined || target[k] === null || target[k] === '') {
+                        target[k] = deepClone(defaults[k]);
+                    } else {
+                        target[k] = mergeDefaults(target[k], defaults[k]);
+                    }
+                }
+                return target;
+            }
+
+            // Primitives
+            return target;
+        }
+
         function ensureLocaleStructure(obj) {
+            // Convert legacy structure -> locales.en
             if (!obj.locales) {
                 obj.locales = {
                     en: {
                         hero: obj.hero || {},
                         sections: obj.sections || {}
                     }
+                };
+                delete obj.hero;
+                delete obj.sections;
+            }
+
+            // Ensure en exists
+            if (!obj.locales.en) obj.locales.en = { hero: {}, sections: {} };
+            obj.locales.en.hero = obj.locales.en.hero || {};
+            obj.locales.en.sections = obj.locales.en.sections || {};
+
+            // Ensure other locales exist (start from EN so nothing is blank)
+            const base = deepClone(obj.locales.en);
+            ['ru', 'et'].forEach((lang) => {
+                if (!obj.locales[lang]) obj.locales[lang] = deepClone(base);
+                obj.locales[lang].hero = obj.locales[lang].hero || {};
+                obj.locales[lang].sections = obj.locales[lang].sections || {};
+                // Also fill missing keys from EN without overwriting translations
+                obj.locales[lang] = mergeDefaults(obj.locales[lang], obj.locales.en);
+            });
+        }
                 };
                 delete obj.hero;
                 delete obj.sections;
@@ -575,25 +626,6 @@
             if (sel) sel.value = lang;
             loadContent();
             saveDraft();
-        }
-
-        // Copy all localized blocks from EN into the currently selected language.
-        // This DOES NOT change theme/brand — only content.locales[...].
-        function copyEnToCurrentLocale() {
-            if (!content) return;
-            ensureLocaleStructure(content);
-            if (currentLocale === 'en') {
-                showAlert('EN is the source language. Select RU/ET to copy into.', 'info');
-                return;
-            }
-            const ok = confirm('Copy ALL localized content from EN into ' + currentLocale.toUpperCase() + '?\n\nThis will overwrite the current language blocks (Hero, Services, Process, Projects, Pricing, FAQ).');
-            if (!ok) return;
-            const en = content.locales.en || { hero: {}, sections: {} };
-            // Deep clone to avoid shared references
-            content.locales[currentLocale] = JSON.parse(JSON.stringify(en));
-            loadContent();
-            saveDraft();
-            showAlert('Copied EN → ' + currentLocale.toUpperCase() + '. Now translate the fields in this language.', 'success');
         }
 
         // Login
@@ -1073,6 +1105,11 @@
 
             data.locales[currentLocale].hero.title = document.getElementById('hero-title').value;
             data.locales[currentLocale].hero.subtitle = document.getElementById('hero-subtitle').value;
+
+            // Normalize locales so download never "breaks" multilingual structure
+            ensureLocaleStructure(data);
+            // Fill RU/ET missing keys from EN (without overwriting)
+            ['ru','et'].forEach((lang)=>{ data.locales[lang] = mergeDefaults(data.locales[lang], data.locales.en); });
 
             return data;
         }
