@@ -336,6 +336,9 @@
                     <option value="ru">RU</option>
                     <option value="et">ET</option>
                 </select>
+                <button class="btn btn-secondary btn-small" onclick="copyEnToCurrentLocale()" title="Copy all localized blocks from EN into the selected language">
+                    ⇄ Copy EN → current
+                </button>
             </div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="preview()">👁 Preview</button>
@@ -572,6 +575,25 @@
             if (sel) sel.value = lang;
             loadContent();
             saveDraft();
+        }
+
+        // Copy all localized blocks from EN into the currently selected language.
+        // This DOES NOT change theme/brand — only content.locales[...].
+        function copyEnToCurrentLocale() {
+            if (!content) return;
+            ensureLocaleStructure(content);
+            if (currentLocale === 'en') {
+                showAlert('EN is the source language. Select RU/ET to copy into.', 'info');
+                return;
+            }
+            const ok = confirm('Copy ALL localized content from EN into ' + currentLocale.toUpperCase() + '?\n\nThis will overwrite the current language blocks (Hero, Services, Process, Projects, Pricing, FAQ).');
+            if (!ok) return;
+            const en = content.locales.en || { hero: {}, sections: {} };
+            // Deep clone to avoid shared references
+            content.locales[currentLocale] = JSON.parse(JSON.stringify(en));
+            loadContent();
+            saveDraft();
+            showAlert('Copied EN → ' + currentLocale.toUpperCase() + '. Now translate the fields in this language.', 'success');
         }
 
         // Login
