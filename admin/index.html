@@ -602,11 +602,6 @@
                 obj.locales[lang] = mergeDefaults(obj.locales[lang], obj.locales.en);
             });
         }
-                };
-                delete obj.hero;
-                delete obj.sections;
-            }
-        }
 
         function getLocaleData() {
             if (!content) return { hero: {}, sections: {} };
