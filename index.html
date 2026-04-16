@@ -1842,7 +1842,7 @@
             }
         };
 
-        let currentLang = 'en';
+        let currentLang = 'ru';
 
         // Font family helper (doesn't wipe other body classes)
         function applyFontFamily(fontName) {
@@ -1869,7 +1869,7 @@
                 btn.classList.toggle('active', btn.dataset.lang === lang);
             });
 
-            const t = translations[lang] || translations.en;
+            const t = translations[lang] || translations.ru;
 
             // SECTION HEADERS / UI TEXT (from translations)
             // Services header
@@ -2352,7 +2352,7 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
         
         // Load saved language
-        const savedLang = localStorage.getItem('NP_LANG') || 'en';
+        const savedLang = localStorage.getItem('NP_LANG') || 'ru';
         switchLanguage(savedLang);
         
         // Load content
